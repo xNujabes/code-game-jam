@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://gbhfafij2wi1"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_j25xi"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_8ydkc"]
+[ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="3_ys3nv"]
+
+[sub_resource type="Gradient" id="Gradient_h1bxr"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.822972, 0.67832, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e4ctw"]
+gradient = SubResource("Gradient_h1bxr")
+width = 32
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18n4h"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ss6o"]
+size = Vector2(34, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iapqu"]
+size = Vector2(32.5612, 76.1493)
+
+[node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_j25xi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_e4ctw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_18n4h")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_8ydkc")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_8ss6o")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_ys3nv")]
+scale = Vector2(0.981426, 1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.0222618, 0)
+scale = Vector2(1.00273, 0.420227)
+shape = SubResource("RectangleShape2D_iapqu")
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

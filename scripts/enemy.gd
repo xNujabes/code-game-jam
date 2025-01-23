@@ -1,0 +1,23 @@
+extends CharacterBody2D
+
+@export var speed = 40.0
+@export var hp = 10
+
+@onready var player = get_tree().get_first_node_in_group("player")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * speed
+	move_and_slide()
+
+
+func _on_hurtbox_hurt(damage: Variant) -> void:
+	hp -= damage
+	if hp < 0:
+		queue_free()
