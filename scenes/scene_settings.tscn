@@ -12,14 +12,6 @@ offset_bottom = 659.0
 color = Color(0.00351917, 0.00351917, 0.00351917, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="HSlider" type="HSlider" parent="ColorRect"]
-layout_mode = 0
-offset_left = 582.0
-offset_top = 310.0
-offset_right = 700.0
-offset_bottom = 391.0
-metadata/_edit_use_anchors_ = true
-
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
@@ -36,7 +28,12 @@ text = "Settings"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ColorRect"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00258176
+anchor_top = -0.104704
+anchor_right = -0.00258176
+anchor_bottom = -0.104704
 offset_left = 309.0
 offset_top = 318.0
 offset_right = 475.0
@@ -55,16 +52,31 @@ theme_override_font_sizes/font_size = 50
 text = "Return Menu Start"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="ColorRect"]
+[node name="Viser" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 741.0
-offset_top = 337.0
-offset_right = 781.0
-offset_bottom = 360.0
-text = "100"
-metadata/_edit_use_anchors_ = true
+offset_left = 647.0
+offset_top = 342.0
+offset_right = 929.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 30
+text = "Auto"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(190, 160)
+[node name="MuteButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 245.0
+offset_right = 926.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 30
+text = "Activé "
+
+[node name="Label" type="Label" parent="."]
+offset_left = 362.0
+offset_top = 338.0
+offset_right = 441.0
+offset_bottom = 393.0
+theme_override_font_sizes/font_size = 40
+text = "Visé"
 
 [connection signal="pressed" from="ColorRect/Return" to="." method="_on_return_pressed_return_settings"]
+[connection signal="pressed" from="ColorRect/Viser" to="." method="_on_viser_pressed"]

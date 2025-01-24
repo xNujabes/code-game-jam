@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
 
-#Armes
+# Armes
 var bullet = preload("res://scenes/bullet.tscn")
 
 @onready var bulletTimer = get_node("Weapons/BulletTmer")
@@ -23,12 +23,10 @@ var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
 var bulletLevel = 1
 
-
-#Camera animation
+# Animation de la caméra
 @onready var animation_player = $AnimationPlayer
 
-#Targeting systeù
-
+# Système de ciblage
 var enemyClose = []
 
 # Appelée lorsque le nœud entre dans la scène pour la première fois.
@@ -45,6 +43,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")
 
+	if Global.fire_mode == "Avec la souris":
+		attack_mouse()
+	else:
+		attack_target()
+
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_dir = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -57,6 +60,26 @@ func attack():
 		bulletTimer.wait_time = bulletAttackSpeed
 		if bulletTimer.is_stopped():
 			bulletTimer.start()
+
+func attack_mouse():
+	if bulletLevel > 0 and bulletAmmo > 0:
+		var bullet_instance = bullet.instantiate()
+		bullet_instance.position = position
+		var mouse_position = get_global_mouse_position()
+		bullet_instance.direction = (mouse_position - position).normalized()
+		add_child(bullet_instance)
+		bulletAmmo -= 1
+		$Weapons/BulletSound.play()
+
+func attack_target():
+	if bulletLevel > 0 and bulletAmmo > 0:
+		var bullet_instance = bullet.instantiate()
+		bullet_instance.position = position
+		bullet_instance.target = get_random_target()
+		bullet_instance.level = bulletLevel
+		add_child(bullet_instance)
+		bulletAmmo -= 1
+		$Weapons/BulletSound.play()
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
@@ -87,18 +110,22 @@ func _on_bullet_tmer_timeout() -> void:
 
 func _on_bullet_attack_timer_timeout() -> void:
 	if bulletAmmo > 0:
-		var bulletAttack = bullet.instantiate()
-		bulletAttack.position = position
-		bulletAttack.target = get_random_target()
-		bulletAttack.level = bulletLevel
-		add_child(bulletAttack)
+		var bullet_instance = bullet.instantiate()
+		bullet_instance.position = position
+		if Global.fire_mode == "Avec la souris":
+			var mouse_position = get_global_mouse_position()
+			bullet_instance.direction = (mouse_position - position).normalized()
+		else:
+			bullet_instance.target = get_random_target()
+		bullet_instance.level = bulletLevel
+		add_child(bullet_instance)
 		bulletAmmo -= 1
 		$Weapons/BulletSound.play()
 		if bulletAmmo > 0:
 			bulletAttackTimer.start()
 		else:
 			bulletAttackTimer.stop()
-		
+			
 func get_random_target():
 	if enemyClose.size() > 0:
 		print(enemyClose.pick_random().global_position)
