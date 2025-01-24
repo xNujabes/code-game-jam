@@ -64,6 +64,7 @@ func add_xp(amount):
 		level+=1
 		xp_to_level_up *= level
 		print("LEVEL UP ", xp, level)
+		%Options.show_option()
 
 func _on_bullet_tmer_timeout() -> void:
 	bulletAmmo += bulletBaseAmmo
