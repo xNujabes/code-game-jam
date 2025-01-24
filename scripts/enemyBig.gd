@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 @export var speed = 20.0
-@export var hp = 10
-@export var xp_amount = 15
+@export var hp = 100
+
+var isAnimated = false
+var isTouched = false
+var isDead = false
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -10,19 +15,58 @@ signal boss_death
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * speed
-	move_and_slide()
+	if not isTouched :
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * speed
+		move_and_slide()
+		if velocity.length() > 0 and not isAnimated:
+			animated_sprite.speed_scale = 1.0
+			animated_sprite.play("walk")
+			animated_sprite.flip_h = velocity.x < 0
+		else:
+			animated_sprite.play("idle")
 
 
-func _on_hurtbox_hurt(damage: Variant) -> void:
+func _on_hurtbox_hurt(damage: Variant):
 	hp -= damage
-	print(hp)
+	var timer = $Timer
+	var tmp = animated_sprite.modulate
+	animated_sprite.modulate = Color(150,0,0,100)
+	timer.start(0.3)
+	await timer.timeout
+	animated_sprite.modulate = tmp
 	if hp < 0:
-		queue_free()
-		boss_death.emit()
+		die()
+
+#zombie animé si une collision sur sa hitbox
+func _on_hitbox_body_entered(body: Node2D):
+	if body.is_in_group("player") :
+		isTouched = true
+		$Hitbox/Timer.start()
 		
-func drop_xp() -> void:
-	var xp = preload("res://scenes/xp.tscn").instantiate()
-	xp.amount = xp_amount
-	add_child(xp)
+#attack toute les Timer sec
+func _on_timer_timeout() :
+	if not isAnimated and not isDead:
+		isAnimated = true
+		animated_sprite.speed_scale = 2.0
+		animated_sprite.play("attack1")
+		isAnimated = false
+		
+	
+
+func _on_hitbox_body_exited(body: Node2D):
+	isTouched = false
+	$Hitbox/Timer.stop()
+		
+func die():
+	isDead = true
+	# Change l'animation à "dead"
+	animated_sprite.animation = "dead"
+	velocity = Vector2.ZERO  # Arrête tout mouvement
+	set_process(false)  # Arrête le traitement si nécessaire
+
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if animated_sprite.animation == "dead":
+		queue_free()  # Supprime le monstre
+	
