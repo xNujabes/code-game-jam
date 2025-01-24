@@ -3,6 +3,12 @@ extends CharacterBody2D
 @export var speed = 50.0
 @export var hp = 80
 
+@export var xp = 0
+@export var xp_to_level_up = 100
+
+@export var level = 1
+
+@onready var hud =  get_tree().get_first_node_in_group("HUD")
 
 #Weapons
 var bullet = preload("res://scenes/bullet.tscn")
@@ -21,7 +27,6 @@ var enemyClose = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	attack()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -42,8 +47,17 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	print(hp)
-
+  print(hp)
+	
+func add_xp(amount):
+	xp += amount 
+	
+	#Level up
+	if xp >= xp_to_level_up:
+		xp = 0
+		level+=1
+		xp_to_level_up *= level
+		print("LEVEL UP ", xp, level)
 
 func _on_bullet_tmer_timeout() -> void:
 	bulletAmmo += bulletBaseAmmo

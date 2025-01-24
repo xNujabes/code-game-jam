@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpywrpb0y76fg"]
+
+[ext_resource type="Script" path="res://scripts/xp.gd" id="1_6inq1"]
+
+[sub_resource type="Gradient" id="Gradient_pdoi7"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0nds4"]
+gradient = SubResource("Gradient_pdoi7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ae8t"]
+size = Vector2(38, 38)
+
+[node name="XP" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6inq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 6.85453e-07)
+scale = Vector2(0.59375, 0.59375)
+texture = SubResource("GradientTexture2D_0nds4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5ae8t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
