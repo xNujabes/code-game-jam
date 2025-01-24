@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=9 format=4 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
-[ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
-[ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
-[ext_resource type="PackedScene" uid="uid://cdj06g81n4mvu" path="res://scenes/hud_player.tscn" id="4_jhne4"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
+[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
+[ext_resource type="PackedScene" path="res://scenes/xp.tscn" id="3_fstna"]
 
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
@@ -76,7 +76,6 @@ position = Vector2(516, 479)
 [node name="XP5" parent="." instance=ExtResource("3_fstna")]
 position = Vector2(629, 407)
 
-[node name="hud_Player" parent="." groups=["HUD"] instance=ExtResource("4_jhne4")]
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_wcb02")
 
@@ -110,3 +109,4 @@ volume_db = -5.0
 autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
