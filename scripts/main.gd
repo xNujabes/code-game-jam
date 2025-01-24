@@ -78,3 +78,14 @@ func _on_boss_death():
 	%SpawnMob.start()
 	%IncreaseEnemies.start()
 	%BossTime.start()
+
+
+func _input(event):
+	# Vérifie si l'action "rickroll" est activée
+	if Input.is_action_just_pressed("rickroll"):
+		open_youtube_video()
+
+func open_youtube_video():
+	# URL de la vidéo YouTube
+	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+	OS.shell_open(youtube_url)
