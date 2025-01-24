@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://sanhvfi4lgp2"]
+[gd_scene load_steps=33 format=3 uid="uid://ctfuii0rmnm4o"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_e02yi"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_7lxiq"]

@@ -142,6 +142,24 @@ func get_random_target():
 		return enemyClose.pick_random().global_position
 	else:
 		return Vector2.UP
+		
+func get_closest_target():
+	if enemyClose.size() > 0:
+		var closest_enemy = null
+		var closest_distance = INF  # Initialise avec une valeur infinie
+
+		# Parcourir tous les ennemis dans la liste
+		for enemy in enemyClose:
+			var distance = global_position.distance_to(enemy.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_enemy = enemy
+
+		# Retourner la position de l'ennemi le plus proche
+		return closest_enemy.global_position
+	else:
+		# Si aucun ennemi n'est trouvé, retourner une direction par défaut (par exemple, Vector2.UP)
+		return Vector2.UP
 
 func _on_range_detection_body_entered(body: Node2D) -> void:
 	if not enemyClose.has(body):
@@ -175,4 +193,3 @@ func game_over():
 	if hp <= 0:
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		
-

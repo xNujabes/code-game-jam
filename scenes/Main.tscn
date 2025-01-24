@@ -1,16 +1,12 @@
-
 [gd_scene load_steps=12 format=4 uid="uid://b7focic4ugteh"]
-
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
 [ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
-
 [ext_resource type="Script" path="res://scripts/canvas_modulate.gd" id="2_u0ro3"]
-[ext_resource type="Texture2D" uid="uid://b1a3bllo3cpxh" path="res://assets/daynightcycle-gradient-texture.tres" id="3_xlxco"]
-[ext_resource type="PackedScene" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
-[ext_resource type="PackedScene" uid="uid://bng5gd8sfpc84" path="res://scenes/daynightcycle_ui.tscn" id="8_b388g"]
-
+[ext_resource type="Texture2D" uid="uid://c6ivd6manoeo" path="res://assets/daynightcycle-gradient-texture.tres" id="3_xlxco"]
+[ext_resource type="PackedScene" uid="uid://dhy4mjh6d4kxr" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
+[ext_resource type="PackedScene" path="res://scenes/daynightcycle_ui.tscn" id="8_b388g"]
 
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
