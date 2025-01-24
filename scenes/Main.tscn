@@ -1,8 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
-[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="1_ml2xq"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_tmy4n"]
 [ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
 [ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
 
@@ -10,14 +8,14 @@
 script/source = "extends Node
 "
 
-[sub_resource type="Curve2D" id="Curve2D_sqr64"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -49, -58, 0, 0, 0, 0, 1184, -82, 0, 0, 0, 0, 1206, 703, 0, 0, 0, 0, -33, 698, 0, 0, 0, 0, -49, -58)
-}
-point_count = 5
+[sub_resource type="Gradient" id="Gradient_7v4v6"]
+offsets = PackedFloat32Array(0.5)
+colors = PackedColorArray(0.381703, 0.381703, 0.381703, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_faw6j"]
+gradient = SubResource("Gradient_7v4v6")
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_tmy4n")
 
 [node name="GameManager" type="Node" parent="."]
 script = SubResource("GDScript_ogk1m")
@@ -74,28 +72,3 @@ position = Vector2(516, 479)
 
 [node name="XP5" parent="." instance=ExtResource("3_fstna")]
 position = Vector2(629, 407)
-=======
-[node name="ParallaxBackground" parent="." instance=ExtResource("1_ml2xq")]
-
-[node name="Player" parent="." instance=ExtResource("1_dl5k0")]
-position = Vector2(560, 320)
-collision_mask = 0
-
-[node name="Enemy" parent="." instance=ExtResource("2_rru24")]
-position = Vector2(200, 227)
-collision_layer = 2
-collision_mask = 3
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_sqr64")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-unique_name_in_owner = true
-position = Vector2(-49, -58)
-rotation = -0.0194623
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

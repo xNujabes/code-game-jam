@@ -47,8 +47,8 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-  print(hp)
-	
+	print(hp)
+
 func add_xp(amount):
 	xp += amount 
 	
