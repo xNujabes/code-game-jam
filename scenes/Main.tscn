@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=6 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_tmy4n"]
 [ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
 
 [sub_resource type="Gradient" id="Gradient_7v4v6"]
@@ -11,6 +12,7 @@ colors = PackedColorArray(0.381703, 0.381703, 0.381703, 1)
 gradient = SubResource("Gradient_7v4v6")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_tmy4n")
 
 [node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(0, 113.75)
