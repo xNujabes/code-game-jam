@@ -24,8 +24,13 @@ var bulletLevel = 1
 #Targeting systeù
 var enemyClose = []
 
+#Camera
+@onready var camShake = $AnimationPlayer
+@onready var texture_rect = $Camera2D/TextureRect
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	texture_rect.modulate = 0
 	attack()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,7 +58,8 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	print(hp)
+	camShake.play("camera-shake")
+	print("HP: ", hp)
 
 func add_xp(amount):
 	xp += amount 
