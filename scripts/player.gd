@@ -24,7 +24,7 @@ var bullet = preload("res://scenes/bullet.tscn")
 var bulletAmmo = 0
 var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
-var bulletLevel = 0
+var bulletLevel = 1
 
 var piano = preload("res://scenes/piano.tscn")
 
@@ -77,6 +77,7 @@ func attack():
 			pianoTimer.start()
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
+	$hitHurt.play()
 	hp -= damage
 	if hp < 0:
 		hp = 0
@@ -85,8 +86,10 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	update_hud()
 
 func add_xp(amount):
+	$XPSound.play()
 	xp += amount
 	if xp >= xp_to_level_up:
+		$LevelUpSound.play()
 		xp -= xp_to_level_up
 		level += 1
 		xp_to_level_up *= level
@@ -164,7 +167,7 @@ func _on_piano_attack_timer_timeout() -> void:
 		pianoAttack.level = pianoLevel
 		add_child(pianoAttack)
 		pianoAmmo -= 1
-		# $Weapons/BulletSound.play()
+		$Weapons/PianoSound.play()
 		if pianoAmmo > 0:
 			pianoAttackTimer.start()
 		else:

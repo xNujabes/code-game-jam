@@ -34,6 +34,7 @@ func _on_hurtbox_hurt(damage: Variant):
 	timer.start(0.3)
 	await timer.timeout
 	animated_sprite.modulate = tmp
+	$HurtSound.play()
 	if hp < 0:
 		die()
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://manu8a0k5tkw"]
 
 [ext_resource type="Script" path="res://scenes/piano.gd" id="1_yi2wy"]
-[ext_resource type="AudioStream" uid="uid://3v6tfa64o6l3" path="res://sounds/PianoBlink.mp3" id="2_2d5yu"]
+[ext_resource type="AudioStream" uid="uid://dmnwfmt5syl0" path="res://sounds/PianoBlink.wav" id="2_h3qtq"]
 [ext_resource type="Texture2D" uid="uid://ddru08nua5f22" path="res://assets/weapons/piano/pianoBlink1.png" id="2_hckgd"]
 [ext_resource type="Texture2D" uid="uid://cospe0rhgtr6t" path="res://assets/weapons/piano/piano.png" id="2_x7jib"]
 [ext_resource type="Texture2D" uid="uid://k4l45whubf3i" path="res://assets/weapons/piano/pianoBlink2.png" id="3_yppdx"]
@@ -137,8 +137,7 @@ shape = SubResource("CircleShape2D_l0hn5")
 disabled = true
 
 [node name="PianoBlink" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_2d5yu")
-volume_db = -10.0
+stream = ExtResource("2_h3qtq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.15
@@ -160,7 +159,6 @@ animation = &"explode"
 
 [node name="PianoExplosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_y011g")
-volume_db = -5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
