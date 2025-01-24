@@ -28,10 +28,9 @@ func _on_hurtbox_hurt(damage: Variant):
 
 #zombie animé si une collision sur sa hitbox
 func _on_hitbox_body_entered(body: Node2D):
-	print(isTouched)
-	print("qkdjqzoijdqzpd")
-	isTouched = true
-	$Hitbox/Timer.start()
+	if body.is_in_group("player"):
+		isTouched = true
+		$Hitbox/Timer.start()
 	
 
 #attack toute les Timer sec
@@ -43,5 +42,5 @@ func _on_timer_timeout():
 	
 
 func _on_hitbox_body_exited(body: Node2D):
-	$Hitbox/Timer.stop()
 	isTouched = false
+	$Hitbox/Timer.stop()

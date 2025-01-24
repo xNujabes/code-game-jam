@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://6qfkdihhibbe"]
+[gd_scene load_steps=23 format=3 uid="uid://ctfuii0rmnm4o"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_e02yi"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_7lxiq"]
@@ -104,7 +104,7 @@ position = Vector2(-0.495049, 2.08675)
 scale = Vector2(6.556, 5)
 shape = SubResource("CapsuleShape2D_sxuy2")
 
-[node name="Hurtbox" parent="." groups=["attack"] instance=ExtResource("2_7lxiq")]
+[node name="Hurtbox" parent="." instance=ExtResource("2_7lxiq")]
 position = Vector2(2.10396, -4.29624)
 collision_layer = 4
 collision_mask = 4

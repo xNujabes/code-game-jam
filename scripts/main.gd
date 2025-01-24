@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 	$Path2D.position -= Vector2(500, 350)
 
 func spawn_mobs():
-	var new_mob = preload("res://scenes/enemy.tscn").instantiate()
+	var new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
 	
 	%PathFollow2D.progress_ratio = randf()
 	new_mob.global_position = %PathFollow2D.global_position
