@@ -12,7 +12,7 @@ func _ready() -> void:
 		xp_bar.max_value = 100
 		xp_bar.value = 0
 	if level_label:
-		level_label.text = str(1)
+		level_label.text = "1  Level"
 
 func update_health(current_hp, max_hp):
 	if health_bar:
@@ -24,4 +24,4 @@ func update_xp(current_xp, max_xp, level):
 		xp_bar.value = current_xp
 		xp_bar.max_value = max_xp
 	if level_label:
-		level_label.text = str(level)
+		level_label.text = str(level) +("  Level")

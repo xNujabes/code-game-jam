@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds2sbjlioq6ls"]
+[gd_scene load_steps=23 format=3 uid="uid://ds2sbjlioq6ls"]
 
 [ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
@@ -9,6 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="7_cegec"]
 [ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="8_voio3"]
 [ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="9_obb2w"]
+[ext_resource type="Texture2D" uid="uid://b17oajy8q0y2n" path="res://assets/Zombie/Idle/zombie_Idle_0.png" id="10_odaq1"]
+[ext_resource type="Texture2D" uid="uid://cmcjtcigg134x" path="res://assets/Zombie/Idle/zombie_Idle_1.png" id="11_6b845"]
+[ext_resource type="Texture2D" uid="uid://mtq1t2hyoaa0" path="res://assets/Zombie/Idle/zombie_Idle_2.png" id="12_61yb5"]
+[ext_resource type="Texture2D" uid="uid://bfprfnc1eowx2" path="res://assets/Zombie/Idle/zombie_Idle_3.png" id="13_o04tp"]
+[ext_resource type="Texture2D" uid="uid://qw27kh06n0s5" path="res://assets/Zombie/Walk/zombie_Walk_0.png" id="14_uqu0v"]
+[ext_resource type="Texture2D" uid="uid://tuy4uim48kdb" path="res://assets/Zombie/Walk/zombie_Walk_1.png" id="15_6abyc"]
+[ext_resource type="Texture2D" uid="uid://dvtg544vf06ym" path="res://assets/Zombie/Walk/zombie_Walk_2.png" id="16_ffobq"]
+[ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="17_vbkev"]
+[ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="18_04dr0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -46,12 +55,47 @@ animations = [{
 "loop": true,
 "name": &"attack1",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_odaq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6b845")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_61yb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o04tp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_uqu0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6abyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ffobq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vbkev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_04dr0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
 }]
 
 [node name="EnemyBig" type="CharacterBody2D"]
-scale = Vector2(11.8, 11.8973)
-collision_layer = 6
-collision_mask = 6
+scale = Vector2(30.6511, 30.9038)
 motion_mode = 1
 script = ExtResource("1_laje0")
 
@@ -80,13 +124,13 @@ position = Vector2(-0.595, 1.255)
 shape = SubResource("CapsuleShape2D_y11bw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.687743, 0.180574, 0.823073, 1)
 texture_filter = 1
 position = Vector2(0, -9.53674e-07)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
 animation = &"attack1"
-frame = 1
-frame_progress = 0.707052
+speed_scale = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 
