@@ -6,6 +6,7 @@ extends Area2D
 @export var attraction_speed = 300
 var is_collected = false
 
+
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 
@@ -28,3 +29,4 @@ func collect_xp():
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		collect_xp()
+
