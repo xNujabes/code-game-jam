@@ -39,9 +39,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-
 position = Vector2(2.86668e-06, 9.56448e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bmr8u")
 
 [node name="Weapons" type="Node2D" parent="."]
@@ -61,7 +59,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeDetection"]
 shape = SubResource("CircleShape2D_on24k")
-
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
