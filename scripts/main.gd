@@ -101,7 +101,3 @@ func open_youtube_video():
 	# URL de la vidéo YouTube
 	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
 	OS.shell_open(youtube_url)
-
-
-func _on_spawn_mob_timeout() -> void:
-	spawn_mobs()
