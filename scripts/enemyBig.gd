@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
+signal boss_death
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -19,6 +20,7 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	if hp < 0:
 		queue_free()
+		boss_death.emit()
 		
 func drop_xp() -> void:
 	var xp = preload("res://scenes/xp.tscn").instantiate()

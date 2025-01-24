@@ -23,7 +23,12 @@ var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
 var bulletLevel = 1
 
-#Système de ciblage
+
+#Camera animation
+@onready var animation_player = $AnimationPlayer
+
+#Targeting systeù
+
 var enemyClose = []
 
 # Appelée lorsque le nœud entre dans la scène pour la première fois.
@@ -57,6 +62,7 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
 	if hp < 0:
 		hp = 0
+	animation_player.play("camera-shake")
 	print(hp)
 	update_hud()
 
