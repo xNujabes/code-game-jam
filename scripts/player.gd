@@ -1,18 +1,16 @@
 extends CharacterBody2D
 
 @export var speed = 50.0
-@export var hp = 100
-@export var max_hp = 100
+@export var hp = 80
 
 @export var xp = 0
 @export var xp_to_level_up = 100
-@export var max_xp = 100
 
 @export var level = 1
 
-@onready var hud = get_tree().get_first_node_in_group("HUD")
+@onready var hud =  get_tree().get_first_node_in_group("HUD")
 
-#Armes
+#Weapons
 var bullet = preload("res://scenes/bullet.tscn")
 
 @onready var bulletTimer = get_node("Weapons/BulletTmer")
@@ -23,15 +21,14 @@ var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
 var bulletLevel = 1
 
-#Système de ciblage
+#Targeting systeù
 var enemyClose = []
 
-# Appelée lorsque le nœud entre dans la scène pour la première fois.
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	attack()
-	update_hud()
 
-# Appelée à chaque frame. 'delta' est le temps écoulé depuis la précédente frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	move()
 	if velocity.length() > 0:
@@ -44,7 +41,7 @@ func _physics_process(delta: float) -> void:
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_dir = Input.get_action_strength("down") - Input.get_action_strength("up")
-	var mov = Vector2(x_dir, y_dir)
+	var mov = Vector2(x_dir,y_dir)
 	velocity = mov.normalized() * speed
 	move_and_slide()
 
@@ -56,30 +53,22 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	if hp < 0:
-		hp = 0
-	print
 	print(hp)
-	update_hud()
 
 func add_xp(amount):
-	xp += amount
+	xp += amount 
+	
+	#Level up
 	if xp >= xp_to_level_up:
-		xp -= xp_to_level_up
-		level += 1
+		xp = 0
+		level+=1
 		xp_to_level_up *= level
-		max_xp = xp_to_level_up
-		print("NIVEAU SUPÉRIEUR ", level)
-	update_hud()
-
-func update_hud():
-	if hud:
-		hud.update_health(hp, max_hp)
-		hud.update_xp(xp, max_xp, level)
+		print("LEVEL UP ", xp, level)
 
 func _on_bullet_tmer_timeout() -> void:
 	bulletAmmo += bulletBaseAmmo
 	bulletAttackTimer.start()
+
 
 func _on_bullet_attack_timer_timeout() -> void:
 	if bulletAmmo > 0:
@@ -102,9 +91,11 @@ func get_random_target():
 	else:
 		return Vector2.UP
 
+
 func _on_range_detection_body_entered(body: Node2D) -> void:
 	if not enemyClose.has(body):
 		enemyClose.append(body)
+
 
 func _on_range_detection_body_exited(body: Node2D) -> void:
 	if enemyClose.has(body):
