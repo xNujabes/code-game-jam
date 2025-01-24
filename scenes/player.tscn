@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=25 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
@@ -26,6 +26,75 @@ height = 32.4454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_on24k"]
 radius = 662.091
+
+[sub_resource type="Gradient" id="Gradient_b1q2b"]
+offsets = PackedFloat32Array(0, 0.405844, 0.733766, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.541176, 0.541176, 0.541176, 0, 0.749277, 0.295725, 0.295725, 0.453552, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ep3yi"]
+gradient = SubResource("Gradient_b1q2b")
+width = 79
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_3t36t"]
+resource_name = "camera-shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 5), Vector2(20, -5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_svc28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bx53y"]
+_data = {
+"RESET": SubResource("Animation_svc28"),
+"camera-shake": SubResource("Animation_3t36t")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cf4ij"]
 animations = [{
@@ -77,8 +146,8 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 3
-collision_mask = 8
+collision_layer = 11
+collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_11tdv")
 speed = 200.0
@@ -120,6 +189,19 @@ monitorable = false
 shape = SubResource("CircleShape2D_on24k")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+modulate = Color(1, 0, 0, 0)
+offset_left = -603.0
+offset_top = -344.0
+offset_right = 599.0
+offset_bottom = 342.0
+texture = SubResource("GradientTexture2D_ep3yi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bx53y")
+}
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
