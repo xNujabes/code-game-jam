@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2j2cac6f5rda"]
+[gd_scene load_steps=9 format=3 uid="uid://gbhfafij2wi1"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_j25xi"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_8ydkc"]
