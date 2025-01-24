@@ -14,14 +14,24 @@ gradient = SubResource("Gradient_7v4v6")
 
 [node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(0, 113.75)
-scale = Vector2(1, 228.5)
+scale = Vector2(0.99856, 162.853)
 texture = SubResource("GradientTexture1D_faw6j")
 region_enabled = true
 region_rect = Rect2(-400, -4000, 4000, 4000)
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
-position = Vector2(350, 349)
-hp = 80
+position = Vector2(225.51, 349)
+scale = Vector2(0.993394, 1.01872)
 
 [node name="Enemy" parent="." instance=ExtResource("2_rru24")]
-position = Vector2(200, 227)
+position = Vector2(-262.01, 227)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_rru24")]
+position = Vector2(-316.95, 227)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_rru24")]
+position = Vector2(-262.01, 131.915)
+
+[node name="Enemy4" parent="." instance=ExtResource("2_rru24")]
+position = Vector2(-262.01, 65.845)
+scale = Vector2(1.0053, 1)

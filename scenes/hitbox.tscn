@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="1_bv7fw"]
 
-[node name="Hitbox" type="Area2D" groups=["attack"]]
+[node name="Hitbox" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_bv7fw")
