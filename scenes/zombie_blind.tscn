@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://urbktstkn8uu"]
+[gd_scene load_steps=14 format=3 uid="uid://sq3fpnw0caan"]
 
 [ext_resource type="Script" path="res://scripts/enemyBlind.gd" id="1_p7csc"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_0t0xf"]
@@ -50,6 +50,8 @@ animations = [{
 
 [node name="EnemyBlind" type="CharacterBody2D"]
 scale = Vector2(8.08, 8.14665)
+collision_layer = 6
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_p7csc")
 
@@ -58,7 +60,7 @@ position = Vector2(-0.485, 2)
 scale = Vector2(6.556, 5)
 shape = SubResource("CapsuleShape2D_sxuy2")
 
-[node name="Hurtbox" parent="." groups=["attack"] instance=ExtResource("2_0t0xf")]
+[node name="Hurtbox" parent="." instance=ExtResource("2_0t0xf")]
 position = Vector2(0, 1.04656)
 collision_layer = 4
 collision_mask = 4
