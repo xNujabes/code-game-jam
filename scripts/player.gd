@@ -74,7 +74,7 @@ func add_xp(amount):
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		print("LEVEL UP ", level)
-    %Options.show_option()
+		%Options.show_option()
 	update_hud()
 
 func update_hud():
