@@ -11,5 +11,5 @@ func tempDisable():
 	timer.start()
 
 
-func _on_timer_timeout() -> void:
-	collision.call_deferred("set","disabled",false)
+	
+	

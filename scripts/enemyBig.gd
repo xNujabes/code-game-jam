@@ -1,14 +1,10 @@
 extends CharacterBody2D
 
-@export var speed = 40.0
+@export var speed = 20.0
 @export var hp = 10
 @export var xp_amount = 15
 
 @onready var player = get_tree().get_first_node_in_group("player")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +19,6 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	if hp < 0:
 		queue_free()
-		drop_xp()
 		
 func drop_xp() -> void:
 	var xp = preload("res://scenes/xp.tscn").instantiate()
