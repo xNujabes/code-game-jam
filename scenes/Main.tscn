@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=12 format=4 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
-[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
-[ext_resource type="PackedScene" uid="uid://dhy4mjh6d4kxr" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
+[ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
+[ext_resource type="Script" path="res://scripts/canvas_modulate.gd" id="2_u0ro3"]
+[ext_resource type="Texture2D" uid="uid://b1a3bllo3cpxh" path="res://assets/daynightcycle-gradient-texture.tres" id="3_xlxco"]
+[ext_resource type="PackedScene" uid="uid://cg648ti572obd" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
+[ext_resource type="PackedScene" uid="uid://bng5gd8sfpc84" path="res://scenes/daynightcycle_ui.tscn" id="8_b388g"]
 
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
@@ -28,10 +31,23 @@ point_count = 5
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pqk2y")
 
-[node name="GameManager" type="Node" parent="."]
-script = SubResource("GDScript_ogk1m")
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.479367, 0.576268, 0.89344, 1)
+script = ExtResource("2_u0ro3")
+gradient = ExtResource("3_xlxco")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_qwm6u")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DayNightCycleUI" parent="CanvasLayer" instance=ExtResource("8_b388g")]
+offset_left = 1018.0
+offset_top = 35.0
+offset_right = 1018.0
+offset_bottom = 35.0
+
+[node name="GameManager" type="Node" parent="."]
+script = SubResource("GDScript_ogk1m")
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 unique_name_in_owner = true
@@ -41,7 +57,7 @@ position = Vector2(560, 320)
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-560, -320)
 stream = SubResource("AudioStreamOggVorbis_1cvbv")
-volume_db = -18.0
+volume_db = -15.0
 autoplay = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -64,8 +80,13 @@ autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamOggVorbis_1cvbv")
+volume_db = -5.0
+autoplay = true
 
 [node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_cy1mq")]
 

@@ -9,14 +9,14 @@ func _ready() -> void:
 	update_best_score_display()
 
 func update_best_score_display() -> void:
-	var best_score_seconds = global_data.best_score
-	var minutes = best_score_seconds / 60
-	var seconds = best_score_seconds % 60
+	var best_score_day = global_data.best_score.day
+	var best_score_hour = global_data.best_score.hour
+	var best_score_minute = global_data.best_score.minute
 
-	var best_score_text = "Votre meilleur temps : "
-	if minutes > 0:
-		best_score_text += str(minutes) + " min "
-	best_score_text += str(seconds) + " s"
+	var best_score_text = "Votre meilleur score : "
+	best_score_text += str(best_score_day) + "j "
+	best_score_text += str(best_score_hour) + "h "
+	best_score_text += str(best_score_minute) + "min"
 
 	if best_score_label:
 		best_score_label.text = best_score_text
