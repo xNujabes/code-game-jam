@@ -78,8 +78,20 @@ unique_name_in_owner = true
 position = Vector2(-49, -58)
 rotation = -0.0194623
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+[node name="SpawnMob" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="IncreaseEnemies" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 20.0
+autostart = true
+
+[node name="BossTime" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
+[connection signal="timeout" from="SpawnMob" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]
+[connection signal="timeout" from="BossTime" to="." method="_on_boss_time_timeout"]
