@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://sanhvfi4lgp2"]
+[gd_scene load_steps=24 format=3 uid="uid://ctfuii0rmnm4o"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_e02yi"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_7lxiq"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="13_ktflr"]
 [ext_resource type="Texture2D" uid="uid://bfprfnc1eowx2" path="res://assets/Zombie/Idle/zombie_Idle_3.png" id="13_u6asi"]
 [ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="14_lr2pt"]
+[ext_resource type="AudioStream" uid="uid://4ikl4adx1tni" path="res://sounds/hitEnemy.wav" id="19_ljj78"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -137,6 +138,10 @@ animation = &"idle"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-0.495049, -0.613749)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_ljj78")
+volume_db = -10.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

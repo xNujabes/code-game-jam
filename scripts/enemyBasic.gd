@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 
 func _on_hurtbox_hurt(damage: Variant):
 	hp -= damage
+	$HurtSound.play()
 	if hp < 0:
 		queue_free()
 
