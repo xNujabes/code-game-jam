@@ -1,26 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=6 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_jqyd5"]
+[ext_resource type="PackedScene" uid="uid://b5dhemw4c6ise" path="res://scenes/parallax_background.tscn" id="1_ml2xq"]
 [ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
 
-[sub_resource type="Gradient" id="Gradient_7v4v6"]
-offsets = PackedFloat32Array(0.5)
-colors = PackedColorArray(0.381703, 0.381703, 0.381703, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_faw6j"]
-gradient = SubResource("Gradient_7v4v6")
+[sub_resource type="Curve2D" id="Curve2D_sqr64"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -49, -58, 0, 0, 0, 0, 1184, -82, 0, 0, 0, 0, 1206, 703, 0, 0, 0, 0, -33, 698, 0, 0, 0, 0, -49, -58)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_jqyd5")
 
-[node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(0, 113.75)
-scale = Vector2(1, 228.5)
-texture = SubResource("GradientTexture1D_faw6j")
-region_enabled = true
-region_rect = Rect2(-400, -4000, 4000, 4000)
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_ml2xq")]
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
-position = Vector2(350, 349)
+position = Vector2(560, 320)
+collision_mask = 0
 
 [node name="Enemy" parent="." instance=ExtResource("2_rru24")]
 position = Vector2(200, 227)
+collision_layer = 2
+collision_mask = 3
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sqr64")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-49, -58)
+rotation = -0.0194623
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
