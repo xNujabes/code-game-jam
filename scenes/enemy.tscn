@@ -14,15 +14,21 @@ width = 32
 height = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18n4h"]
-size = Vector2(28, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ss6o"]
-size = Vector2(34, 34)
+size = Vector2(26, 26)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iapqu"]
-size = Vector2(32.5168, 76.1493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4h25"]
+size = Vector2(30, 30)
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oobhw"]
+size = Vector2(32, 32)
+
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_j25xi")
 
@@ -32,24 +38,23 @@ texture = SubResource("GradientTexture2D_e4ctw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_18n4h")
 
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_ys3nv")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_n4h25")
+
 [node name="Hurtbox" parent="." instance=ExtResource("2_8ydkc")]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_8ss6o")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_ys3nv")]
-scale = Vector2(0.981426, 1)
-collision_layer = 2
-collision_mask = 2
+shape = SubResource("RectangleShape2D_oobhw")
 
-[node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-2.42931e-07, 8.34465e-07)
-scale = Vector2(1.00273, 0.420227)
-shape = SubResource("RectangleShape2D_iapqu")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 
-[editable path="Hurtbox"]
 [editable path="Hitbox"]
+[editable path="Hurtbox"]
