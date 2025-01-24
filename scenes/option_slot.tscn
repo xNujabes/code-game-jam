@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://kpnh58ikav6q"]
+[gd_scene load_steps=3 format=3 uid="uid://bbc0cnnmnhcmf"]
 
 [ext_resource type="Script" path="res://scripts/option_slot.gd" id="1_5l5yq"]
 [ext_resource type="Texture2D" uid="uid://c2500isbwrilx" path="res://assets/Card/blueCard.png" id="1_g2b27"]
@@ -42,6 +42,7 @@ texture_normal = ExtResource("1_g2b27")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="option2"]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 34.0
 offset_right = 204.0
@@ -52,6 +53,7 @@ text = "LVL"
 
 [node name="Description" type="Label" parent="option2"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 33.0
 offset_top = 209.0
 offset_right = 221.0
@@ -65,6 +67,7 @@ texture_normal = ExtResource("1_g2b27")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="option3"]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 34.0
 offset_right = 204.0
@@ -75,6 +78,7 @@ text = "LVL"
 
 [node name="Description" type="Label" parent="option3"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 33.0
 offset_top = 209.0
 offset_right = 221.0

@@ -88,9 +88,12 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	update_hud()
 
+# Ajout de l'xp
 func add_xp(amount):
 	$XPSound.play()
 	xp += amount
+	
+	#Level up
 	if xp >= xp_to_level_up:
 		$LevelUpSound.play()
 		xp -= xp_to_level_up
@@ -98,7 +101,9 @@ func add_xp(amount):
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		print("LEVEL UP ", level)
+
 		%Options.show_option()
+		
 	update_hud()
 
 func update_hud():

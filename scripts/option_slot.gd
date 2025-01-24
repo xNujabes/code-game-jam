@@ -1,6 +1,7 @@
 extends HBoxContainer
 
-var weapon = null  # Déclare une variable pour stocker l'arme associée
+@export var weapon = null  # Déclare une variable pour stocker l'arme associée
+
 
 func _ready():
 	
@@ -14,31 +15,38 @@ func _ready():
 		$option3/Description.text = weapon.description
 	else:
 		$option1/Label.text = "Lvl 1"
-		$option1/Description.text = "very cool"
 		$option2/Label.text = "Lvl 1"
-		$option2/Description.text = "very cool"
 		$option3/Label.text = "Lvl 1"
-		$option3/Description.text = "very cool"
- 
-func _on_gui_input(event : InputEvent):
-	if event.is_action_pressed("click") :
-		#weapon.upgrade_item()
-		get_parent().close_option()
 
+@onready var player = get_tree().get_first_node_in_group("player")
+
+func applyBonus(bonusName):
+	match bonusName:
+		"claquette":
+			player.speed += 50
+		"casque":
+			player.max_hp += 20
+		"lunettes":
+			var cam = player.get_node("Camera2D")
+			cam.zoom -= Vector2(0.1,0.1)
 
 func _on_option_1_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") :
 		#weapon.upgrade_item()
+		print("click")
+		applyBonus($option1/Description.text)
 		get_parent().close_option()
 
 
 func _on_option_2_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") :
 		#weapon.upgrade_item()
+		applyBonus($option2/Description.text)
 		get_parent().close_option()
 
 
 func _on_option_3_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") :
 		#weapon.upgrade_item()
+		applyBonus($option3/Description.text)
 		get_parent().close_option()
