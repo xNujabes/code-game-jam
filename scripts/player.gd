@@ -21,6 +21,9 @@ var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
 var bulletLevel = 1
 
+#Camera animation
+@onready var animation_player = $AnimationPlayer
+
 #Targeting systeù
 var enemyClose = []
 
@@ -53,6 +56,7 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
+	animation_player.play("camera-shake")
 	print(hp)
 
 func add_xp(amount):
