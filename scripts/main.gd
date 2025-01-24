@@ -1,6 +1,18 @@
 extends Node2D
 
+
+@onready var canvas_layer = $CanvasLayer
+@onready var canvas_modulate = $CanvasModulate
+@onready var ui = $CanvasLayer/DayNightCycleUI
+#@onready var sound_machine = $SoundMachine
 @onready var camera = get_node("Player/Camera2D")
+
+
+func _ready() -> void:
+	canvas_layer.visible = true
+	canvas_modulate.time_tick.connect(ui.set_daytime)
+#	canvas_modulate.time_tick.connect(sound_machine.set_daytime)
+
 
 var type_mob = 1
 
@@ -84,7 +96,7 @@ func _input(event):
 
 func open_youtube_video():
 	# URL de la vidéo YouTube
-	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+	var youtube_url = "https://www.youtube.com/watch?v=Qq1oH6AV8ww"
 	OS.shell_open(youtube_url)
 
 

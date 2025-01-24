@@ -12,10 +12,7 @@ extends CharacterBody2D
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
 
-#Weapons
-
-var weapons = ['piano']
-
+#Armes
 var bullet = preload("res://scenes/bullet.tscn")
 
 @onready var bulletTimer = get_node("Weapons/BulletTmer")
@@ -24,17 +21,7 @@ var bullet = preload("res://scenes/bullet.tscn")
 var bulletAmmo = 0
 var bulletBaseAmmo = 1
 var bulletAttackSpeed = 1.5
-var bulletLevel = 0
-
-var piano = preload("res://scenes/piano.tscn")
-
-@onready var pianoTimer = get_node("Weapons/PianoTimer")
-@onready var pianoAttackTimer = get_node("Weapons/PianoTimer/PianoAttackTimer")
-
-var pianoAmmo = 0
-var pianoBaseAmmo = 1
-var pianoAttackSpeed = 7.5
-var pianoLevel = 1
+var bulletLevel = 1
 
 
 #Camera animation
@@ -70,11 +57,6 @@ func attack():
 		bulletTimer.wait_time = bulletAttackSpeed
 		if bulletTimer.is_stopped():
 			bulletTimer.start()
-
-	if pianoLevel > 0:
-		pianoTimer.wait_time = pianoAttackSpeed
-		if pianoTimer.is_stopped():
-			pianoTimer.start()
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
@@ -120,26 +102,9 @@ func _on_bullet_attack_timer_timeout() -> void:
 		
 func get_random_target():
 	if enemyClose.size() > 0:
+		print(enemyClose.pick_random().global_position)
 		return enemyClose.pick_random().global_position
 	else:
-		return Vector2.UP
-
-func get_closest_target():
-	if enemyClose.size() > 0:
-		var closest_enemy = null
-		var closest_distance = INF  # Initialise avec une valeur infinie
-
-		# Parcourir tous les ennemis dans la liste
-		for enemy in enemyClose:
-			var distance = global_position.distance_to(enemy.global_position)
-			if distance < closest_distance:
-				closest_distance = distance
-				closest_enemy = enemy
-
-		# Retourner la position de l'ennemi le plus proche
-		return closest_enemy.global_position
-	else:
-		# Si aucun ennemi n'est trouvé, retourner une direction par défaut (par exemple, Vector2.UP)
 		return Vector2.UP
 
 func _on_range_detection_body_entered(body: Node2D) -> void:
@@ -149,23 +114,3 @@ func _on_range_detection_body_entered(body: Node2D) -> void:
 func _on_range_detection_body_exited(body: Node2D) -> void:
 	if enemyClose.has(body):
 		enemyClose.erase(body)
-
-
-func _on_piano_timer_timeout() -> void:
-	pianoAmmo += pianoBaseAmmo
-	pianoAttackTimer.start()
-
-
-func _on_piano_attack_timer_timeout() -> void:
-	if pianoAmmo > 0:
-		var pianoAttack = piano.instantiate()
-		pianoAttack.position = position
-		pianoAttack.target = get_closest_target()
-		pianoAttack.level = pianoLevel
-		add_child(pianoAttack)
-		pianoAmmo -= 1
-		# $Weapons/BulletSound.play()
-		if pianoAmmo > 0:
-			pianoAttackTimer.start()
-		else:
-			pianoAttackTimer.stop()
