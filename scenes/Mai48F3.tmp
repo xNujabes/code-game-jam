@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=10 format=4 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
 [ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
-
 [ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
 [ext_resource type="PackedScene" uid="uid://bbe7ra0tbkmc5" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
 
@@ -45,6 +44,45 @@ position = Vector2(-560, -320)
 stream = SubResource("AudioStreamOggVorbis_1cvbv")
 volume_db = -18.0
 autoplay = true
+
+[node name="XP" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(259, 447)
+
+[node name="XP2" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(348, 485)
+
+[node name="XP3" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(428, 476)
+
+[node name="XP4" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(516, 435)
+
+[node name="XP6" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(444, 337)
+
+[node name="XP7" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(474, 394)
+
+[node name="XP8" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(483, 263)
+
+[node name="XP9" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(615, 225)
+
+[node name="XP10" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(633, 349)
+
+[node name="XP11" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(582, 413)
+
+[node name="XP12" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(572, 469)
+
+[node name="XP13" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(516, 479)
+
+[node name="XP5" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(629, 407)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_wcb02")

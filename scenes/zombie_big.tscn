@@ -28,8 +28,8 @@ radius = 2.35688
 height = 9.33856
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y11bw"]
-radius = 1.83557
-height = 9.69831
+radius = 1.39043
+height = 8.62734
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
 animations = [{
@@ -96,16 +96,19 @@ animations = [{
 
 [node name="EnemyBig" type="CharacterBody2D"]
 scale = Vector2(30.6511, 30.9038)
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_laje0")
+speed = 60.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.485, 2)
+position = Vector2(0.074068, -4.14364)
 scale = Vector2(6.556, 5)
 shape = SubResource("CapsuleShape2D_sxuy2")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_n24io")]
-position = Vector2(0, 1.04656)
+position = Vector2(0.559068, -5.09708)
 collision_layer = 4
 collision_mask = 4
 
@@ -114,19 +117,22 @@ position = Vector2(-0.49, 0)
 scale = Vector2(1.2405, 1.24358)
 shape = SubResource("CapsuleShape2D_pppx0")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_lbru2")]
-scale = Vector2(0.981426, 1)
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_lbru2")]
+position = Vector2(0.634068, -6.14364)
+scale = Vector2(1.03754, 1.05718)
 collision_layer = 2
 collision_mask = 2
+damage = 200
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.595, 1.255)
+scale = Vector2(-1.05439, 1.12683)
 shape = SubResource("CapsuleShape2D_y11bw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.687743, 0.180574, 0.823073, 1)
 texture_filter = 1
-position = Vector2(0, -9.53674e-07)
+position = Vector2(0.559068, -6.14364)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
 animation = &"attack1"
@@ -134,9 +140,17 @@ speed_scale = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="SuperPower" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Hitbox/Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SuperPower" to="." method="_on_super_power_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

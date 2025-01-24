@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
 		$AnimatedSprite2D.play("idle")
+	game_over()
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -88,9 +89,12 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	update_hud()
 
+# Ajout de l'xp
 func add_xp(amount):
 	$XPSound.play()
 	xp += amount
+	
+	#Level up
 	if xp >= xp_to_level_up:
 		$LevelUpSound.play()
 		xp -= xp_to_level_up
@@ -98,7 +102,9 @@ func add_xp(amount):
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		print("LEVEL UP ", level)
+
 		%Options.show_option()
+		
 	update_hud()
 
 func update_hud():
@@ -179,3 +185,8 @@ func _on_piano_attack_timer_timeout() -> void:
 			pianoAttackTimer.start()
 		else:
 			pianoAttackTimer.stop()
+			
+func game_over():
+	if hp <= 0:
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		

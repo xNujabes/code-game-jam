@@ -41,7 +41,7 @@ func spawn_mobs():
 		add_child(new_mob)
 
 
-func _on_timer_timeout() -> void:
+func _on_spawn_mob_timeout() -> void:
 	spawn_mobs()
 
 func _on_increase_enemies_timeout() -> void:
@@ -101,7 +101,3 @@ func open_youtube_video():
 	# URL de la vidéo YouTube
 	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
 	OS.shell_open(youtube_url)
-
-
-func _on_spawn_mob_timeout() -> void:
-	spawn_mobs()
