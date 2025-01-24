@@ -156,6 +156,12 @@ collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_11tdv")
 speed = 200.0
+hp = null
+max_hp = null
+xp = null
+xp_to_level_up = null
+max_xp = null
+level = null
 
 [node name="UI" type="CanvasLayer" parent="."]
 
