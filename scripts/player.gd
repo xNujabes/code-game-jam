@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
 		$AnimatedSprite2D.play("idle")
+	game_over()
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -184,3 +185,8 @@ func _on_piano_attack_timer_timeout() -> void:
 			pianoAttackTimer.start()
 		else:
 			pianoAttackTimer.stop()
+			
+func game_over():
+	if hp <= 0:
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		

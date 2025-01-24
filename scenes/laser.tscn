@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnprctlv7qcle"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_8hfux"]
+[ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="2_3en1v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7442"]
+size = Vector2(16, 8)
+
+[sub_resource type="Gradient" id="Gradient_w17nc"]
+offsets = PackedFloat32Array(0.357143, 0.994048, 1)
+colors = PackedColorArray(0.621191, 0.342722, 0.215342, 1, 0.976176, 0.175066, 0.0238756, 1, 1, 0.172549, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6b3pi"]
+gradient = SubResource("Gradient_w17nc")
+width = 16
+height = 8
+fill_from = Vector2(0, 0.704918)
+fill_to = Vector2(0.431624, 0.688034)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kt6j"]
+radius = 4.0
+height = 16.0
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_8hfux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p7442")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.00102, 1.00176)
+texture = SubResource("GradientTexture2D_6b3pi")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("2_3en1v")]
+collision_layer = 2
+collision_mask = 2
+damage = 20
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4kt6j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="Hitbox"]
