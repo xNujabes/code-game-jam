@@ -12,45 +12,38 @@ extends CharacterBody2D
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
 
+# Weapons
+var weapons = {
+	"bullet": {
+		"scene": preload("res://scenes/bullet.tscn"),
+		"level": 1
+	},
+	"piano": {
+		"scene": preload("res://scenes/piano.tscn"),
+		"level": 0
+	}
+}
 
-#Weapons
-
-var weapons = ['piano']
-
-var bullet = preload("res://scenes/bullet.tscn")
-
-@onready var bulletTimer = get_node("Weapons/BulletTmer")
-@onready var bulletAttackTimer = get_node("Weapons/BulletTmer/BulletAttackTimer")
+@onready var bulletTimer = $Weapons/BulletTimer
+@onready var bulletAttackTimer = $Weapons/BulletTimer/BulletAttackTimer
 
 var bulletAmmo = 0
-var bulletBaseAmmo = 1
-var bulletAttackSpeed = 1.5
-var bulletLevel = 1
 
-var piano = preload("res://scenes/piano.tscn")
-
-@onready var pianoTimer = get_node("Weapons/PianoTimer")
-@onready var pianoAttackTimer = get_node("Weapons/PianoTimer/PianoAttackTimer")
+@onready var pianoTimer = $Weapons/PianoTimer
+@onready var pianoAttackTimer = $Weapons/PianoTimer/PianoAttackTimer
 
 var pianoAmmo = 0
-var pianoBaseAmmo = 1
-var pianoAttackSpeed = 7.5
-var pianoLevel = 1
 
-
-#Camera animation
-
+# Camera animation
 @onready var animation_player = $AnimationPlayer
 
 # Système de ciblage
 var enemyClose = []
 
-# Appelée lorsque le nœud entre dans la scène pour la première fois.
 func _ready() -> void:
 	attack()
 	update_hud()
 
-# Appelée à chaque frame. 'delta' est le temps écoulé depuis la précédente frame.
 func _physics_process(delta: float) -> void:
 	move()
 	if velocity.length() > 0:
@@ -68,17 +61,26 @@ func move():
 	move_and_slide()
 
 func attack():
-	if bulletLevel > 0:
-		bulletTimer.wait_time = bulletAttackSpeed
-		if bulletTimer.is_stopped():
-			bulletTimer.start()
-
-
-	if pianoLevel > 0:
-		pianoTimer.wait_time = pianoAttackSpeed
-		if pianoTimer.is_stopped():
-			pianoTimer.start()
-
+	for weapon_name in weapons:
+		var weapon_data = weapons[weapon_name]
+		if weapon_data["level"] > 0:  # Vérifie si l'arme est débloquée (niveau > 0)
+			var weapon_instance = weapon_data["scene"].instantiate()
+			match weapon_name:
+				"bullet":
+					if bulletTimer:
+						bulletTimer.wait_time = weapon_instance.attackSpeed
+						if bulletTimer.is_stopped():
+							bulletTimer.start()
+					else:
+						print("bulletTimer non trouvé")
+				"piano":
+					if pianoTimer:
+						pianoTimer.wait_time = weapon_instance.attackSpeed
+						if pianoTimer.is_stopped():
+							pianoTimer.start()
+					else:
+						print("pianoTimer non trouvé")
+			weapon_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	$hitHurt.play()
@@ -86,7 +88,6 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	if hp < 0:
 		hp = 0
 	animation_player.play("camera-shake")
-	print(hp)
 	update_hud()
 
 # Ajout de l'xp
@@ -101,8 +102,6 @@ func add_xp(amount):
 		level += 1
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
-		print("LEVEL UP ", level)
-
 		%Options.show_option()
 		
 	update_hud()
@@ -112,20 +111,22 @@ func update_hud():
 		hud.update_health(hp, max_hp)
 		hud.update_xp(xp, max_xp, level)
 
-func _on_bullet_tmer_timeout() -> void:
-	bulletAmmo += bulletBaseAmmo
+func _on_bullet_timer_timeout() -> void:
+	var bullet_instance = weapons["bullet"]["scene"].instantiate()
+	bulletAmmo += bullet_instance.baseAmmo
+	bullet_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 	bulletAttackTimer.start()
 
 func _on_bullet_attack_timer_timeout() -> void:
 	if bulletAmmo > 0:
-		var bullet_instance = bullet.instantiate()
+		var bullet_instance = weapons["bullet"]["scene"].instantiate()
 		bullet_instance.position = position
 		if Global.fire_mode == "Avec la souris":
 			var mouse_position = get_global_mouse_position()
 			bullet_instance.direction = (mouse_position - position).normalized()
 		else:
 			bullet_instance.target = get_random_target()
-		bullet_instance.level = bulletLevel
+		bullet_instance.level = weapons["bullet"]["level"]
 		add_child(bullet_instance)
 		bulletAmmo -= 1
 		$Weapons/BulletSound.play()
@@ -133,7 +134,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 			bulletAttackTimer.start()
 		else:
 			bulletAttackTimer.stop()
-			
+
 func get_random_target():
 	if enemyClose.size() > 0:
 		return enemyClose.pick_random().global_position
@@ -166,18 +167,18 @@ func _on_range_detection_body_exited(body: Node2D) -> void:
 	if enemyClose.has(body):
 		enemyClose.erase(body)
 
-
 func _on_piano_timer_timeout() -> void:
-	pianoAmmo += pianoBaseAmmo
+	var piano_instance = weapons["piano"]["scene"].instantiate()
+	pianoAmmo += piano_instance.baseAmmo
+	piano_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 	pianoAttackTimer.start()
-
 
 func _on_piano_attack_timer_timeout() -> void:
 	if pianoAmmo > 0:
-		var pianoAttack = piano.instantiate()
+		var pianoAttack = weapons["piano"]["scene"].instantiate()
 		pianoAttack.position = position
 		pianoAttack.target = get_closest_target()
-		pianoAttack.level = pianoLevel
+		pianoAttack.level = weapons["piano"]["level"]
 		add_child(pianoAttack)
 		pianoAmmo -= 1
 		$Weapons/PianoSound.play()
