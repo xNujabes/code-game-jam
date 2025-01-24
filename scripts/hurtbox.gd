@@ -10,7 +10,7 @@ signal hurt(damage)
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('attack'):
 		if not area.get("damage") == null:
-			var damage = area.damage
+			var damage = area.damage    
 			emit_signal("hurt", damage)
 
 			match hurtBoxType:

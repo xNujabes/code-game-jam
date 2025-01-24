@@ -21,7 +21,6 @@ region_rect = Rect2(-400, -4000, 4000, 4000)
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 position = Vector2(350, 349)
-hp = 80
 
 [node name="Enemy" parent="." instance=ExtResource("2_rru24")]
 position = Vector2(200, 227)

@@ -24,3 +24,4 @@ func move():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
+	print(hp)

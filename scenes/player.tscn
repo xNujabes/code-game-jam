@@ -12,10 +12,10 @@ gradient = SubResource("Gradient_who2y")
 fill_to = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbjdt"]
-size = Vector2(50.8478, 52)
+size = Vector2(51.8449, 53)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtqca"]
-size = Vector2(62.4115, 64.2466)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmr8u"]
+size = Vector2(64.1266, 64.1861)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -26,19 +26,20 @@ speed = 200.0
 texture = SubResource("GradientTexture2D_gdmk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.500001, 1)
+position = Vector2(-4.1008e-05, 0.5)
 scale = Vector2(1.00299, 1)
 shape = SubResource("RectangleShape2D_fbjdt")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_5fgw7")]
-scale = Vector2(0.993406, 0.965032)
+scale = Vector2(0.998025, 0.9971)
 collision_layer = 2
 collision_mask = 2
+hurtBoxType = 2
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-visible = false
-position = Vector2(-2.16001e-06, -5.74409e-06)
-shape = SubResource("RectangleShape2D_qtqca")
+position = Vector2(2.86668e-06, 9.56448e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bmr8u")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 
