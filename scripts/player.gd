@@ -3,11 +3,24 @@ extends CharacterBody2D
 @export var speed = 50.0
 @export var hp = 80
 
-@onready var hud =  get_tree().get_first_node_in_group("HUD")
+
+#Weapons
+var bullet = preload("res://scenes/bullet.tscn")
+
+@onready var bulletTimer = get_node("Weapons/BulletTmer")
+@onready var bulletAttackTimer = get_node("Weapons/BulletTmer/BulletAttackTimer")
+
+var bulletAmmo = 0
+var bulletBaseAmmo = 1
+var bulletAttackSpeed = 1.5
+var bulletLevel = 1
+
+#Targeting systeù
+var enemyClose = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	attack()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,6 +34,50 @@ func move():
 	velocity = mov.normalized() * speed
 	move_and_slide()
 
+func attack():
+	if bulletLevel > 0:
+		bulletTimer.wait_time = bulletAttackSpeed
+		if bulletTimer.is_stopped():
+			bulletTimer.start()
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
+	print(hp)
+
+
+func _on_bullet_tmer_timeout() -> void:
+	bulletAmmo += bulletBaseAmmo
+	bulletAttackTimer.start()
+
+
+func _on_bullet_attack_timer_timeout() -> void:
+	if bulletAmmo > 0:
+		var bulletAttack = bullet.instantiate()
+		bulletAttack.position = position
+		bulletAttack.target = get_random_target()
+		bulletAttack.level = bulletLevel
+		add_child(bulletAttack)
+		bulletAmmo -= 1
+		if bulletAmmo > 0:
+			bulletAttackTimer.start()
+		else:
+			bulletAttackTimer.stop()
+		
+func get_random_target():
+	if enemyClose.size() > 0:
+		print(enemyClose.pick_random().global_position)
+		return enemyClose.pick_random().global_position
+	else:
+		return Vector2.UP
+
+
+func _on_range_detection_body_entered(body: Node2D) -> void:
+	print("coucou")
+	if not enemyClose.has(body):
+		enemyClose.append(body)
+
+
+func _on_range_detection_body_exited(body: Node2D) -> void:
+	print("byebye")
+	if enemyClose.has(body):
+		enemyClose.erase(body)
