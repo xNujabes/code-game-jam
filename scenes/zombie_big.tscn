@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds2sbjlioq6ls"]
+[gd_scene load_steps=23 format=3 uid="uid://ds2sbjlioq6ls"]
 
 [ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
@@ -96,7 +96,6 @@ animations = [{
 
 [node name="EnemyBig" type="CharacterBody2D"]
 scale = Vector2(30.6511, 30.9038)
-
 motion_mode = 1
 script = ExtResource("1_laje0")
 
