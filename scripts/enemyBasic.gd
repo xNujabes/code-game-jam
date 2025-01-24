@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 			animated_sprite.play("idle")
 
 func _on_hurtbox_hurt(damage: Variant):
+	$HurtSound.play()
 	hp -= damage
 	var timer = $Timer
 	var tmp = animated_sprite.modulate
@@ -33,7 +34,6 @@ func _on_hurtbox_hurt(damage: Variant):
 	timer.start(0.3)
 	await timer.timeout
 	animated_sprite.modulate = tmp
-	$HurtSound.play()
 	if hp < 0:
 		drop_xp()
 		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sq3fpnw0caan"]
+[gd_scene load_steps=15 format=3 uid="uid://bg6u5xdp8r1rk"]
 
 [ext_resource type="Script" path="res://scripts/enemyBlind.gd" id="1_p7csc"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_0t0xf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="7_62ug6"]
 [ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="8_saqo0"]
 [ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="9_rnlsn"]
+[ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="10_dg72w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -50,8 +51,8 @@ animations = [{
 
 [node name="EnemyBlind" type="CharacterBody2D"]
 scale = Vector2(8.08, 8.14665)
-collision_layer = 6
-collision_mask = 6
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_p7csc")
 
@@ -70,7 +71,7 @@ position = Vector2(-0.49, 0)
 scale = Vector2(1.2405, 1.24358)
 shape = SubResource("CapsuleShape2D_pppx0")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_huxcx")]
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_huxcx")]
 scale = Vector2(0.981426, 1)
 collision_layer = 2
 collision_mask = 2
@@ -91,6 +92,10 @@ animation = &"attack1"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.159511, 0.238257)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_dg72w")
+volume_db = -5.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

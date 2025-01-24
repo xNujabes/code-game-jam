@@ -64,7 +64,7 @@ autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 60.0
 autostart = true
 
 [node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_cy1mq")]
