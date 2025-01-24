@@ -31,28 +31,21 @@ point_count = 5
 [node name="Main" type="Node2D"]
 script = ExtResource("1_pqk2y")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.479367, 0.576268, 0.89344, 1)
-script = ExtResource("2_u0ro3")
-gradient = ExtResource("3_xlxco")
-
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_qwm6u")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DayNightCycleUI" parent="CanvasLayer" instance=ExtResource("8_b388g")]
-offset_left = 1018.0
-offset_top = 35.0
-offset_right = 1018.0
-offset_bottom = 35.0
-
 [node name="GameManager" type="Node" parent="."]
 script = SubResource("GDScript_ogk1m")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_qwm6u")]
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 unique_name_in_owner = true
 z_index = 10
 position = Vector2(560, 320)
+hp = null
+max_hp = null
+xp = null
+xp_to_level_up = null
+max_xp = null
+level = null
 
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-560, -320)
