@@ -96,8 +96,8 @@ animations = [{
 
 [node name="EnemyBasic" type="CharacterBody2D"]
 scale = Vector2(8.08, 8.14665)
-collision_layer = 7
-collision_mask = 7
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_e02yi")
 
@@ -116,11 +116,11 @@ position = Vector2(-2.47525, 5.33643)
 scale = Vector2(1.2405, 1.24358)
 shape = SubResource("CapsuleShape2D_pppx0")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_ikpm8")]
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_ikpm8")]
 position = Vector2(0.618812, -0.613749)
 scale = Vector2(1.69831, 1.26034)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.582991, 1.16873)
