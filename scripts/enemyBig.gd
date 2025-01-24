@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 
 func _on_hurtbox_hurt(damage: Variant):
 	if not isCharging:
+		$HurtSound.play()
 		hp -= damage
 		var timer = $Timer
 		var tmp = animated_sprite.modulate

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cg648ti572obd" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
 [ext_resource type="PackedScene" uid="uid://bng5gd8sfpc84" path="res://scenes/daynightcycle_ui.tscn" id="8_b388g"]
 
+
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
 "
@@ -80,7 +81,7 @@ autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
@@ -89,6 +90,9 @@ volume_db = -5.0
 autoplay = true
 
 [node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_cy1mq")]
+
+[node name="XP" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(561, 337)
 
 [connection signal="timeout" from="SpawnMob" to="." method="_on_spawn_mob_timeout"]
 [connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]

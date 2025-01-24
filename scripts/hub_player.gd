@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var level_label = $LevelLabel
 @onready var score_label = $LabelTimeScore
 @onready var timer = $TimerScore
+@onready var weapons_container = $Inventory/Weapons  
 
 var score = 0
 
@@ -52,3 +53,20 @@ func update_score_display() -> void:
 	
 	if score_label:
 		score_label.text = score_text
+
+func update_weapons(weapons: Dictionary):
+	if weapons_container:
+
+		for child in weapons_container.get_children():
+			child.queue_free()
+
+		# Afficher les nouvelles armes
+		for weapon_name in weapons:
+			var weapon_data = weapons[weapon_name]
+			if weapon_data["level"] > 0:  # Afficher uniquement les armes débloquées
+				var weapon_label = Label.new()
+				weapon_label.text = "{weapon_name} (Niveau {level})".format({
+					"weapon_name": weapon_name,
+					"level": weapon_data["level"]
+				})
+				weapons_container.add_child(weapon_label)
