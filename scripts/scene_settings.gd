@@ -27,7 +27,7 @@ func _on_viser_pressed() -> void:
 
 func _on_mute_button_pressed() -> void:
 	Global.is_muted = !Global.is_muted
-	var music_node = get_tree().root.get_node("Main/Player/Music")
+	var music_node = get_tree().get_root().get_node("Main/Player/Music")
 	if Global.is_muted:
 		mute_button.text = "Désactivé"
 		if music_node:

@@ -1,0 +1,265 @@
+[gd_scene load_steps=30 format=3 uid="uid://v0brf0mjsyfl"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
+[ext_resource type="Script" path="res://scripts/options.gd" id="2_yw2jy"]
+[ext_resource type="AudioStream" uid="uid://b3sqkbr02w0iq" path="res://sounds/OrchestraHit.wav" id="3_3dpk5"]
+[ext_resource type="Texture2D" uid="uid://n2cjlwy4o8in" path="res://assets/Main Character/characterIdle_0.png" id="3_7bv3x"]
+[ext_resource type="Texture2D" uid="uid://duhnwf5udbvnc" path="res://assets/Main Character/characterIdle_1.png" id="4_l4gas"]
+[ext_resource type="Texture2D" uid="uid://b4t8v3bjb7273" path="res://assets/Main Character/characterIdle_2.png" id="5_jy0ec"]
+[ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
+[ext_resource type="Texture2D" uid="uid://c1a85cx74sjsg" path="res://assets/Main Character/characterIdle_3.png" id="6_o0abf"]
+[ext_resource type="Texture2D" uid="uid://bb7i4pwbi06j5" path="res://assets/Main Character/characterRunning_0.png" id="7_25sr8"]
+[ext_resource type="Texture2D" uid="uid://cb4rix7ggpfh2" path="res://assets/Main Character/characterRunning_1.png" id="8_jrlrw"]
+[ext_resource type="Texture2D" uid="uid://cf5ck30c0q52r" path="res://assets/Main Character/characterRunning_2.png" id="9_iyrfv"]
+[ext_resource type="Texture2D" uid="uid://dybd71pg4omm0" path="res://assets/Main Character/characterRunning_3.png" id="10_neosl"]
+[ext_resource type="Texture2D" uid="uid://0dlil3cw6e8i" path="res://assets/Main Character/characterRunning_4.png" id="11_6nikh"]
+[ext_resource type="Texture2D" uid="uid://0x80s6luru2m" path="res://assets/Main Character/characterRunning_5.png" id="12_i3iy2"]
+[ext_resource type="Texture2D" uid="uid://nndk2n363vtc" path="res://assets/Main Character/characterRunning_6.png" id="13_jr6m4"]
+[ext_resource type="Texture2D" uid="uid://c58mf8gfd1sk8" path="res://assets/Main Character/characterRunning_7.png" id="14_5fl07"]
+[ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
+[ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
+[ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_718pj"]
+radius = 6.97913
+height = 30.3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfxea"]
+radius = 8.01583
+height = 32.4454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_on24k"]
+radius = 662.091
+
+[sub_resource type="Gradient" id="Gradient_b1q2b"]
+offsets = PackedFloat32Array(0, 0.405844, 0.733766, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.541176, 0.541176, 0.541176, 0, 0.749277, 0.295725, 0.295725, 0.453552, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ep3yi"]
+gradient = SubResource("Gradient_b1q2b")
+width = 79
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_svc28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3t36t"]
+resource_name = "camera-shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 5), Vector2(20, -5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bx53y"]
+_data = {
+"RESET": SubResource("Animation_svc28"),
+"camera-shake": SubResource("Animation_3t36t")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cf4ij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7bv3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l4gas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jy0ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o0abf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_25sr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jrlrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyrfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_neosl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6nikh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i3iy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jr6m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5fl07")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
+collision_mask = 11
+motion_mode = 1
+script = ExtResource("1_11tdv")
+speed = 200.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Options" type="VBoxContainer" parent="UI"]
+unique_name_in_owner = true
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_yw2jy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.85)
+scale = Vector2(1.00299, 1)
+shape = SubResource("CapsuleShape2D_718pj")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_5fgw7")]
+scale = Vector2(0.998025, 0.9971)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 8.85)
+shape = SubResource("CapsuleShape2D_mfxea")
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="BulletTmer" type="Timer" parent="Weapons"]
+wait_time = 1.5
+
+[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTmer"]
+wait_time = 0.075
+
+[node name="BulletSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("3_3dpk5")
+volume_db = -8.0
+
+[node name="PianoTimer" type="Timer" parent="Weapons"]
+wait_time = 2.0
+
+[node name="PianoAttackTimer" type="Timer" parent="Weapons/PianoTimer"]
+wait_time = 0.075
+
+[node name="PianoSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("5_xn781")
+volume_db = -5.0
+
+[node name="RangeDetection" type="Area2D" parent="."]
+light_mask = 5
+visibility_layer = 5
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeDetection"]
+shape = SubResource("CircleShape2D_on24k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+modulate = Color(1, 0, 0, 0)
+offset_left = -603.0
+offset_top = -344.0
+offset_right = 599.0
+offset_bottom = 342.0
+texture = SubResource("GradientTexture2D_ep3yi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bx53y")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cf4ij")
+animation = &"idle"
+
+[node name="XPSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_51cbu")
+volume_db = -25.0
+
+[node name="hitHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_vml70")
+volume_db = -5.0
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_xixn2")
+volume_db = -5.0
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="timeout" from="Weapons/BulletTmer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTmer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
+[connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
+[connection signal="body_entered" from="RangeDetection" to="." method="_on_range_detection_body_entered"]
+[connection signal="body_exited" from="RangeDetection" to="." method="_on_range_detection_body_exited"]
+
+[editable path="Hurtbox"]

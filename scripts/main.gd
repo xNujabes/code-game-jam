@@ -105,4 +105,3 @@ func open_youtube_video():
 
 func _on_spawn_mob_timeout() -> void:
 	spawn_mobs()
-

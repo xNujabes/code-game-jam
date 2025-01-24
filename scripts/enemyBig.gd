@@ -38,8 +38,8 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	animated_sprite.modulate = tmp
 	if hp < 0:
 		drop_xp()
-    boss_death.emit()
-    die()
+		boss_death.emit()
+		die()
 		queue_free()
 
 func drop_xp() -> void:
@@ -80,4 +80,3 @@ func die():
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite.animation == "dead":
 		queue_free()  # Supprime le monstre
-
