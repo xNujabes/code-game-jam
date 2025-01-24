@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	print(hp)
 	if hp < 0:
 		queue_free()
 		
