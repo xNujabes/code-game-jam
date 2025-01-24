@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpywrpb0y76fg"]
+
+[ext_resource type="Script" path="res://scripts/xp.gd" id="1_6inq1"]
+[ext_resource type="Texture2D" uid="uid://j5r8hf5lq17q" path="res://assets/XP.png" id="2_qhapu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tot8s"]
+radius = 53.0094
+
+[node name="XP" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6inq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.0410156, 0.0399639)
+texture = ExtResource("2_qhapu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tot8s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,147 @@
+[gd_scene load_steps=23 format=3 uid="uid://sanhvfi4lgp2"]
+
+[ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_e02yi"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_7lxiq"]
+[ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="3_ikpm8"]
+[ext_resource type="Texture2D" uid="uid://cqxk6dgpuc8r7" path="res://assets/Zombie/Attack/zombie_Attack_0.png" id="4_2iwkc"]
+[ext_resource type="Texture2D" uid="uid://3vh2ryv2koh7" path="res://assets/Zombie/Attack/zombie_Attack_1.png" id="5_30ayy"]
+[ext_resource type="Texture2D" uid="uid://b4afba1vwk2mc" path="res://assets/Zombie/Attack/zombie_Attack_2.png" id="6_a00us"]
+[ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="7_h3kce"]
+[ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="8_e2j1m"]
+[ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="9_jhofd"]
+[ext_resource type="Texture2D" uid="uid://b17oajy8q0y2n" path="res://assets/Zombie/Idle/zombie_Idle_0.png" id="10_ecotb"]
+[ext_resource type="Texture2D" uid="uid://qw27kh06n0s5" path="res://assets/Zombie/Walk/zombie_Walk_0.png" id="10_gpxby"]
+[ext_resource type="Texture2D" uid="uid://tuy4uim48kdb" path="res://assets/Zombie/Walk/zombie_Walk_1.png" id="11_4kcy6"]
+[ext_resource type="Texture2D" uid="uid://cmcjtcigg134x" path="res://assets/Zombie/Idle/zombie_Idle_1.png" id="11_7gaeb"]
+[ext_resource type="Texture2D" uid="uid://dvtg544vf06ym" path="res://assets/Zombie/Walk/zombie_Walk_2.png" id="12_akhwi"]
+[ext_resource type="Texture2D" uid="uid://mtq1t2hyoaa0" path="res://assets/Zombie/Idle/zombie_Idle_2.png" id="12_m7f1l"]
+[ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="13_ktflr"]
+[ext_resource type="Texture2D" uid="uid://bfprfnc1eowx2" path="res://assets/Zombie/Idle/zombie_Idle_3.png" id="13_u6asi"]
+[ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="14_lr2pt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
+radius = 0.197787
+height = 1.6026
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pppx0"]
+radius = 2.35688
+height = 9.33856
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y11bw"]
+radius = 1.83557
+height = 9.69831
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2iwkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_30ayy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a00us")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h3kce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_e2j1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jhofd")
+}],
+"loop": true,
+"name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ecotb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7gaeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m7f1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_u6asi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_gpxby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4kcy6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_akhwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ktflr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lr2pt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="EnemyBasic" type="CharacterBody2D"]
+scale = Vector2(8.08, 8.14665)
+collision_layer = 7
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_e02yi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.495049, 2.08675)
+scale = Vector2(6.556, 5)
+shape = SubResource("CapsuleShape2D_sxuy2")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_7lxiq")]
+position = Vector2(2.10396, -4.29624)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-2.47525, 5.33643)
+scale = Vector2(1.2405, 1.24358)
+shape = SubResource("CapsuleShape2D_pppx0")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_ikpm8")]
+position = Vector2(0.618812, -0.613749)
+scale = Vector2(1.69831, 1.26034)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.582991, 1.16873)
+shape = SubResource("CapsuleShape2D_y11bw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.371251, 0.371251)
+sprite_frames = SubResource("SpriteFrames_qk76n")
+animation = &"idle"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.495049, -0.613749)
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Hitbox/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

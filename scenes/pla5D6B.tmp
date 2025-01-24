@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://v0brf0mjsyfl"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
+
+[sub_resource type="Gradient" id="Gradient_who2y"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.838897, 0.838897, 0.838897, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdmk6"]
+gradient = SubResource("Gradient_who2y")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbjdt"]
+size = Vector2(51.8449, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmr8u"]
+size = Vector2(64.1266, 64.1861)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_11tdv")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_gdmk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.1008e-05, 0.5)
+scale = Vector2(1.00299, 1)
+shape = SubResource("RectangleShape2D_fbjdt")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_5fgw7")]
+scale = Vector2(0.998025, 0.9971)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(2.86668e-06, 9.56448e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bmr8u")
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="BulletTmer" type="Timer" parent="Weapons"]
+
+[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTmer"]
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]

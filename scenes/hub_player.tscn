@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbe7ra0tbkmc5"]
+
+[ext_resource type="Texture2D" uid="uid://lkmw1dv7esgq" path="res://assets/Coeur.png" id="1_4q07g"]
+[ext_resource type="Script" path="res://scripts/hub_player.gd" id="1_kqux1"]
+[ext_resource type="Texture2D" uid="uid://j5r8hf5lq17q" path="res://assets/XP.png" id="2_odloj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uaivs"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks2ye"]
+bg_color = Color(7.94157e-07, 0.436491, 0.0930231, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyc45"]
+bg_color = Color(0.0866293, 0.0866292, 0.0866292, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y6sn"]
+bg_color = Color(0.556866, 0.0653722, 0.0656533, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Hub_player" type="CanvasLayer"]
+script = ExtResource("1_kqux1")
+
+[node name="BarDeXP" type="ProgressBar" parent="."]
+offset_left = 87.0
+offset_top = 77.0
+offset_right = 291.0
+offset_bottom = 104.0
+theme_override_styles/background = SubResource("StyleBoxFlat_uaivs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ks2ye")
+value = 50.0
+show_percentage = false
+
+[node name="BarDeVie" type="ProgressBar" parent="."]
+offset_left = 91.0
+offset_top = 20.0
+offset_right = 295.0
+offset_bottom = 47.0
+theme_override_styles/background = SubResource("StyleBoxFlat_eyc45")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5y6sn")
+value = 50.0
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 79.0
+offset_right = 344.0
+offset_bottom = 102.0
+
+[node name="Coeur" type="Sprite2D" parent="."]
+position = Vector2(53, 34)
+scale = Vector2(0.00711142, 0.00711143)
+texture = ExtResource("1_4q07g")
+
+[node name="Xp" type="Sprite2D" parent="."]
+position = Vector2(52, 92)
+scale = Vector2(0.0957031, 0.0957031)
+texture = ExtResource("2_odloj")

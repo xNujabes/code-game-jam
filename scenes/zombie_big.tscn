@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://ds2sbjlioq6ls"]
+
+[ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
+[ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="3_lbru2"]
+[ext_resource type="Texture2D" uid="uid://cqxk6dgpuc8r7" path="res://assets/Zombie/Attack/zombie_Attack_0.png" id="4_kvdkr"]
+[ext_resource type="Texture2D" uid="uid://3vh2ryv2koh7" path="res://assets/Zombie/Attack/zombie_Attack_1.png" id="5_15vyd"]
+[ext_resource type="Texture2D" uid="uid://b4afba1vwk2mc" path="res://assets/Zombie/Attack/zombie_Attack_2.png" id="6_2n1xq"]
+[ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="7_cegec"]
+[ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="8_voio3"]
+[ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="9_obb2w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
+radius = 0.197787
+height = 1.6026
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pppx0"]
+radius = 2.35688
+height = 9.33856
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y11bw"]
+radius = 1.83557
+height = 9.69831
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kvdkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_15vyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2n1xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cegec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_voio3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_obb2w")
+}],
+"loop": true,
+"name": &"attack1",
+"speed": 5.0
+}]
+
+[node name="EnemyBig" type="CharacterBody2D"]
+scale = Vector2(11.8, 11.8973)
+collision_layer = 6
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_laje0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.485, 2)
+scale = Vector2(6.556, 5)
+shape = SubResource("CapsuleShape2D_sxuy2")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_n24io")]
+position = Vector2(0, 1.04656)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-0.49, 0)
+scale = Vector2(1.2405, 1.24358)
+shape = SubResource("CapsuleShape2D_pppx0")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_lbru2")]
+scale = Vector2(0.981426, 1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.595, 1.255)
+shape = SubResource("CapsuleShape2D_y11bw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(0.371251, 0.371251)
+sprite_frames = SubResource("SpriteFrames_qk76n")
+animation = &"attack1"
+frame = 1
+frame_progress = 0.707052
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
