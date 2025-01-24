@@ -7,7 +7,7 @@ func _ready() -> void:
 	update_score_display()
 
 func update_score_display() -> void:
-	var score_seconds = global_data.scoregame  a
+	var score_seconds = global_data.scoregame  
 	var minutes = score_seconds / 60
 	var seconds = score_seconds % 60
 
@@ -19,7 +19,9 @@ func update_score_display() -> void:
 	if score_label:
 		score_label.text = score_text
 
+func _on_recommencé_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/Main.tscn")
 
-	
+
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/scene_start.tscn")
