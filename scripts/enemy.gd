@@ -23,7 +23,6 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	if hp < 0:
 		queue_free()
-		drop_xp()
 		
 func drop_xp() -> void:
 	var xp = preload("res://scenes/xp.tscn").instantiate()
