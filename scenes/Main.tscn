@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=7 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
-[ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
+[ext_resource type="PackedScene" uid="uid://6qfkdihhibbe" path="res://scenes/zombie_basic.tscn" id="2_70s31"]
+[ext_resource type="PackedScene" uid="uid://urbktstkn8uu" path="res://scenes/zombie_blind.tscn" id="3_p1558"]
+[ext_resource type="PackedScene" uid="uid://tkjs80ly2s2j" path="res://scenes/zombie_big.tscn" id="4_ay2b5"]
 
 [sub_resource type="Gradient" id="Gradient_7v4v6"]
 offsets = PackedFloat32Array(0.5)
@@ -22,5 +24,10 @@ region_rect = Rect2(-400, -4000, 4000, 4000)
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 position = Vector2(350, 349)
 
-[node name="Enemy" parent="." instance=ExtResource("2_rru24")]
-position = Vector2(200, 227)
+[node name="zombie" parent="." instance=ExtResource("2_70s31")]
+position = Vector2(117, 193)
+
+[node name="zombie_blind" parent="." instance=ExtResource("3_p1558")]
+position = Vector2(242, 463)
+
+[node name="EnemyBig" parent="." instance=ExtResource("4_ay2b5")]
