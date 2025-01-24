@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var xp = $"."
 @onready var player = %Player
-@export var amount = 10
+var amount = 10
 
 func _on_body_entered(body):
 	if body == player:
