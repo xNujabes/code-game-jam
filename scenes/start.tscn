@@ -1,22 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://caxyiaeowa342"]
-
-[ext_resource type="Texture2D" path="res://scenes/pixil-frame-0 (1).png" id="1_21rht"]
+[gd_scene load_steps=2 format=3 uid="uid://7ipnfe6ei82k"]
 
 [sub_resource type="GDScript" id="GDScript_vnp24"]
-script/source = "extends Node2D
-
-signal start_game
-
-func show_message(text):
-	$ColorRect/MessageTimer
-
-func _on_settings_pressed_Settings():
-	get_tree().change_scene_to_file(\"res://scenes/scene_settings.tscn\")
-
-
-func _on_start_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/Main.tscn\")
-"
 
 [node name="HUDStart" type="Node2D"]
 script = SubResource("GDScript_vnp24")
@@ -77,7 +61,6 @@ text = "Settings"
 [node name="Logo" type="Sprite2D" parent="ColorRect"]
 position = Vector2(356, 129)
 scale = Vector2(0.012, 0.0121001)
-texture = ExtResource("1_21rht")
 
 [node name="NameGame" type="Label" parent="ColorRect"]
 layout_mode = 1

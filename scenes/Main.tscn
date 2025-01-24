@@ -1,6 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
+
+[ext_resource type="PackedScene" uid="uid://b5dhemw4c6ise" path="res://scenes/parallax_background.tscn" id="1_ml2xq"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_tmy4n"]
 [ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
 [ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
 

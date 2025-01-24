@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpy653qwsebfv"]
+[gd_scene load_steps=3 format=3 uid="uid://cpy653qwsebfv"]
 
-[ext_resource type="Texture2D" path="res://assets/kenney_tiny-dungeon/pixil-frame-0 (1).png" id="1_aopqr"]
+[ext_resource type="Script" path="res://scripts/scene_start.gd" id="1_4bcv0"]
+[ext_resource type="Texture2D" uid="uid://bcpjjwifqb5v3" path="res://assets/pixil-frame-0 (1).png" id="1_jlpfn"]
 
 [node name="HUDStart" type="Node2D"]
+script = ExtResource("1_4bcv0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1163.0
@@ -82,9 +84,10 @@ text = "4680"
 
 [node name="MessageTimer" type="Timer" parent="ColorRect"]
 
-[node name="Pixil-frame-0(1)" type="Sprite2D" parent="."]
-position = Vector2(354.625, 137.625)
-scale = Vector2(0.014075, 0.014075)
-texture = ExtResource("1_aopqr")
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(351, 139)
+scale = Vector2(0.013675, 0.013675)
+texture = ExtResource("1_jlpfn")
 
+[connection signal="pressed" from="ColorRect/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="ColorRect/Settings" to="." method="_on_settings_pressed_Settings"]
