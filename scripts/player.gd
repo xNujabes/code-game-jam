@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var level = 1
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
+@onready var global_data = get_tree().root.get_node("Global")  # Récupère le nœud global
 
 # Weapons
 var weapons = {
@@ -23,6 +24,7 @@ var weapons = {
 		"level": 0
 	}
 }
+var score = 0  # Déclare la variable score
 
 @onready var bulletTimer = $Weapons/BulletTimer
 @onready var bulletAttackTimer = $Weapons/BulletTimer/BulletAttackTimer
@@ -37,12 +39,16 @@ var pianoAmmo = 0
 # Camera animation
 @onready var animation_player = $AnimationPlayer
 
-# Système de ciblage
 var enemyClose = []
 
 func _ready() -> void:
 	attack()
 	update_hud()
+	var score_timer = Timer.new()
+	score_timer.wait_time = 1.0  
+	score_timer.connect("timeout", Callable(self, "_on_score_timeout"))
+	add_child(score_timer)
+	score_timer.start()
 
 func _physics_process(delta: float) -> void:
 	move()
@@ -81,7 +87,6 @@ func attack():
 					else:
 						print("pianoTimer non trouvé")
 			weapon_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
-
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	$hitHurt.play()
@@ -188,8 +193,15 @@ func _on_piano_attack_timer_timeout() -> void:
 			pianoAttackTimer.start()
 		else:
 			pianoAttackTimer.stop()
-			
+
+func _on_score_timeout() -> void:
+	score += 1
+
 func game_over():
 	if hp <= 0:
+		global_data.scoregame = score
+		# Met à jour le meilleur temps global
+		if score > global_data.best_score:
+			global_data.best_score = score
+		# Change de scène vers game_over
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-		
