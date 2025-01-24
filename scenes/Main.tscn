@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=10 format=4 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
-[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
-[ext_resource type="PackedScene" path="res://scenes/xp.tscn" id="3_fstna"]
+[ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
+[ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
+[ext_resource type="PackedScene" uid="uid://dhy4mjh6d4kxr" path="res://scenes/hub_player.tscn" id="5_vrpk4"]
 
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
@@ -98,15 +99,13 @@ autostart = true
 wait_time = 300.0
 autostart = true
 
-
-[connection signal="timeout" from="SpawnMob" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]
-[connection signal="timeout" from="BossTime" to="." method="_on_boss_time_timeout"]
-
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamOggVorbis_1cvbv")
 volume_db = -5.0
 autoplay = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_vrpk4")]
 
+[connection signal="timeout" from="SpawnMob" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]
+[connection signal="timeout" from="BossTime" to="." method="_on_boss_time_timeout"]
