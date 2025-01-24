@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var hp = 80
 
 @export var xp = 0
-var xp_to_level_up = 100
+@export var xp_to_level_up = 100
 
-@export var level = 0
+@export var level = 1
 
 @onready var hud =  get_tree().get_first_node_in_group("HUD")
 
@@ -30,5 +30,11 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
 	
 func add_xp(amount):
-	xp += amount
+	xp += amount 
 	
+	#Level up
+	if xp >= xp_to_level_up:
+		xp = 0
+		level+=1
+		xp_to_level_up *= level
+		print("LEVEL UP ", xp, level)
