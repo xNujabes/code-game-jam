@@ -21,6 +21,7 @@ func _ready() -> void:
 	special_attack()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if not isTouched and not isCharging:
 		var direction = global_position.direction_to(player.global_position)
@@ -35,6 +36,7 @@ func _process(delta: float) -> void:
 			animated_sprite.play("idle")
 
 
+
 func _on_hurtbox_hurt(damage: Variant):
 	if not isCharging:
 		hp -= damage
@@ -47,6 +49,18 @@ func _on_hurtbox_hurt(damage: Variant):
 
 		if hp < 0:
 			die()
+		  drop_xp()
+		  boss_death.emit()
+		  queue_free()
+
+func drop_xp() -> void:
+	var num_orbs = randi() % 4 + 2  # Génère un nombre aléatoire entre 2 et 5
+	for i in range(num_orbs):
+		var xp_orb = preload("res://scenes/xp.tscn").instantiate()
+		var random_offset = Vector2(randf() * 60 - 30, randf() * 60 - 30)  # Position aléatoire dans une zone de 60x60 pixels
+		xp_orb.global_position = global_position + random_offset
+		get_parent().add_child(xp_orb)
+
 
 #zombie animé si une collision sur sa hitbox
 func _on_hitbox_body_entered(body: Node2D):
@@ -63,8 +77,6 @@ func _on_timer_timeout() :
 		animated_sprite.play("attack1")
 		isAnimated = false
 		
-	
-
 func _on_hitbox_body_exited(body: Node2D):
 	isTouched = false
 	$Hitbox/Timer.stop()

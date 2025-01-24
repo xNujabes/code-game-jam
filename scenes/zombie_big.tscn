@@ -96,8 +96,10 @@ animations = [{
 
 [node name="EnemyBig" type="CharacterBody2D"]
 scale = Vector2(30.6511, 30.9038)
+
 collision_layer = 5
 collision_mask = 5
+
 motion_mode = 1
 script = ExtResource("1_laje0")
 speed = 60.0

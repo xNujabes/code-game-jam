@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	# Vérifie si la distance entre position et target est très petite (pour éviter des problèmes de précision)
 	if position.distance_to(target) > 1.0:  # 1.0 est une tolérance, vous pouvez l'ajuster
 		position += angle * speed * delta
+		$PianoBlink.play()
 	else:
 		$AnimatedSprite2D.play("Blink")
 		if $Timer.is_stopped():
@@ -33,6 +34,7 @@ func _physics_process(delta: float) -> void:
 func explode():
 	$CollisionShape2D.disabled = false
 	$Explosion.visible = true
+	$PianoExplosion.play()
 	$Explosion.play("explode")
 	$ExplosionTimer.start()
 

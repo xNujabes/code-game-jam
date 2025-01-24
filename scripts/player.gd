@@ -12,6 +12,7 @@ extends CharacterBody2D
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
 
+
 #Weapons
 
 var weapons = ['piano']
@@ -38,10 +39,10 @@ var pianoLevel = 1
 
 
 #Camera animation
+
 @onready var animation_player = $AnimationPlayer
 
-#Targeting systeù
-
+# Système de ciblage
 var enemyClose = []
 
 # Appelée lorsque le nœud entre dans la scène pour la première fois.
@@ -72,12 +73,15 @@ func attack():
 		if bulletTimer.is_stopped():
 			bulletTimer.start()
 
+
 	if pianoLevel > 0:
 		pianoTimer.wait_time = pianoAttackSpeed
 		if pianoTimer.is_stopped():
 			pianoTimer.start()
 
+
 func _on_hurtbox_hurt(damage: Variant) -> void:
+	$hitHurt.play()
 	hp -= damage
 	if hp < 0:
 		hp = 0
@@ -85,15 +89,22 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	print(hp)
 	update_hud()
 
+# Ajout de l'xp
 func add_xp(amount):
+	$XPSound.play()
 	xp += amount
+	
+	#Level up
 	if xp >= xp_to_level_up:
+		$LevelUpSound.play()
 		xp -= xp_to_level_up
 		level += 1
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		print("LEVEL UP ", level)
+
 		%Options.show_option()
+		
 	update_hud()
 
 func update_hud():
@@ -107,18 +118,22 @@ func _on_bullet_tmer_timeout() -> void:
 
 func _on_bullet_attack_timer_timeout() -> void:
 	if bulletAmmo > 0:
-		var bulletAttack = bullet.instantiate()
-		bulletAttack.position = position
-		bulletAttack.target = get_random_target()
-		bulletAttack.level = bulletLevel
-		add_child(bulletAttack)
+		var bullet_instance = bullet.instantiate()
+		bullet_instance.position = position
+		if Global.fire_mode == "Avec la souris":
+			var mouse_position = get_global_mouse_position()
+			bullet_instance.direction = (mouse_position - position).normalized()
+		else:
+			bullet_instance.target = get_random_target()
+		bullet_instance.level = bulletLevel
+		add_child(bullet_instance)
 		bulletAmmo -= 1
 		$Weapons/BulletSound.play()
 		if bulletAmmo > 0:
 			bulletAttackTimer.start()
 		else:
 			bulletAttackTimer.stop()
-		
+			
 func get_random_target():
 	if enemyClose.size() > 0:
 		return enemyClose.pick_random().global_position
@@ -165,7 +180,7 @@ func _on_piano_attack_timer_timeout() -> void:
 		pianoAttack.level = pianoLevel
 		add_child(pianoAttack)
 		pianoAmmo -= 1
-		# $Weapons/BulletSound.play()
+		$Weapons/PianoSound.play()
 		if pianoAmmo > 0:
 			pianoAttackTimer.start()
 		else:
