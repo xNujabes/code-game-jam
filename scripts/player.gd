@@ -78,6 +78,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 		bulletAttack.level = bulletLevel
 		add_child(bulletAttack)
 		bulletAmmo -= 1
+		$Weapons/BulletSound.play()
 		if bulletAmmo > 0:
 			bulletAttackTimer.start()
 		else:
@@ -92,12 +93,10 @@ func get_random_target():
 
 
 func _on_range_detection_body_entered(body: Node2D) -> void:
-	print("coucou")
 	if not enemyClose.has(body):
 		enemyClose.append(body)
 
 
 func _on_range_detection_body_exited(body: Node2D) -> void:
-	print("byebye")
 	if enemyClose.has(body):
 		enemyClose.erase(body)
