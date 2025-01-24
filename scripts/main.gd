@@ -11,11 +11,11 @@ func _process(delta: float) -> void:
 func spawn_mobs():
 	var new_mob
 	if type_mob == 1:
-		new_mob = preload("res://scenes/enemy.tscn").instantiate()
+		new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
 	elif type_mob == 2:
-		new_mob = preload("res://scenes/enemy.tscn").instantiate()
+		new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
 	else:
-		new_mob = preload("res://scenes/enemy.tscn").instantiate()
+		new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
 
 	%PathFollow2D.progress_ratio = randf()
 	new_mob.global_position = %PathFollow2D.global_position
