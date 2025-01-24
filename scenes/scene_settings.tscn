@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx6kss7uhxhfj"]
+
+[ext_resource type="Script" path="res://scripts/scene_settings.gd" id="1_dmkjl"]
+
+[node name="SceneSettings" type="Node2D"]
+position = Vector2(-2, -1)
+script = ExtResource("1_dmkjl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1162.0
+offset_bottom = 659.0
+color = Color(0.00351917, 0.00351917, 0.00351917, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="ColorRect"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 310.0
+offset_right = 700.0
+offset_bottom = 391.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.13
+offset_left = -76.0
+offset_top = 55.0
+offset_right = 79.0
+offset_bottom = 24.33
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 318.0
+offset_right = 475.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 40
+text = "Musique"
+metadata/_edit_use_anchors_ = true
+
+[node name="Return" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 470.0
+offset_right = 813.0
+offset_bottom = 547.0
+theme_override_font_sizes/font_size = 50
+text = "Return Menu Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 741.0
+offset_top = 337.0
+offset_right = 781.0
+offset_bottom = 360.0
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(190, 160)
+
+[connection signal="pressed" from="ColorRect/Return" to="." method="_on_return_pressed_return_settings"]

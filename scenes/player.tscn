@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=18 format=3 uid="uid://dkei4whinf1ur"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
