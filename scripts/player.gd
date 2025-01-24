@@ -31,6 +31,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	move()
+	if velocity.length() > 0:
+		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	else:
+		$AnimatedSprite2D.play("idle")
+		
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")

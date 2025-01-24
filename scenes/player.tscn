@@ -1,39 +1,85 @@
-[gd_scene load_steps=8 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=18 format=3 uid="uid://dkei4whinf1ur"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
+[ext_resource type="Texture2D" uid="uid://n2cjlwy4o8in" path="res://assets/Main Character/characterIdle_0.png" id="3_7bv3x"]
+[ext_resource type="Texture2D" uid="uid://duhnwf5udbvnc" path="res://assets/Main Character/characterIdle_1.png" id="4_l4gas"]
+[ext_resource type="Texture2D" uid="uid://b4t8v3bjb7273" path="res://assets/Main Character/characterIdle_2.png" id="5_jy0ec"]
+[ext_resource type="Texture2D" uid="uid://c1a85cx74sjsg" path="res://assets/Main Character/characterIdle_3.png" id="6_o0abf"]
+[ext_resource type="Texture2D" uid="uid://bb7i4pwbi06j5" path="res://assets/Main Character/characterRunning_0.png" id="7_25sr8"]
+[ext_resource type="Texture2D" uid="uid://cb4rix7ggpfh2" path="res://assets/Main Character/characterRunning_1.png" id="8_jrlrw"]
+[ext_resource type="Texture2D" uid="uid://cf5ck30c0q52r" path="res://assets/Main Character/characterRunning_2.png" id="9_iyrfv"]
+[ext_resource type="Texture2D" uid="uid://dybd71pg4omm0" path="res://assets/Main Character/characterRunning_3.png" id="10_neosl"]
+[ext_resource type="Texture2D" uid="uid://0dlil3cw6e8i" path="res://assets/Main Character/characterRunning_4.png" id="11_6nikh"]
+[ext_resource type="Texture2D" uid="uid://0x80s6luru2m" path="res://assets/Main Character/characterRunning_5.png" id="12_i3iy2"]
+[ext_resource type="Texture2D" uid="uid://nndk2n363vtc" path="res://assets/Main Character/characterRunning_6.png" id="13_jr6m4"]
+[ext_resource type="Texture2D" uid="uid://c58mf8gfd1sk8" path="res://assets/Main Character/characterRunning_7.png" id="14_5fl07"]
 
-[sub_resource type="Gradient" id="Gradient_who2y"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.838897, 0.838897, 0.838897, 1)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8x6bw"]
+radius = 5.98207
+height = 22.0
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdmk6"]
-gradient = SubResource("Gradient_who2y")
-fill_to = Vector2(0, 0)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yev85"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbjdt"]
-size = Vector2(51.8449, 53)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmr8u"]
-size = Vector2(64.1266, 64.1861)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_on24k"]
-radius = 495.049
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1xra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7bv3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l4gas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jy0ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o0abf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_25sr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jrlrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyrfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_neosl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6nikh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i3iy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jr6m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5fl07")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 3
-collision_mask = 8
+scale = Vector2(2.66571, 2.66571)
 motion_mode = 1
 script = ExtResource("1_11tdv")
 speed = 200.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_gdmk6")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.1008e-05, 0.5)
+position = Vector2(0, 5)
 scale = Vector2(1.00299, 1)
-shape = SubResource("RectangleShape2D_fbjdt")
+shape = SubResource("CapsuleShape2D_8x6bw")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_5fgw7")]
 scale = Vector2(0.998025, 0.9971)
