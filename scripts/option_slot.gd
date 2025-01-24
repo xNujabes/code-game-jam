@@ -19,12 +19,6 @@ func _ready():
 		$option2/Description.text = "very cool"
 		$option3/Label.text = "Lvl 1"
 		$option3/Description.text = "very cool"
- 
-func _on_gui_input(event : InputEvent):
-	if event.is_action_pressed("click") :
-		#weapon.upgrade_item()
-		get_parent().close_option()
-
 
 func _on_option_1_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click") :
