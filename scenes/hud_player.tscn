@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdj06g81n4mvu"]
+
+[ext_resource type="Script" path="res://scripts/hud_player.gd" id="1_5sebt"]
+[ext_resource type="Texture2D" uid="uid://cuh4ocfhljik1" path="res://assets/Coeur.png" id="2_06y8c"]
+[ext_resource type="Texture2D" uid="uid://c4adufw2eu2rk" path="res://assets/XP.png" id="3_lr1yg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84eja"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28gnr"]
+bg_color = Color(0.675405, 0, 0.018309, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtpnl"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lwgw"]
+bg_color = Color(0, 0.564548, 0.114254, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="hud_Player" type="CanvasLayer"]
+script = ExtResource("1_5sebt")
+
+[node name="BarDeVie2" type="ProgressBar" parent="."]
+offset_left = 69.0
+offset_top = 10.0
+offset_right = 350.0
+offset_bottom = 37.0
+theme_override_styles/background = SubResource("StyleBoxFlat_84eja")
+theme_override_styles/fill = SubResource("StyleBoxFlat_28gnr")
+value = 69.87
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="BarD_XP" type="ProgressBar" parent="."]
+offset_left = 71.0
+offset_top = 54.0
+offset_right = 351.0
+offset_bottom = 81.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rtpnl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4lwgw")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Coeur" type="Sprite2D" parent="."]
+position = Vector2(40.919, 24.9374)
+scale = Vector2(0.00510702, 0.0052334)
+texture = ExtResource("2_06y8c")
+
+[node name="Xp" type="Sprite2D" parent="."]
+position = Vector2(44, 68)
+scale = Vector2(0.0742188, 0.0742188)
+texture = ExtResource("3_lr1yg")
+
+[node name="LevelLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.061
+offset_left = 363.0
+offset_top = 55.0
+offset_right = 346.552
+offset_bottom = 38.472
+metadata/_edit_use_anchors_ = true
