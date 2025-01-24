@@ -71,3 +71,16 @@ texture = ExtResource("1_4q07g")
 position = Vector2(52, 92)
 scale = Vector2(0.0957031, 0.0957031)
 texture = ExtResource("2_odloj")
+
+[node name="LabelTimeScore" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.094
+anchor_bottom = 0.035
+offset_left = 1034.0
+offset_top = 23.0
+offset_right = 1003.71
+offset_bottom = 23.32
+theme_override_font_sizes/font_size = 20
+text = "45 min 2 s"
+
+[node name="TimerScore" type="Timer" parent="."]

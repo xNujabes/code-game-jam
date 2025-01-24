@@ -11,7 +11,9 @@ extends CharacterBody2D
 @export var level = 1
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
+@onready var global_data = get_tree().root.get_node("Global")  # Récupère le nœud global
 
+var score = 0  # Déclare la variable score
 
 #Weapons
 
@@ -37,20 +39,19 @@ var pianoBaseAmmo = 1
 var pianoAttackSpeed = 7.5
 var pianoLevel = 1
 
-
-#Camera animation
-
 @onready var animation_player = $AnimationPlayer
 
-# Système de ciblage
 var enemyClose = []
 
-# Appelée lorsque le nœud entre dans la scène pour la première fois.
 func _ready() -> void:
 	attack()
 	update_hud()
+	var score_timer = Timer.new()
+	score_timer.wait_time = 1.0  
+	score_timer.connect("timeout", Callable(self, "_on_score_timeout"))
+	add_child(score_timer)
+	score_timer.start()
 
-# Appelée à chaque frame. 'delta' est le temps écoulé depuis la précédente frame.
 func _physics_process(delta: float) -> void:
 	move()
 	if velocity.length() > 0:
@@ -58,6 +59,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
 		$AnimatedSprite2D.play("idle")
+	game_over()
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -72,21 +74,19 @@ func attack():
 		if bulletTimer.is_stopped():
 			bulletTimer.start()
 
-
 	if pianoLevel > 0:
 		pianoTimer.wait_time = pianoAttackSpeed
 		if pianoTimer.is_stopped():
 			pianoTimer.start()
-
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	$hitHurt.play()
 	hp -= damage
 	if hp < 0:
 		hp = 0
-	animation_player.play("camera-shake")
-	print(hp)
-	update_hud()
+		animation_player.play("camera-shake")
+		print(hp)
+		update_hud()
 
 func add_xp(amount):
 	$XPSound.play()
@@ -127,7 +127,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 			bulletAttackTimer.start()
 		else:
 			bulletAttackTimer.stop()
-			
+
 func get_random_target():
 	if enemyClose.size() > 0:
 		return enemyClose.pick_random().global_position
@@ -160,11 +160,9 @@ func _on_range_detection_body_exited(body: Node2D) -> void:
 	if enemyClose.has(body):
 		enemyClose.erase(body)
 
-
 func _on_piano_timer_timeout() -> void:
 	pianoAmmo += pianoBaseAmmo
 	pianoAttackTimer.start()
-
 
 func _on_piano_attack_timer_timeout() -> void:
 	if pianoAmmo > 0:
@@ -179,3 +177,15 @@ func _on_piano_attack_timer_timeout() -> void:
 			pianoAttackTimer.start()
 		else:
 			pianoAttackTimer.stop()
+
+func _on_score_timeout() -> void:
+	score += 1
+
+func game_over():
+	if hp <= 0:
+		global_data.scoregame = score
+		# Met à jour le meilleur temps global
+		if score > global_data.best_score:
+			global_data.best_score = score
+		# Change de scène vers game_over
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
