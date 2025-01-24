@@ -14,13 +14,13 @@ width = 32
 height = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18n4h"]
-size = Vector2(30, 30)
+size = Vector2(28, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ss6o"]
 size = Vector2(34, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iapqu"]
-size = Vector2(32.5612, 76.1493)
+size = Vector2(32.5168, 76.1493)
 
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
@@ -45,7 +45,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-0.0222618, 0)
+position = Vector2(-2.42931e-07, 8.34465e-07)
 scale = Vector2(1.00273, 0.420227)
 shape = SubResource("RectangleShape2D_iapqu")
 
