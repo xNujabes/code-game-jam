@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_jqyd5"]
-[ext_resource type="PackedScene" uid="uid://b5dhemw4c6ise" path="res://scenes/parallax_background.tscn" id="1_ml2xq"]
+[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="1_ml2xq"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_tmy4n"]
 [ext_resource type="PackedScene" uid="uid://gbhfafij2wi1" path="res://scenes/enemy.tscn" id="2_rru24"]
 
 [sub_resource type="Curve2D" id="Curve2D_sqr64"]
@@ -12,7 +12,7 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_jqyd5")
+script = ExtResource("1_tmy4n")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_ml2xq")]
 
@@ -38,4 +38,3 @@ wait_time = 0.3
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
