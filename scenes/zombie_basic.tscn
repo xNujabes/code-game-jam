@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dm71x51r1vxgv"]
+[gd_scene load_steps=23 format=3 uid="uid://sanhvfi4lgp2"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_e02yi"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_7lxiq"]
@@ -96,8 +96,9 @@ animations = [{
 
 [node name="EnemyBasic" type="CharacterBody2D"]
 scale = Vector2(8.08, 8.14665)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 7
+collision_mask = 7
+
 motion_mode = 1
 script = ExtResource("1_e02yi")
 

@@ -35,6 +35,7 @@ script = SubResource("GDScript_ogk1m")
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 unique_name_in_owner = true
+z_index = 10
 position = Vector2(560, 320)
 
 [node name="XP" parent="." instance=ExtResource("3_fstna")]
@@ -95,7 +96,8 @@ wait_time = 20.0
 autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
-wait_time = 300.0
+unique_name_in_owner = true
+wait_time = 60.0
 autostart = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
