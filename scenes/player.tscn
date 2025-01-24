@@ -191,10 +191,10 @@ shape = SubResource("CapsuleShape2D_mfxea")
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="BulletTmer" type="Timer" parent="Weapons"]
+[node name="BulletTimer" type="Timer" parent="Weapons"]
 wait_time = 1.5
 
-[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTmer"]
+[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTimer"]
 wait_time = 0.075
 
 [node name="BulletSound" type="AudioStreamPlayer2D" parent="Weapons"]
@@ -255,8 +255,9 @@ stream = ExtResource("20_xixn2")
 volume_db = -5.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTmer" to="." method="_on_bullet_tmer_timeout"]
-[connection signal="timeout" from="Weapons/BulletTmer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
 [connection signal="body_entered" from="RangeDetection" to="." method="_on_range_detection_body_entered"]
