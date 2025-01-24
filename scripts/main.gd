@@ -26,7 +26,7 @@ func spawn_mobs():
 	add_child(new_mob)
 
 
-func _on_timer_timeout() -> void:
+func _on_spawn_mob_timeout() -> void:
 	spawn_mobs()
 
 
