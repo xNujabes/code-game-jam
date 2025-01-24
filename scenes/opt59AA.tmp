@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://kpnh58ikav6q"]
+
+[ext_resource type="Script" path="res://scripts/option_slot.gd" id="1_5l5yq"]
+[ext_resource type="Texture2D" uid="uid://c2500isbwrilx" path="res://assets/Card/blueCard.png" id="1_g2b27"]
+
+[node name="option_slot" type="HBoxContainer"]
+offset_right = 359.0
+offset_bottom = 154.0
+script = ExtResource("1_5l5yq")
+
+[node name="option1" type="TextureButton" parent="."]
+layout_mode = 2
+texture_normal = ExtResource("1_g2b27")
+
+[node name="Label" type="Label" parent="option1"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 21.0
+offset_right = 89.0
+offset_bottom = 44.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "LVL"
+
+[node name="Description" type="Label" parent="option1"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 18.0
+offset_top = 71.0
+offset_right = 92.0
+offset_bottom = 94.0
+
+[node name="option2" type="TextureButton" parent="."]
+layout_mode = 2
+texture_normal = ExtResource("1_g2b27")
+
+[node name="Label" type="Label" parent="option2"]
+offset_left = 35.0
+offset_top = 23.0
+offset_right = 75.0
+offset_bottom = 46.0
+text = "LVL"
+
+[node name="Description" type="Label" parent="option2"]
+offset_left = 34.0
+offset_top = 91.0
+offset_right = 89.0
+offset_bottom = 114.0
+
+[node name="option3" type="TextureButton" parent="."]
+layout_mode = 2
+texture_normal = ExtResource("1_g2b27")
+
+[node name="Label" type="Label" parent="option3"]
+offset_left = 34.0
+offset_top = 19.0
+offset_right = 74.0
+offset_bottom = 42.0
+text = "LVL"
+
+[node name="Description" type="Label" parent="option3"]
+offset_left = 33.0
+offset_top = 89.0
+offset_right = 85.0
+offset_bottom = 112.0

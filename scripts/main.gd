@@ -19,9 +19,8 @@ func _ready() -> void:
 	audio_player.play()
 
 func _process(delta: float) -> void:
-	if path2d:
-		path2d.position = camera.global_position
-		path2d.position -= Vector2(700, 500)
+	$Path2D.position = camera.global_position
+	$Path2D.position -= Vector2(600, 300)
 
 func spawn_mobs():
 	var new_mob
@@ -40,6 +39,7 @@ func spawn_mobs():
 		new_mob.global_position = path_follow.global_position
 		new_mob.connect("death", Callable(self, "_on_mob_death"))  # Connexion au signal de mort avec Callable
 		add_child(new_mob)
+
 
 func _on_timer_timeout() -> void:
 	spawn_mobs()
@@ -86,14 +86,23 @@ func spawn_boss():
 	add_child(boss)
 
 func _on_boss_death():
-	if spawn_timer:
-		spawn_timer.start()
-	if increase_enemies_timer:
-		increase_enemies_timer.start()
-	if boss_timer:
-		boss_timer.start()
 
-func _on_mob_death(mob):
-	var xp_instance = preload("res://scenes/xp.tscn").instantiate()
-	xp_instance.global_position = mob.global_position
-	add_child(xp_instance)
+	%SpawnMob.start()
+	%IncreaseEnemies.start()
+	%BossTime.start()
+
+
+func _input(event):
+	# Vérifie si l'action "rickroll" est activée
+	if Input.is_action_just_pressed("rickroll"):
+		open_youtube_video()
+
+func open_youtube_video():
+	# URL de la vidéo YouTube
+	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+	OS.shell_open(youtube_url)
+
+
+func _on_spawn_mob_timeout() -> void:
+	spawn_mobs()
+

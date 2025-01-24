@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://kpnh58ikav6q"]
+
+[ext_resource type="Script" path="res://scripts/option_slot.gd" id="1_5l5yq"]
+[ext_resource type="Texture2D" uid="uid://c2500isbwrilx" path="res://assets/Card/blueCard.png" id="1_g2b27"]
+
+[node name="option_slot" type="HBoxContainer"]
+offset_top = 1.0
+offset_right = 586.0
+offset_bottom = 236.0
+script = ExtResource("1_5l5yq")
+
+[node name="option1" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_g2b27")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="option1"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 34.0
+offset_right = 204.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "LVL"
+
+[node name="Description" type="Label" parent="option1"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 33.0
+offset_top = 209.0
+offset_right = 221.0
+offset_bottom = 261.0
+
+[node name="option2" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_g2b27")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="option2"]
+offset_left = 46.0
+offset_top = 34.0
+offset_right = 204.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "LVL"
+
+[node name="Description" type="Label" parent="option2"]
+texture_filter = 1
+offset_left = 33.0
+offset_top = 209.0
+offset_right = 221.0
+offset_bottom = 261.0
+
+[node name="option3" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_g2b27")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="option3"]
+offset_left = 46.0
+offset_top = 34.0
+offset_right = 204.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "LVL"
+
+[node name="Description" type="Label" parent="option3"]
+texture_filter = 1
+offset_left = 33.0
+offset_top = 209.0
+offset_right = 221.0
+offset_bottom = 261.0
+
+[connection signal="gui_input" from="option1" to="." method="_on_option_1_gui_input"]
+[connection signal="gui_input" from="option2" to="." method="_on_option_2_gui_input"]
+[connection signal="gui_input" from="option3" to="." method="_on_option_3_gui_input"]

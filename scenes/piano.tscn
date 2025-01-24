@@ -1,0 +1,166 @@
+[gd_scene load_steps=23 format=3 uid="uid://manu8a0k5tkw"]
+
+[ext_resource type="Script" path="res://scenes/piano.gd" id="1_yi2wy"]
+[ext_resource type="AudioStream" uid="uid://3v6tfa64o6l3" path="res://sounds/PianoBlink.mp3" id="2_2d5yu"]
+[ext_resource type="Texture2D" uid="uid://ddru08nua5f22" path="res://assets/weapons/piano/pianoBlink1.png" id="2_hckgd"]
+[ext_resource type="Texture2D" uid="uid://cospe0rhgtr6t" path="res://assets/weapons/piano/piano.png" id="2_x7jib"]
+[ext_resource type="Texture2D" uid="uid://k4l45whubf3i" path="res://assets/weapons/piano/pianoBlink2.png" id="3_yppdx"]
+[ext_resource type="Texture2D" uid="uid://dkkfd3gccq1el" path="res://assets/Explosion.png" id="5_joggn"]
+[ext_resource type="AudioStream" uid="uid://dkv664ls1rym6" path="res://sounds/PianoExplode.wav" id="7_y011g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0hn5"]
+radius = 59.0762
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8pwsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hckgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yppdx")
+}],
+"loop": true,
+"name": &"Blink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x7jib")
+}],
+"loop": true,
+"name": &"Throw",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_045ow"]
+atlas = ExtResource("5_joggn")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rfpm"]
+atlas = ExtResource("5_joggn")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st5j8"]
+atlas = ExtResource("5_joggn")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqnml"]
+atlas = ExtResource("5_joggn")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eruc7"]
+atlas = ExtResource("5_joggn")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kqk7"]
+atlas = ExtResource("5_joggn")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0aij"]
+atlas = ExtResource("5_joggn")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov0lt"]
+atlas = ExtResource("5_joggn")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm6k1"]
+atlas = ExtResource("5_joggn")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjfxs"]
+atlas = ExtResource("5_joggn")
+region = Rect2(864, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km3wr"]
+atlas = ExtResource("5_joggn")
+region = Rect2(960, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad7at"]
+atlas = ExtResource("5_joggn")
+region = Rect2(1056, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yp711"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_045ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rfpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st5j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqnml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eruc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kqk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0aij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov0lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm6k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjfxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km3wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad7at")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 5.0
+}]
+
+[node name="Piano" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_yi2wy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_l0hn5")
+disabled = true
+
+[node name="PianoBlink" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2d5yu")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.15
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.005, 0.005)
+sprite_frames = SubResource("SpriteFrames_8pwsa")
+animation = &"Throw"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(1, -7)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_yp711")
+animation = &"explode"
+
+[node name="PianoExplosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_y011g")
+volume_db = -5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
