@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=26 format=3 uid="uid://ds2sbjlioq6ls"]
-
+[gd_scene load_steps=29 format=3 uid="uid://ds2sbjlioq6ls"]
 
 [ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
@@ -20,10 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://dvtg544vf06ym" path="res://assets/Zombie/Walk/zombie_Walk_2.png" id="16_ffobq"]
 [ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="17_vbkev"]
 [ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="18_04dr0"]
-
 [ext_resource type="Texture2D" uid="uid://7682j4j65mow" path="res://assets/shield.png" id="19_lytsn"]
 [ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="19_so1u6"]
-
+[ext_resource type="AudioStream" uid="uid://d0jkwqhhnmdkk" path="res://sounds/Intro Gotaga !.mp3" id="21_8rmxq"]
+[ext_resource type="AudioStream" uid="uid://dxg1gytqi3ymh" path="res://sounds/Doigby - GUERRIER (clip officiel).mp3" id="22_ti15h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -164,7 +162,6 @@ speed_scale = 0.5
 wait_time = 7.0
 autostart = true
 
-
 [node name="VieBigZombie" type="ProgressBar" parent="."]
 offset_left = -2.85649
 offset_top = 1.23804
@@ -184,6 +181,14 @@ texture = ExtResource("19_lytsn")
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_so1u6")
 volume_db = -5.0
+
+[node name="gotaga" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_8rmxq")
+autoplay = true
+
+[node name="doigby" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_ti15h")
+autoplay = true
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

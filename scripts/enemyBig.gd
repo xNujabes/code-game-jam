@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_bar = $VieBigZombie
+@onready var background_music = $gotaga  # Référence à l'AudioStreamPlayer
+@onready var background_music2 = $doigby  # Référence à l'AudioStreamPlayer
 
 @export var speed = 20.0
 @export var hp = 100
@@ -24,6 +26,8 @@ func _ready() -> void:
 	if health_bar:
 		health_bar.max_value = 100
 		health_bar.value = 100
+	background_music.play()
+	
 		
 func update_health_boss(current_hp, max_hp):
 	if health_bar:
@@ -47,13 +51,17 @@ func _process(delta: float) -> void:
 
 
 
+
+
 func _on_hurtbox_hurt(damage: Variant):
 	if not isCharging:
 
 		# update vie boss
 		update_health_boss(hp, max_hp)
 		$HurtSound.play()
+		background_music2.play()
 
+		
 		hp -= damage
 		var timer = $Timer
 		var tmp = animated_sprite.modulate

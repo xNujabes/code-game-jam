@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxg1gytqi3ymh"
+path="res://.godot/imported/Doigby - GUERRIER (clip officiel).mp3-ca97ef30592983dd58a61fd3dc330994.mp3str"
+
+[deps]
+
+source_file="res://sounds/Doigby - GUERRIER (clip officiel).mp3"
+dest_files=["res://.godot/imported/Doigby - GUERRIER (clip officiel).mp3-ca97ef30592983dd58a61fd3dc330994.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
