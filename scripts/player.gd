@@ -131,7 +131,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 			var mouse_position = get_global_mouse_position()
 			bullet_instance.direction = (mouse_position - position).normalized()
 		else:
-			bullet_instance.target = get_random_target()
+			bullet_instance.target = get_closest_target()
 		bullet_instance.level = weapons["bullet"]["level"]
 		add_child(bullet_instance)
 		bulletAmmo -= 1

@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var viser_button = $ColorRect/Viser
-@onready var mute_button = $ColorRect/MuteButton  
+@onready var mute_button = $ColorRect/MuteButton
+@onready var music = $Musique
+
 
 func _on_return_pressed_return_settings():
 	get_tree().change_scene_to_file("res://scenes/scene_start.tscn")
@@ -11,6 +13,11 @@ func _ready():
 		mute_button.connect("pressed", Callable(self, "_on_mute_button_pressed"))
 	_load_aim_mode()
 	_update_mute_button_text()
+	if Global.is_muted:
+		music.volume_db = -80  
+	else:
+		music.volume_db = -10  
+		music.play()
 
 func _load_aim_mode():
 	viser_button.text = Global.fire_mode

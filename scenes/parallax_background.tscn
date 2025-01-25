@@ -16,6 +16,7 @@ texture = ExtResource("1_3728j")
 5:4/0/probability = 0.5
 6:3/0 = 0
 6:3/0/probability = 0.2
+6:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_xogil"]
 sources/0 = SubResource("TileSetAtlasSource_ca1h2")

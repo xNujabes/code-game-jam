@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb52g0oc4knqf"]
+[gd_scene load_steps=9 format=3 uid="uid://cb52g0oc4knqf"]
 
 [ext_resource type="Script" path="res://scripts/scene_settings.gd" id="1_dmkjl"]
+[ext_resource type="Texture2D" uid="uid://gsqeqiqdllik" path="res://assets/5975.jpg" id="2_17x2l"]
+[ext_resource type="AudioStream" uid="uid://bx0bjtr3utkh3" path="res://sounds/musique2.mp3" id="2_fwltt"]
+[ext_resource type="Texture2D" uid="uid://dvyto0b14738c" path="res://assets/8666430-Photoroom.png" id="3_x8kav"]
+[ext_resource type="Texture2D" uid="uid://cjf0mepsdf35e" path="res://assets/guitare_Sech.png" id="4_6ojwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y031q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qned"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onihh"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="SceneSettings" type="Node2D"]
 position = Vector2(-2, -1)
@@ -11,6 +24,11 @@ offset_right = 1162.0
 offset_bottom = 659.0
 color = Color(0.00351917, 0.00351917, 0.00351917, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="5975" type="Sprite2D" parent="ColorRect"]
+position = Vector2(578.5, 327.063)
+scale = Vector2(0.253542, 0.183782)
+texture = ExtResource("2_17x2l")
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -30,10 +48,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Label2" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.00258176
-anchor_top = -0.104704
-anchor_right = -0.00258176
-anchor_bottom = -0.104704
+anchor_left = 0.00774527
+anchor_top = -0.204856
+anchor_right = 0.00774527
+anchor_bottom = -0.204856
 offset_left = 309.0
 offset_top = 318.0
 offset_right = 475.0
@@ -43,40 +61,63 @@ text = "Musique"
 metadata/_edit_use_anchors_ = true
 
 [node name="Return" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 358.0
-offset_top = 470.0
-offset_right = 813.0
-offset_bottom = 547.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -179.0
+offset_right = 227.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_y031q")
 text = "Return Menu Start"
-metadata/_edit_use_anchors_ = true
 
 [node name="Viser" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 647.0
-offset_top = 342.0
-offset_right = 929.0
-offset_bottom = 401.0
+offset_left = 648.0
+offset_top = 298.0
+offset_right = 930.0
+offset_bottom = 357.0
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_8qned")
 text = "Auto"
 
 [node name="MuteButton" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 643.0
-offset_top = 245.0
-offset_right = 926.0
-offset_bottom = 308.0
+offset_left = 650.0
+offset_top = 182.0
+offset_right = 933.0
+offset_bottom = 245.0
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_onihh")
 text = "Activé "
 
 [node name="Label" type="Label" parent="."]
-offset_left = 362.0
-offset_top = 338.0
-offset_right = 441.0
-offset_bottom = 393.0
+offset_left = 358.0
+offset_top = 300.0
+offset_right = 437.0
+offset_bottom = 355.0
 theme_override_font_sizes/font_size = 40
 text = "Visé"
+
+[node name="Musique" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fwltt")
+autoplay = true
+
+[node name="GuitareSech" type="Sprite2D" parent="."]
+position = Vector2(145, 340)
+scale = Vector2(0.446, 0.446)
+texture = ExtResource("4_6ojwi")
+
+[node name="8666430-photoroom" type="Sprite2D" parent="."]
+position = Vector2(1087, 527)
+scale = Vector2(0.337, 0.337)
+texture = ExtResource("3_x8kav")
 
 [connection signal="pressed" from="ColorRect/Return" to="." method="_on_return_pressed_return_settings"]
 [connection signal="pressed" from="ColorRect/Viser" to="." method="_on_viser_pressed"]
