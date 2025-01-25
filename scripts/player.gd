@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var max_hp = 80
 
 @export var xp = 0
-@export var xp_to_level_up = 10
-@export var max_xp = 10
+@export var xp_to_level_up = 60
+@export var max_xp = 60
 
 @export var level = 1
 
@@ -160,7 +160,6 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 		%DisableAnime.wait_time = 0.33
 		%DisableAnime.start()	
 	
-	print("ah jai mal")
 	hp -= damage
 	if hp < 0:
 		hp = 0
@@ -180,7 +179,7 @@ func add_xp(amount):
 		$LevelUpSound.play()
 		xp -= xp_to_level_up
 		level += 1
-		xp_to_level_up += level
+		xp_to_level_up = 60 * pow(1.5, level - 1)
 		max_xp = xp_to_level_up
 		%Options.show_option()
 		
@@ -311,11 +310,10 @@ func game_over():
 		if %DeathAnime.is_stopped():
 			%DeathAnime.wait_time = 1.5
 			$AnimatedSprite2D.animation = "died"
+			$DeathSound.play()
 			%DeathAnime.start()
-			print("pas dans true")
 			
 		if isDead == true:
-			print("dans le true")
 			# Met à jour le meilleur score global si nécessaire
 			Global.update_best_score(current_day, current_hour, current_minute)
 			# Change de scène vers l'écran de game over

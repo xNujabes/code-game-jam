@@ -39,12 +39,9 @@ func update_weapons(weapons: Dictionary):
 			var weapon_data = weapons[weapon_name]
 			if weapon_data["level"] > 0:
 				var weapon_icon = TextureRect.new()
-				var texture = load("res://assets/weapons/{weapon_name}.png".format({"weapon_name": weapon_name}))
+				var texture = load_texture("res://assets/weapons/{weapon_name}.png".format({"weapon_name": weapon_name}))
 				if texture:
-					print("Texture chargée pour", weapon_name)
 					weapon_icon.texture = texture
-				else:
-					print("Échec du chargement de la texture pour", weapon_name)
 				weapon_icon.expand = true
 				weapon_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 				weapon_icon.custom_minimum_size = Vector2(32, 32)  # Taille minimale
@@ -65,16 +62,13 @@ func update_equipment(equipment: Dictionary):
 		for child in equipment_container.get_children():
 			child.queue_free()
 
-		for equip_name in equipment:
+		for equip_name in equipment:  # Correction ici : "equip_name" au lieu de "equap_name"
 			var equip_data = equipment[equip_name]
 			if equip_data["level"] > 0:
 				var equip_icon = TextureRect.new()
-				var texture = load("res://assets/Equipement/{equip_name}.png".format({"equip_name": equip_name}))
+				var texture = load_texture("res://assets/Equipement/{equip_name}.png".format({"equip_name": equip_name}))
 				if texture:
-					print("Texture chargée pour", equip_name)
 					equip_icon.texture = texture
-				else:
-					print("Échec du chargement de la texture pour", equip_name)
 				equip_icon.expand = true
 				equip_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 				equip_icon.custom_minimum_size = Vector2(32, 32)  # Taille minimale
@@ -89,3 +83,11 @@ func update_equipment(equipment: Dictionary):
 				equip_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # S'étendre horizontalement
 
 				equipment_container.add_child(equip_container)
+
+func load_texture(path: String) -> Texture2D:
+	var texture = load(path)
+	if texture and texture.get_width() > 0 and texture.get_height() > 0:
+		return texture
+	else:
+		print("Erreur : Impossible de charger l'image à partir du chemin : ", path)
+		return load("res://chemin/vers/image_par_defaut.png")  # Image de remplacement

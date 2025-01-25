@@ -71,7 +71,7 @@ func _on_spawn_mob_timeout() -> void:
 	spawn_mobs()
 
 func _on_increase_enemies_timeout() -> void:
-	if spawn_timer and spawn_timer.wait_time >= 0.3:
+	if spawn_timer and spawn_timer.wait_time > 0.2:
 		spawn_timer.wait_time -= 0.2
 	elif increase_enemies_timer:
 		increase_enemies_timer.stop()
@@ -88,8 +88,6 @@ func _on_boss_time_timeout() -> void:
 	# Supprime tous les ennemis existants
 	delete_all_enemies()
 
-	# Affiche un message de debug
-	print("Boss Time")
 	
 	# Charge l'arène et affiche le boss
 	spawn_boss()
@@ -116,7 +114,8 @@ func spawn_boss():
 
 func _on_boss_death():
 	world_level += 1  # Augmenter le niveau du monde
-	%SpawnMob.start()
+	%SpawnMob.start(2.0)
+	%IncreaseEnemies.wait_time = %IncreaseEnemies.wait_time -0.5
 	%IncreaseEnemies.start()
 	%BossTime.start()
 

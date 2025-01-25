@@ -2,15 +2,17 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_bar = $VieBigZombie
-@onready var background_music = $gotaga  # Référence à l'AudioStreamPlayer
-@onready var background_music2 = $doigby  # Référence à l'AudioStreamPlayer
 var niveauBoss = Global.niveauBoss
 
-@export var speed = 20.0
-@export var hp : int
-@export var max_hp : int
-@export var damage = 200
+@export var base_speed = 20.0  # Vitesse de base pour le niveau 1
+@export var base_hp = 200  # Points de vie de base pour le niveau 1
+@export var base_damage = 50  # Dégâts de base pour le niveau 1
+@export var growth_factor = 1.5  # Facteur de croissance exponentielle
 
+var speed : float
+var hp : int
+var max_hp : int
+var damage : int
 
 var isAnimated = false
 var isTouched = false
@@ -24,20 +26,19 @@ signal boss_death
 
 func _ready() -> void:
 	special_attack()
-	background_music.play()
-	speed = 10 * niveauBoss + 20.0
-	var health = niveauBoss * 100
-	hp =  health
-	max_hp = health
-	damage = niveauBoss * 200 * 1.3
+	
+	# Calcul des statistiques en fonction du niveau du boss
+	speed = base_speed * pow(growth_factor, niveauBoss - 1)
+	hp = base_hp * pow(growth_factor, niveauBoss - 1)
+	max_hp = hp
+	damage = base_damage * pow(growth_factor, niveauBoss - 1)
+	
+	update_health_boss(hp, max_hp)
 
-		
 func update_health_boss(current_hp, max_hp):
 	if health_bar:
 		health_bar.value = current_hp
 		health_bar.max_value = max_hp
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta: float) -> void:
 	if not isTouched and not isCharging:
@@ -52,23 +53,18 @@ func _process(delta: float) -> void:
 		else:
 			animated_sprite.play("idle")
 
-
-
-
-
 func _on_hurtbox_hurt(damage: Variant):
 	if not isCharging:
-		# update vie boss
 		$HurtSound.play()
-		background_music2.play()
 		hp -= damage
 		update_health_boss(hp, max_hp)
 		var timer = $Timer
-		var tmp = animated_sprite.modulate
-		animated_sprite.modulate = Color(150,0,0,100)
-		timer.start(0.3)
-		await timer.timeout
-		animated_sprite.modulate = tmp
+		if animated_sprite.modulate != Color(150,0,0,100):
+			var tmp = animated_sprite.modulate
+			animated_sprite.modulate = Color(150,0,0,100)
+			timer.start(0.1)
+			await timer.timeout
+			animated_sprite.modulate = tmp
 		if hp < 0:
 			die()
 			drop_xp()
@@ -82,70 +78,55 @@ func drop_xp() -> void:
 		xp_orb.global_position = global_position + random_offset
 		get_parent().add_child(xp_orb)
 
-
-#zombie animé si une collision sur sa hitbox
 func _on_hitbox_body_entered(body: Node2D):
-	if body.is_in_group("player") :
+	if body.is_in_group("player"):
 		isTouched = true
 		$Hitbox/Timer.start()
-		
-		
-#attack toute les Timer sec
-func _on_timer_timeout() :
+
+func _on_timer_timeout():
 	if not isAnimated and not isDead:
 		isAnimated = true
 		animated_sprite.speed_scale = 2.0
 		animated_sprite.play("attack1")
 		isAnimated = false
-		
+
 func _on_hitbox_body_exited(body: Node2D):
 	isTouched = false
 	$Hitbox/Timer.stop()
-		
+
 func die():
 	isDead = true
-	# Change l'animation à "dead"
 	animated_sprite.animation = "dead"
-	velocity = Vector2.ZERO  # Arrête tout mouvement
-	set_process(false)  # Arrête le traitement si nécessaire
-
+	velocity = Vector2.ZERO
+	set_process(false)
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite.animation == "dead":
-		queue_free()  # Supprime le monstre
-		
+		queue_free()
+
 func special_attack():
 	if hp >= 50:
 		chargeSpeAtt()
-		
-	
+
 func chargeSpeAtt():
-	isCharging = true  # Active l'état de charge
-	# cache le bouclier
+	isCharging = true
 	$Shield.visible = true
-	
-	# Supprime le bouclier après la charge
-	#shield.queue_free()
 	var timer = $Timer
 	timer.start(2.0)
 	_process(false)
 	animated_sprite.stop()
 	await timer.timeout
 	release_attack()
-	
-	isCharging = false  # Desactive l'état de charge
+	isCharging = false
 	$Shield.visible = false
 	$SuperPower.start()
 
-
 func release_attack():
-	# Crée des rayons circulaires avec des zones sûres
-	var num_rays = 20 * (niveauBoss+1 * 0.5)  # Nombre de rayons
+	var num_rays = 20 * (niveauBoss + 1 * 0.5)
 	var angle_step = 360.0 / num_rays
-	var safe_zones = 4  # Nombre de zones sûres
+	var safe_zones = 4
 	var safe_angles = []
 	
-	# Génère des angles aléatoires pour les zones sûres
 	for i in range(safe_zones):
 		safe_angles.append(randf() * 360.0)
 
@@ -153,16 +134,12 @@ func release_attack():
 		var angle = i * angle_step
 		if not is_safe_angle(angle, safe_angles):
 			spawn_ray(angle)
-		
-	
 
 func is_safe_angle(angle: float, safe_angles: Array) -> bool:
 	for safe_angle in safe_angles:
-		if abs(angle - safe_angle) < 15.0:  # Tolérance de 15 degrés pour les zones sûres
+		if abs(angle - safe_angle) < 15.0:
 			return true
 	return false
-	
-	
 
 func spawn_ray(angle: float):
 	var ray = preload("res://scenes/laser.tscn").instantiate()
@@ -170,7 +147,6 @@ func spawn_ray(angle: float):
 	ray.position = global_position
 	get_parent().add_child(ray)
 
-
 func _on_super_power_timeout() -> void:
-	for i in range(niveauBoss*2):
+	for i in range(niveauBoss * 2):
 		chargeSpeAtt()

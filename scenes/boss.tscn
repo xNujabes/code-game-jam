@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bihfsy1xm51ri"]
+[gd_scene load_steps=27 format=3 uid="uid://ct36g5hno6tg5"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_adgi4"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_msxes"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c2fmvptpmabfs" path="res://assets/monstres/1 Main Character/1 Character/Walk2.png" id="5_cl4ef"]
 [ext_resource type="Texture2D" uid="uid://7682j4j65mow" path="res://assets/shield.png" id="19_f6doo"]
 [ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="20_kxq7a"]
-[ext_resource type="AudioStream" uid="uid://d0jkwqhhnmdkk" path="res://sounds/Intro Gotaga !.mp3" id="21_vipwg"]
-[ext_resource type="AudioStream" uid="uid://dxg1gytqi3ymh" path="res://sounds/Doigby - GUERRIER (clip officiel).mp3" id="22_ajysi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb1jn"]
 atlas = ExtResource("2_s4qhw")
@@ -150,7 +148,6 @@ collision_layer = 5
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_adgi4")
-speed = 60.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.687743, 0.180574, 0.823073, 1)
@@ -215,14 +212,6 @@ texture = ExtResource("19_f6doo")
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_kxq7a")
 volume_db = -5.0
-
-[node name="gotaga" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("21_vipwg")
-autoplay = true
-
-[node name="doigby" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("22_ajysi")
-autoplay = true
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

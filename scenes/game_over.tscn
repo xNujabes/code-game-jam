@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkvypuiw3jxcj"]
+[gd_scene load_steps=3 format=3 uid="uid://bkvypuiw3jxcj"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_heukl"]
+[ext_resource type="Texture2D" uid="uid://bwbngkpvnh6yd" path="res://assets/11.png" id="2_5rabs"]
 
 [node name="HUDGameOver" type="Node"]
 script = ExtResource("1_heukl")
@@ -8,7 +9,7 @@ script = ExtResource("1_heukl")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.573079, 0.523118, 0.710681, 1)
+color = Color(0.117647, 0.117647, 0.117647, 0.662745)
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -22,7 +23,7 @@ offset_right = 138.0
 offset_bottom = -143.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 
@@ -39,7 +40,7 @@ offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "Votre Score : "
 horizontal_alignment = 1
@@ -75,6 +76,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Menu"
+
+[node name="11" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(583, 333)
+scale = Vector2(0.524968, 0.560185)
+texture = ExtResource("2_5rabs")
 
 [connection signal="pressed" from="Recommencé" to="." method="_on_recommencé_pressed"]
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

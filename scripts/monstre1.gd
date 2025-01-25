@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var animated_attack_sprite = $animatedAttack
 
-@export var speed = 40.0
-@export var hp = 10
+@export var base_speed = 40.0  # Vitesse de base pour le niveau 1
+@export var base_hp = 10  # Points de vie de base pour le niveau 1
+@export var hp_growth = 2.5  # Augmentation des points de vie par niveau
+@export var speed_growth = 2.5  # Augmentation de la vitesse par niveau
+
+var niveauBoss = Global.niveauBoss
+var speed : float
+var hp : int
 
 var isAnimated = false
 var isTouched = false
@@ -12,10 +17,13 @@ var isDead = false
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	# Ajuster les statistiques en fonction du niveau du boss
+	hp = base_hp + niveauBoss * hp_growth
+	speed = base_speed + niveauBoss * speed_growth
 
 func _process(delta: float) -> void:
-	if not isTouched :
+	if not isTouched:
 		var direction = global_position.direction_to(player.global_position)
 		velocity = direction * speed
 		move_and_slide()
@@ -30,11 +38,12 @@ func _on_hurtbox_hurt(damage: Variant):
 	$HurtSound.play()
 	hp -= damage
 	var timer = $Timer
-	var tmp = animated_sprite.modulate
-	animated_sprite.modulate = Color(150,0,0,100)
-	timer.start(0.3)
-	await timer.timeout
-	animated_sprite.modulate = tmp
+	if animated_sprite.modulate != Color(150,0,0,100):
+		var tmp = animated_sprite.modulate
+		animated_sprite.modulate = Color(150,0,0,100)
+		timer.start(0.1)
+		await timer.timeout
+		animated_sprite.modulate = tmp
 	if hp < 0:
 		drop_xp()
 		die()
@@ -48,37 +57,28 @@ func drop_xp() -> void:
 		get_parent().add_child(xp_orb)
 
 func _on_hitbox_body_entered(body: Node2D):
-	if body.is_in_group("player") :
+	if body.is_in_group("player"):
 		isTouched = true
 		$Hitbox/Timer.start()
 
-#attack toute les Timer sec
-func _on_timer_timeout() :
+func _on_timer_timeout():
 	if not isAnimated and not isDead:
 		isAnimated = true
-		print("touchhhhh")
 		var timer = $Timer
 		timer.start(0.3)
 		_process(false)
 		await timer.timeout
-		if animated_attack_sprite:
-			animated_attack_sprite.stop()
-			isAnimated = false
-	
-
+		
 func _on_hitbox_body_exited(body: Node2D):
 	isTouched = false
 	$Hitbox/Timer.stop()
-		
+
 func die():
 	isDead = true
-	# Change l'animation à "dead"
 	animated_sprite.animation = "dead"
-	print("je suis dead")
-	velocity = Vector2.ZERO  # Arrête tout mouvement
-	set_process(false)  # Arrête le traitement si nécessaire
-
+	velocity = Vector2.ZERO
+	set_process(false)
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite.animation == "dead":
-		queue_free()  # Supprime le monstre
+		queue_free()

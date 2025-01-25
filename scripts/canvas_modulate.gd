@@ -9,8 +9,8 @@ signal time_tick(day:int, hour:int, minute:int)
 @onready var parallax_bg = $"../ParallaxBackground"  # Adapte ce chemin si nécessaire
 
 @export var gradient:GradientTexture1D
-@export var INGAME_SPEED = 20.0
-@export var INITIAL_HOUR = 12:
+@export var INGAME_SPEED = 5.0
+@export var INITIAL_HOUR = 6:
 	set(h):
 		INITIAL_HOUR = h
 		time = INGAME_TO_REAL_MINUTE_DURATION * INITIAL_HOUR * MINUTES_PER_HOUR
