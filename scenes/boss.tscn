@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ds2sbjlioq6ls"]
+[gd_scene load_steps=29 format=3 uid="uid://bihfsy1xm51ri"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_adgi4"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_msxes"]
+[ext_resource type="Texture2D" uid="uid://d0s3scr11jx5x" path="res://assets/craftpix-net-814823-free-roguelike-shoot-em-up-pixel-art-game-kit/1 Main Character/1 Character/Death1.png" id="2_s4qhw"]
 [ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="3_acqxr"]
 [ext_resource type="Texture2D" uid="uid://djfwsnqjoixys" path="res://assets/monstres/1 Main Character/1 Character/Walk3.png" id="4_a8w80"]
 [ext_resource type="Texture2D" uid="uid://c2fmvptpmabfs" path="res://assets/monstres/1 Main Character/1 Character/Walk2.png" id="5_cl4ef"]
@@ -9,6 +10,22 @@
 [ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="20_kxq7a"]
 [ext_resource type="AudioStream" uid="uid://d0jkwqhhnmdkk" path="res://sounds/Intro Gotaga !.mp3" id="21_vipwg"]
 [ext_resource type="AudioStream" uid="uid://dxg1gytqi3ymh" path="res://sounds/Doigby - GUERRIER (clip officiel).mp3" id="22_ajysi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb1jn"]
+atlas = ExtResource("2_s4qhw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwk2a"]
+atlas = ExtResource("2_s4qhw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rrkv"]
+atlas = ExtResource("2_s4qhw")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6qju"]
+atlas = ExtResource("2_s4qhw")
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ng0dx"]
 atlas = ExtResource("4_a8w80")
@@ -47,6 +64,23 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb1jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwk2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rrkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6qju")
+}],
+"loop": true,
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -124,8 +158,7 @@ texture_filter = 1
 position = Vector2(1.50076, -5.145)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
-animation = &"walk2"
-frame_progress = 0.995677
+animation = &"dead"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

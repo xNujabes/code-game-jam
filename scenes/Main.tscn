@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
 [ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
 [ext_resource type="Script" path="res://scripts/canvas_modulate.gd" id="2_u0ro3"]
-[ext_resource type="PackedScene" uid="uid://bcumntt8vcf3n" path="res://scenes/xp.tscn" id="3_fstna"]
+[ext_resource type="PackedScene" uid="uid://dpywrpb0y76fg" path="res://scenes/xp.tscn" id="3_fstna"]
 [ext_resource type="Texture2D" uid="uid://c6ivd6manoeo" path="res://assets/daynightcycle-gradient-texture.tres" id="3_xlxco"]
 [ext_resource type="PackedScene" uid="uid://bbe7ra0tbkmc5" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
 [ext_resource type="PackedScene" uid="uid://bng5gd8sfpc84" path="res://scenes/daynightcycle_ui.tscn" id="8_b388g"]
@@ -52,13 +52,17 @@ script = SubResource("GDScript_ogk1m")
 
 [node name="Player" parent="." instance=ExtResource("1_dl5k0")]
 unique_name_in_owner = true
+visibility_layer = 1
 z_index = 10
 position = Vector2(560, 320)
+rotation = 0.0
+scale = Vector2(1, 1)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-560, -320)
 stream = SubResource("AudioStreamOggVorbis_1cvbv")
-volume_db = -80.0
+volume_db = -18.0
+autoplay = true
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_wcb02")
@@ -80,7 +84,7 @@ autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 90.0
+wait_time = 5.0
 autostart = true
 
 [node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_cy1mq")]
@@ -91,13 +95,41 @@ position = Vector2(531, 591)
 [node name="XP2" parent="." instance=ExtResource("3_fstna")]
 position = Vector2(531, 591)
 
+[node name="XP3" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP4" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP5" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP6" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP7" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP8" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP9" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
+[node name="XP10" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(531, 591)
+
 [node name="Corki" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_rkbb2")
 
 [node name="DisableAnime" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="DeathAnime" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="SpawnMob" to="." method="_on_spawn_mob_timeout"]
 [connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]
 [connection signal="timeout" from="BossTime" to="." method="_on_boss_time_timeout"]
 [connection signal="timeout" from="DisableAnime" to="Player" method="_on_disable_anime_timeout"]
+[connection signal="timeout" from="DeathAnime" to="Player" method="_on_death_anime_timeout"]

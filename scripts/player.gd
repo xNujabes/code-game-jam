@@ -81,6 +81,7 @@ var enemyClose = []
 @onready var option_slot = $option_slot
 
 var isHit = false
+var isDead = false
 
 func _ready() -> void:	
 	attack()
@@ -98,7 +99,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move()
-	if !isHit:
+	if !isHit and hp > 0:
 		if velocity.length() > 0:
 			$AnimatedSprite2D.play("walk")
 			$AnimatedSprite2D.flip_h = velocity.x < 0
@@ -152,11 +153,12 @@ func attack():
 			weapon_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
-	$hitHurt.play()
-	$AnimatedSprite2D.play("hit")
-	isHit = true
-	%DisableAnime.wait_time = 0.33
-	%DisableAnime.start()
+	if hp > 0:
+		$hitHurt.play()
+		$AnimatedSprite2D.play("hit")
+		isHit = true
+		%DisableAnime.wait_time = 0.33
+		%DisableAnime.start()	
 	
 	print("ah jai mal")
 	hp -= damage
@@ -304,12 +306,18 @@ func game_over():
 		var current_day = Global.day
 		var current_hour = Global.hour
 		var current_minute = Global.minute
-
-		# Met à jour le meilleur score global si nécessaire
-		Global.update_best_score(current_day, current_hour, current_minute)
-
-		# Change de scène vers l'écran de game over
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		if %DeathAnime.is_stopped():
+			%DeathAnime.wait_time = 1.5
+			$AnimatedSprite2D.animation = "died"
+			%DeathAnime.start()
+			print("pas dans true")
+			
+		if isDead == true:
+			print("dans le true")
+			# Met à jour le meilleur score global si nécessaire
+			Global.update_best_score(current_day, current_hour, current_minute)
+			# Change de scène vers l'écran de game over
+			get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func use_wave():
 	var wave_instance = weapons["synth_wave"]["scene"].instantiate()
@@ -365,3 +373,7 @@ func _on_sax_attack_timer_timeout() -> void:
 
 func _on_disable_anime_timeout() -> void:
 	isHit = false
+
+
+func _on_death_anime_timeout() -> void:
+	isDead = true

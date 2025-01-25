@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://5abaqcn388u6"]
+[gd_scene load_steps=36 format=3 uid="uid://ob02yustitte"]
 
 [ext_resource type="Script" path="res://scripts/monstre1.gd" id="1_yij0c"]
 [ext_resource type="Texture2D" uid="uid://bev6g43bokd3j" path="res://assets/monstres/3 Enemies/4/DeathSU.png" id="2_tvpef"]

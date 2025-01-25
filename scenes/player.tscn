@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=44 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="2_yw2jy"]
 [ext_resource type="Texture2D" uid="uid://bgud2yuly4q6y" path="res://assets/asset_main_character/1 Biker/Biker_idle.png" id="3_0ai3d"]
+[ext_resource type="Texture2D" uid="uid://c12rhc2p2c5yy" path="res://assets/asset_main_character/1 Biker/Biker_death.png" id="3_dch1l"]
 [ext_resource type="Texture2D" uid="uid://cu01dlejurrcu" path="res://assets/asset_main_character/1 Biker/Biker_hurt.png" id="3_ngx0f"]
 [ext_resource type="Texture2D" uid="uid://ca20rsftch8kf" path="res://assets/asset_main_character/1 Biker/Biker_run.png" id="4_ehucd"]
 [ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
@@ -15,6 +16,30 @@
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
 [ext_resource type="PackedScene" path="res://scenes/option_slot.tscn" id="21_rmary"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkcm2"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d28f5"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1vv7"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l6yo"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgu53"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4t1d"]
+atlas = ExtResource("3_dch1l")
+region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ur5u"]
 atlas = ExtResource("3_ngx0f")
@@ -66,6 +91,29 @@ region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cf4ij"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkcm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d28f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1vv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l6yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgu53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4t1d")
+}],
+"loop": true,
+"name": &"died",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ur5u")
@@ -231,8 +279,8 @@ texture_filter = 1
 position = Vector2(-0.0063653, -2.66666)
 scale = Vector2(1.29167, 1.29167)
 sprite_frames = SubResource("SpriteFrames_cf4ij")
-animation = &"idle"
-frame_progress = 0.577928
+animation = &"died"
+frame_progress = 0.803101
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.85)
@@ -362,8 +410,8 @@ offset_right = 188.0
 offset_bottom = 52.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
