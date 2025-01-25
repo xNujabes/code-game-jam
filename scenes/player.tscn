@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=38 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://tmfohilo76rf" path="res://sounds/guitare_1.mp3" id="7_loyfh"]
 [ext_resource type="AudioStream" uid="uid://bl4qukn8kieds" path="res://sounds/bass_1.mp3" id="10_esjqp"]
 [ext_resource type="AudioStream" uid="uid://x3h8r2sjnort" path="res://sounds/sax.mp3" id="11_xa05u"]
+[ext_resource type="AudioStream" uid="uid://vetvxl54aivw" path="res://sounds/DeathPlayer.mp3" id="16_4tlus"]
 [ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
@@ -342,6 +343,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="option_slot/option1/TextureRect" index="0"]
+layout_mode = 0
 offset_left = 47.0
 offset_top = 61.0
 offset_right = 205.0
@@ -362,7 +364,6 @@ offset_right = 188.0
 offset_bottom = 52.0
 
 [node name="TextureRect" parent="option_slot/option2" index="2"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 158.0
@@ -383,13 +384,16 @@ offset_right = 188.0
 offset_bottom = 52.0
 
 [node name="TextureRect" parent="option_slot/option3" index="2"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 158.0
 offset_bottom = 148.0
 expand_mode = 2
 stretch_mode = 5
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_4tlus")
+volume_db = -5.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
