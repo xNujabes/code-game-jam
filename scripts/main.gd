@@ -14,7 +14,6 @@ extends Node2D
 @onready var boss_timer = $BossTime
 
 
-
 var type_mob = 1
 
 func _ready() -> void:
@@ -26,6 +25,7 @@ func _ready() -> void:
 	audio_player.play()
 	canvas_layer.visible = true
 	canvas_modulate.time_tick.connect(ui.set_daytime)
+	$Corki.play()
 
 func _process(delta: float) -> void:
 	$Path2D.position = camera.global_position

@@ -7,9 +7,6 @@ extends Area2D
 var is_collected = false
 
 
-func _ready() -> void:
-	connect("body_entered", Callable(self, "_on_body_entered"))
-
 func _physics_process(delta):
 	if player and not is_collected:
 		var distance_to_player = global_position.distance_to(player.global_position)
