@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnprctlv7qcle"]
+[gd_scene load_steps=10 format=3 uid="uid://d3qyagcb5t7md"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_8hfux"]
 [ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="2_3en1v"]

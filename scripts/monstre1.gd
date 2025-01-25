@@ -62,8 +62,9 @@ func _on_timer_timeout() :
 		timer.start(0.3)
 		_process(false)
 		await timer.timeout
-		animated_attack_sprite.stop()
-		isAnimated = false
+		if animated_attack_sprite:
+			animated_attack_sprite.stop()
+			isAnimated = false
 	
 
 func _on_hitbox_body_exited(body: Node2D):
