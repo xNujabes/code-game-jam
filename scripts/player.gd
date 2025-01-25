@@ -127,19 +127,29 @@ func add_xp(amount):
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		%Options.show_option()
-		update_hud_weapons()
+		
 	
 	update_hud()
 	
 func levelUpWeapon(name):
 	#var weapon = weapons[name]
-	weapons[name].level += 1
-	print("Level up " + name + ": ", weapons[name].level)
-	
-	if name == "bullet":
-		%Options.majOptionPool("weapon", "flute", weapons[name].level)
+	#weapons[name].level += 1
+	var weapon = ""
+	if name == "flute":
+		weapon = weapons["bullet"]
+		weapon.level+=1
+		print("flute")
 	else :
-		%Options.majOptionPool("weapon", name, weapons[name].level)
+		weapon = weapons[name]
+		print("pas flute")
+		weapon.level += 1
+	print("Level up " + name + ": ", weapon.level)
+	
+	#if name == "bullet":
+		#%Options.majOptionPool("weapon", "flute", weapons[name].level)
+	#else :
+	%Options.majOptionPool("weapon", name, weapon.level)
+	update_hud_weapons()
 	attack()
 
 func update_hud_weapons():

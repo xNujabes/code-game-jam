@@ -49,4 +49,4 @@ func _on_option_3_gui_input(event: InputEvent) -> void:
 		get_parent().close_option()
 		
 func isWeapon(name) :
-	return name == "flutte" || name == "piano"
+	return name == "flute" || name == "piano"
