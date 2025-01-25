@@ -256,8 +256,8 @@ stream = ExtResource("20_ouksr")
 volume_db = -5.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]

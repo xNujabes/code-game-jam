@@ -7,11 +7,14 @@ func _ready() -> void:
 	update_score_display()
 
 func update_score_display() -> void:
-	var score_text = "Vous avez survécu: "
-	
-	score_text += str(global_data.day) + "j "
-	score_text += str(global_data.hour) + "h "
-	score_text += str(global_data.minute) + "min"
+	var score_seconds = global_data.scoregame  
+	var minutes = score_seconds / 60
+	var seconds = score_seconds % 60
+
+	var score_text = "Votre Score: "
+	if minutes > 0:
+		score_text += str(minutes) + " min "
+	score_text += str(seconds) + " s"
 
 	if score_label:
 		score_label.text = score_text

@@ -24,8 +24,8 @@ func _ready() -> void:
 	else:
 		audio_player.volume_db = -10  # Volume activé (ajuste selon tes besoins)
 	audio_player.play()
-	canvas_layer.visible = true
-	canvas_modulate.time_tick.connect(ui.set_daytime)
+	#canvas_layer.visible = true
+	#canvas_modulate.time_tick.connect(ui.set_daytime)
 
 func _process(delta: float) -> void:
 	$Path2D.position = camera.global_position
@@ -46,6 +46,7 @@ func spawn_mobs():
 	if path_follow:
 		path_follow.progress_ratio = randf()
 		new_mob.global_position = path_follow.global_position
+		new_mob.connect("death", Callable(self, "_on_mob_death"))  # Connexion au signal de mort avec Callable
 		add_child(new_mob)
 
 

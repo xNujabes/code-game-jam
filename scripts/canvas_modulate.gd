@@ -9,7 +9,7 @@ signal time_tick(day:int, hour:int, minute:int)
 @onready var parallax_bg = $"../ParallaxBackground"  # Adapte ce chemin si nécessaire
 
 @export var gradient:GradientTexture1D
-@export var INGAME_SPEED = 20.0
+@export var INGAME_SPEED = 50.0
 @export var INITIAL_HOUR = 12:
 	set(h):
 		INITIAL_HOUR = h
