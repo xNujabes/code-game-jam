@@ -34,12 +34,12 @@ func _process(delta: float) -> void:
 func spawn_mobs():
 	var new_mob
 	if type_mob == 1:
-		new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
+		new_mob = preload("res://scenes/monstre1.tscn").instantiate()
 	elif type_mob == 2:
 		new_mob = preload("res://scenes/zombie_blind.tscn").instantiate()
 	else:
 		if randi() % 2 == 0:
-			new_mob = preload("res://scenes/zombie_basic.tscn").instantiate()
+			new_mob = preload("res://scenes/monstre1.tscn").instantiate()
 		else:
 			new_mob = preload("res://scenes/zombie_blind.tscn").instantiate()
 
@@ -89,7 +89,7 @@ func delete_all_enemies():
 			child.queue_free()  
 
 func spawn_boss():
-	var boss = preload("res://scenes/zombie_big.tscn").instantiate()
+	var boss = preload("res://scenes/boss.tscn").instantiate()
 
 	boss.global_position = camera.global_position + Vector2(0, -200)
 	
