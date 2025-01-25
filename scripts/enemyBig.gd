@@ -4,17 +4,18 @@ extends CharacterBody2D
 @onready var health_bar = $VieBigZombie
 @onready var background_music = $gotaga  # Référence à l'AudioStreamPlayer
 @onready var background_music2 = $doigby  # Référence à l'AudioStreamPlayer
+var niveauBoss = Global.niveauBoss
 
 @export var speed = 20.0
 @export var hp = 100
 @export var max_hp = 100
 @export var damage = 200
 
+
 var isAnimated = false
 var isTouched = false
 var isDead = false
 var isCharging = false
-var niveau
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -23,11 +24,12 @@ signal boss_death
 
 func _ready() -> void:
 	special_attack()
-	if health_bar:
-		health_bar.max_value = 100
-		health_bar.value = 100
 	background_music.play()
-	
+	update_health_boss(hp, max_hp)
+	speed = 10 * niveauBoss + 20.0
+	hp =  niveauBoss * 100 * 1.3
+	damage = niveauBoss * 200 * 1.3
+
 		
 func update_health_boss(current_hp, max_hp):
 	if health_bar:
@@ -54,14 +56,12 @@ func _process(delta: float) -> void:
 
 
 func _on_hurtbox_hurt(damage: Variant):
+	
 	if not isCharging:
-
 		# update vie boss
 		update_health_boss(hp, max_hp)
 		$HurtSound.play()
 		background_music2.play()
-
-		
 		hp -= damage
 		var timer = $Timer
 		var tmp = animated_sprite.modulate
@@ -69,8 +69,6 @@ func _on_hurtbox_hurt(damage: Variant):
 		timer.start(0.3)
 		await timer.timeout
 		animated_sprite.modulate = tmp
-		
-
 		if hp < 0:
 			die()
 			drop_xp()
@@ -138,10 +136,6 @@ func chargeSpeAtt():
 	
 	isCharging = false  # Desactive l'état de charge
 	$Shield.visible = false
-	
-	var timer2 = $Timer
-	timer2.start(2.0)
-	await timer2.timeout
 	$SuperPower.start()
 
 
@@ -179,4 +173,5 @@ func spawn_ray(angle: float):
 
 
 func _on_super_power_timeout() -> void:
-	chargeSpeAtt()
+	for i in range(niveauBoss*2):
+		chargeSpeAtt()

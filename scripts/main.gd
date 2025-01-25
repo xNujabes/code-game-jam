@@ -76,6 +76,9 @@ func _on_boss_time_timeout() -> void:
 	
 	# Charge l'arène et affiche le boss
 	spawn_boss()
+	
+	# On augmente le niveau
+	Global.niveauBoss += 1
 
 	# Augmente le type de mobs (si applicable après le boss)
 	type_mob += 1

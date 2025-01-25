@@ -5,6 +5,7 @@ var min_damage: int = 5
 var max_damage: int = 15
 var min_speed: float = 250.0
 var max_speed: float = 350.0
+var niveauBoss = Global.niveauBoss
 
 # Variables pour les dégâts et la vitesse (initialisées aléatoirement)
 var damage: int
@@ -16,8 +17,8 @@ var distance_traveled: float = 0.0
 
 func _ready():
 	# Initialise les dégâts et la vitesse de manière aléatoire
-	damage = randi_range(min_damage, max_damage)
-	speed = randf_range(min_speed, max_speed)
+	damage = randi_range(min_damage, max_damage) + 2 * niveauBoss
+	speed = randf_range(min_speed, max_speed) * 1.3 
 	
 	# Oriente le sprite dans la direction du rayon
 	rotation = direction.angle()

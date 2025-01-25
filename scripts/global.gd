@@ -2,6 +2,7 @@ extends Node
 
 var fire_mode = "Auto"  # Valeur par défaut
 var is_muted = false  
+
 var day = 0
 var hour = 0
 var minute = 0
@@ -23,6 +24,9 @@ func update_best_score(current_day: int, current_hour: int, current_minute: int)
 		best_score.day = current_day
 		best_score.hour = current_hour
 		best_score.minute = current_minute
+
+var niveauBoss = 1
+
 
 func _ready():
 	pass
