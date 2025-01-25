@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7xkntpnx7usi"
-path="res://.godot/imported/flutte.png-b2f6753adda2ea9d3899c18a9c6d0c54.ctex"
+uid="uid://dgjytbbu8xil0"
+path="res://.godot/imported/synth_wave.png-8374a6ad23bc526e10a54960d198133f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/flutte.png"
-dest_files=["res://.godot/imported/flutte.png-b2f6753adda2ea9d3899c18a9c6d0c54.ctex"]
+source_file="res://assets/weapons/synth_wave.png"
+dest_files=["res://.godot/imported/synth_wave.png-8374a6ad23bc526e10a54960d198133f.ctex"]
 
 [params]
 

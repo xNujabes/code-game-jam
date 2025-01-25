@@ -3,7 +3,8 @@ extends CanvasLayer
 @onready var health_bar = $BarDeVie
 @onready var xp_bar = $BarDeXP
 @onready var level_label = $LevelLabel
-@onready var weapons_container = $Inventory/Weapons  
+@onready var weapons_container = $Inventory/Weapons
+@onready var equipment_container = $Inventory/Equipment  # Ajoute une référence au conteneur des équipements
 
 var score = 0
 
@@ -16,7 +17,6 @@ func _ready() -> void:
 		xp_bar.value = 0
 	if level_label:
 		level_label.text = "1  Level"
-	
 
 func update_health(current_hp, max_hp):
 	if health_bar:
@@ -30,20 +30,62 @@ func update_xp(current_xp, max_xp, level):
 	if level_label:
 		level_label.text = str(level) + "  Level"
 
-
 func update_weapons(weapons: Dictionary):
 	if weapons_container:
-
 		for child in weapons_container.get_children():
 			child.queue_free()
 
-		# Afficher les nouvelles armes
 		for weapon_name in weapons:
 			var weapon_data = weapons[weapon_name]
-			if weapon_data["level"] > 0:  # Afficher uniquement les armes débloquées
-				var weapon_label = Label.new()
-				weapon_label.text = "{weapon_name} (Niveau {level})".format({
-					"weapon_name": weapon_name,
-					"level": weapon_data["level"]
-				})
-				weapons_container.add_child(weapon_label)
+			if weapon_data["level"] > 0:
+				var weapon_icon = TextureRect.new()
+				var texture = load("res://assets/weapons/{weapon_name}.png".format({"weapon_name": weapon_name}))
+				if texture:
+					print("Texture chargée pour", weapon_name)
+					weapon_icon.texture = texture
+				else:
+					print("Échec du chargement de la texture pour", weapon_name)
+				weapon_icon.expand = true
+				weapon_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+				weapon_icon.custom_minimum_size = Vector2(32, 32)  # Taille minimale
+				weapon_icon.visible = true
+
+				var weapon_level = Label.new()
+				weapon_level.text = str(weapon_data["level"])
+
+				var weapon_container = HBoxContainer.new()
+				weapon_container.add_child(weapon_icon)
+				weapon_container.add_child(weapon_level)
+				weapon_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # S'étendre horizontalement
+
+				weapons_container.add_child(weapon_container)
+
+func update_equipment(equipment: Dictionary):
+	if equipment_container:
+		for child in equipment_container.get_children():
+			child.queue_free()
+
+		for equip_name in equipment:
+			var equip_data = equipment[equip_name]
+			if equip_data["level"] > 0:
+				var equip_icon = TextureRect.new()
+				var texture = load("res://assets/Equipement/{equip_name}.png".format({"equip_name": equip_name}))
+				if texture:
+					print("Texture chargée pour", equip_name)
+					equip_icon.texture = texture
+				else:
+					print("Échec du chargement de la texture pour", equip_name)
+				equip_icon.expand = true
+				equip_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+				equip_icon.custom_minimum_size = Vector2(32, 32)  # Taille minimale
+				equip_icon.visible = true
+
+				var equip_level = Label.new()
+				equip_level.text = str(equip_data["level"])
+
+				var equip_container = HBoxContainer.new()
+				equip_container.add_child(equip_icon)
+				equip_container.add_child(equip_level)
+				equip_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # S'étendre horizontalement
+
+				equipment_container.add_child(equip_container)

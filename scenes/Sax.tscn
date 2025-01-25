@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rt0072te8dxg"]
 
 [ext_resource type="Script" path="res://scripts/sax.gd" id="1_wt8um"]
-[ext_resource type="Texture2D" uid="uid://c6dcvcsxojx38" path="res://assets/weapons/trumpet.png" id="2_1uhsx"]
+[ext_resource type="Texture2D" uid="uid://c6dcvcsxojx38" path="res://assets/weapons/sax.png" id="2_1uhsx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51cru"]
 radius = 13.3365

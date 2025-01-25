@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nrp1rwa06yxh"
-path="res://.godot/imported/guitare.png-80caaddb58aa583328f0c0d038452d06.ctex"
+uid="uid://bf1duhcy5ecvi"
+path="res://.godot/imported/piano.png-65bc3df788144cf193866d5c8dfcf3d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/guitare.png"
-dest_files=["res://.godot/imported/guitare.png-80caaddb58aa583328f0c0d038452d06.ctex"]
+source_file="res://assets/weapons/piano.png"
+dest_files=["res://.godot/imported/piano.png-65bc3df788144cf193866d5c8dfcf3d5.ctex"]
 
 [params]
 

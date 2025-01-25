@@ -341,14 +341,6 @@ visible = false
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="option_slot/option1/TextureRect" index="0"]
-offset_left = 47.0
-offset_top = 61.0
-offset_right = 205.0
-offset_bottom = 209.0
-expand_mode = 1
-stretch_mode = 5
-
 [node name="Label" parent="option_slot/option2" index="0"]
 offset_left = 0.0
 offset_top = 0.0

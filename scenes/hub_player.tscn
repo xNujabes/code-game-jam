@@ -87,3 +87,6 @@ text = "Inventory :"
 
 [node name="Equipment" type="VBoxContainer" parent="Inventory"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/Equipment"]
+layout_mode = 2

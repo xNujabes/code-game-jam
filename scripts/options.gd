@@ -4,6 +4,16 @@ var OptionSlot= preload("res://scenes/option_slot.tscn")
 const YELLOW_CARD = preload("res://assets/Card/yellowCard.png")
 const BLUE_CARD = preload("res://assets/Card/blueCard.png")
 var option_slot = OptionSlot.instantiate()
+const TEXTURES = {
+	"flute": preload("res://assets/Weapons/flute.png"),
+	"piano": preload("res://assets/weapons/piano/piano.png"),
+	"drum": preload("res://assets/Weapons/drum.png"),
+	"synth_wave": preload("res://assets/weapons/synth_wave.png"),
+	"sax": preload("res://assets/weapons/sax.png"),
+	"casque": preload("res://assets/Equipement/Casque.png"),
+	"claquette": preload("res://assets/Equipement/claquette.png"),
+	"lunettes": preload("res://assets/Equipement/lunettes.png"),
+}
 
 func _ready():
 	hide()
@@ -45,17 +55,7 @@ var weaponPool = [
 var equipementPool = [
 	{
 		"type": "equipement",
-		"name": "sac",
-		"level": 0,
-	},
-	{
-		"type": "equipement",
 		"name": "casque",
-		"level": 0,
-	},
-	{
-		"type": "equipement",
-		"name": "micro",
 		"level": 0,
 	},
 	{
@@ -110,13 +110,21 @@ func getRandomOptions():
 func show_option():
 	var types = getRandomOptions()
 	
-	# Modifie les datas des options
-	if YELLOW_CARD and option_slot.has_node("option1") and option_slot.has_node("option2") and option_slot.has_node("option3"):  # Vérifie si le nœud existe
+	if YELLOW_CARD and option_slot.has_node("option1") and option_slot.has_node("option2") and option_slot.has_node("option3"):
 		for i in range(types.size()):
 			var option = types[i]
 			var texture_button = option_slot.get_node("option" + str(i+1))
 			var description = texture_button.get_node("Description") as Label
 			var level = texture_button.get_node("Label") as Label
+			var texture = texture_button.get_node("TextureRect") as TextureRect
+			
+			# Définir la texture en fonction du nom de l'objet
+			if option.name in TEXTURES:
+				texture.texture = TEXTURES[option.name]
+				texture.expand = true  # Force l'image à remplir le TextureRect
+				texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED  # Redimensionne l'image pour couvrir le rectangle
+			
+			# Définir la couleur de la carte
 			if option.type == "equipement":
 				texture_button.texture_normal = YELLOW_CARD
 			else:
@@ -129,4 +137,3 @@ func show_option():
 	add_child(option_slot)
 	show()
 	get_tree().paused = true
-	
