@@ -10,8 +10,7 @@ extends CharacterBody2D
 
 @export var level = 1
 
-@onready var hud = get_tree().get_first_node_in_group("HUD")
-@onready var global_data = get_tree().root.get_node("Global")  # Récupère le nœud global
+var updatedInventory = false
 
 # Weapons
 var weapons = {
@@ -21,10 +20,13 @@ var weapons = {
 	},
 	"piano": {
 		"scene": preload("res://scenes/piano.tscn"),
-		"level": 0
+		"level": 1
 	}
 }
 var score = 0  # Déclare la variable score
+
+@onready var hud = get_tree().get_first_node_in_group("HUD")
+@onready var global_data = get_tree().root.get_node("Global")  # Récupère le nœud global
 
 @onready var bulletTimer = $Weapons/BulletTimer
 @onready var bulletAttackTimer = $Weapons/BulletTimer/BulletAttackTimer
@@ -56,6 +58,10 @@ func _ready() -> void:
 	score_timer.start()
 	%Options.majOptionPool("weapon", "flute", 1)
 
+	if weapons :
+		update_hud_weapons()
+
+
 func _physics_process(delta: float) -> void:
 	move()
 	if velocity.length() > 0:
@@ -64,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")
 	game_over()
+	
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -108,6 +115,9 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 func add_xp(amount):
 	$XPSound.play()
 	xp += amount
+	if !updatedInventory:
+		update_hud_weapons()
+		updatedInventory = true
 	
 	#Level up
 	if xp >= xp_to_level_up:
@@ -117,7 +127,8 @@ func add_xp(amount):
 		xp_to_level_up *= level
 		max_xp = xp_to_level_up
 		%Options.show_option()
-		
+		update_hud_weapons()
+	
 	update_hud()
 	
 func levelUpWeapon(name):
@@ -130,6 +141,10 @@ func levelUpWeapon(name):
 	else :
 		%Options.majOptionPool("weapon", name, weapons[name].level)
 	attack()
+
+func update_hud_weapons():
+	if hud:
+		hud.update_weapons(weapons)
 
 func update_hud():
 	if hud:

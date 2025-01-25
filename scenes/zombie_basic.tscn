@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="14_lr2pt"]
 [ext_resource type="Texture2D" uid="uid://gp68nxhnoe8l" path="res://assets/Zombie/Dead/zombie_Dead_7.png" id="15_goo0y"]
 [ext_resource type="Texture2D" uid="uid://d0vm883jiubh8" path="res://assets/Zombie/Dead/zombie_Dead_8.png" id="16_d8786"]
-[ext_resource type="AudioStream" uid="uid://4ikl4adx1tni" path="res://sounds/hitEnemy.wav" id="19_ljj78"]
+[ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="28_gbbwb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
 animations = [{
@@ -181,7 +181,7 @@ shape = SubResource("CapsuleShape2D_y11bw")
 position = Vector2(-0.495049, -0.613749)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("19_ljj78")
+stream = ExtResource("28_gbbwb")
 volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
+	$HurtSound.play()
 	hp -= damage
 	print(hp)
 	if hp < 0:
