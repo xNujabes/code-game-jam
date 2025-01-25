@@ -14,7 +14,17 @@ extends Node2D
 @onready var boss_timer = $BossTime
 
 
+# Variables globales
 var type_mob = 1
+var world_level = 1  # Niveau du monde qui augmente après chaque boss fight
+var mob_paths = [  # Chemins vers les monstres
+	"res://scenes/monstre1.tscn",
+	"res://scenes/monstre2.tscn",
+	"res://scenes/monstre3.tscn",
+	"res://scenes/monstre4.tscn",
+	"res://scenes/monstre5.tscn",
+	"res://scenes/monstre6.tscn"
+]
 
 func _ready() -> void:
 	# Assurer que le son de la musique est défini au démarrage
@@ -32,24 +42,31 @@ func _process(delta: float) -> void:
 	$Path2D.position -= Vector2(600, 300)
 
 func spawn_mobs():
-	var new_mob
-	if type_mob == 1:
-		new_mob = preload("res://scenes/monstre1.tscn").instantiate()
-	elif type_mob == 2:
-		new_mob = preload("res://scenes/zombie_blind.tscn").instantiate()
-	else:
-		if randi() % 2 == 0:
-			new_mob = preload("res://scenes/monstre1.tscn").instantiate()
-		else:
-			new_mob = preload("res://scenes/zombie_blind.tscn").instantiate()
+	# Choisir un type de mob en fonction du niveau du monde
+	var available_mobs = get_mobs_for_world_level()
+	var mob_path = available_mobs[randi() % available_mobs.size()]
+	var new_mob = load(mob_path).instantiate()
 
 	if path_follow:
 		path_follow.progress_ratio = randf()
 		new_mob.global_position = path_follow.global_position
-		#new_mob.connect("death", Callable(self, "_on_mob_death"))  # Connexion au signal de mort avec Callable
 		add_child(new_mob)
 
-
+func get_mobs_for_world_level() -> Array:
+	#Renvoie une liste de monstres disponibles en fonction du niveau du monde.
+	match world_level:
+		1:
+			return [mob_paths[0], mob_paths[1]]
+		2:
+			return [mob_paths[0], mob_paths[1], mob_paths[2]] 
+		3:
+			return [mob_paths[1], mob_paths[2], mob_paths[3]]  
+		4:
+			return [mob_paths[2], mob_paths[3], mob_paths[4]]  
+		5:
+			return [mob_paths[3], mob_paths[4], mob_paths[5]]  
+		_:
+			return mob_paths  # Niveau 6+ : Tous les monstres disponibles
 func _on_spawn_mob_timeout() -> void:
 	spawn_mobs()
 
@@ -98,17 +115,17 @@ func spawn_boss():
 	add_child(boss)
 
 func _on_boss_death():
+	world_level += 1  # Augmenter le niveau du monde
 	%SpawnMob.start()
 	%IncreaseEnemies.start()
 	%BossTime.start()
 
 
 func _input(event):
-	# Vérifie si l'action "rickroll" est activée
-	if Input.is_action_just_pressed("rickroll"):
+	# Vérifie si l'action "elodie" est activée
+	if Input.is_action_just_pressed("elodie"):
 		open_youtube_video()
 
 func open_youtube_video():
-	# URL de la vidéo YouTube
 	var youtube_url = "https://www.youtube.com/watch?v=Qq1oH6AV8ww"
 	OS.shell_open(youtube_url)

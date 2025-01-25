@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://cgf3pygv4dkjx"]
+[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://7sld2k0t84mj"]
 
 [ext_resource type="Texture2D" uid="uid://rcl1iv0jg7rg" path="res://assets/craftpix-net-814823-free-roguelike-shoot-em-up-pixel-art-game-kit/2 Location/2 Objects/Grass/grass_set.png" id="1_lhjnw"]
 [ext_resource type="Texture2D" uid="uid://bdilqi5foj8ke" path="res://assets/craftpix-net-814823-free-roguelike-shoot-em-up-pixel-art-game-kit/2 Location/2 Objects/Grass/grass_set_avec_vide.png" id="2_4tfhb"]

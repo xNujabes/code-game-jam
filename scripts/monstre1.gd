@@ -37,7 +37,6 @@ func _on_hurtbox_hurt(damage: Variant):
 	animated_sprite.modulate = tmp
 	if hp < 0:
 		drop_xp()
-		queue_free()
 		die()
 
 func drop_xp() -> void:
@@ -75,6 +74,7 @@ func die():
 	isDead = true
 	# Change l'animation à "dead"
 	animated_sprite.animation = "dead"
+	print("je suis dead")
 	velocity = Vector2.ZERO  # Arrête tout mouvement
 	set_process(false)  # Arrête le traitement si nécessaire
 
@@ -82,5 +82,3 @@ func die():
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite.animation == "dead":
 		queue_free()  # Supprime le monstre
-		
-		

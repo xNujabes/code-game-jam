@@ -73,7 +73,6 @@ func _on_hurtbox_hurt(damage: Variant):
 			die()
 			drop_xp()
 			boss_death.emit()
-			queue_free()
 
 func drop_xp() -> void:
 	var num_orbs = randi() % 4 + 2  # Génère un nombre aléatoire entre 2 et 5
