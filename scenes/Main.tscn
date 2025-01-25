@@ -54,12 +54,17 @@ script = SubResource("GDScript_ogk1m")
 unique_name_in_owner = true
 z_index = 10
 position = Vector2(560, 320)
+hp = 80
+max_hp = 80
+xp = 0
+xp_to_level_up = 10
+max_xp = 10
+level = 1
 
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-560, -320)
 stream = SubResource("AudioStreamOggVorbis_1cvbv")
-volume_db = -18.0
-autoplay = true
+volume_db = -80.0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_wcb02")

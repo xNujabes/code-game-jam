@@ -138,7 +138,7 @@ disabled = true
 
 [node name="PianoBlink" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_2d5yu")
-volume_db = -10.0
+volume_db = -20.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.15
@@ -160,7 +160,7 @@ animation = &"explode"
 
 [node name="PianoExplosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_mjro8")
-volume_db = -5.0
+volume_db = -15.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

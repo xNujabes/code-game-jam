@@ -1,14 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=37 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="2_yw2jy"]
 [ext_resource type="Texture2D" uid="uid://bgud2yuly4q6y" path="res://assets/asset_main_character/1 Biker/Biker_idle.png" id="3_0ai3d"]
-[ext_resource type="AudioStream" uid="uid://b3sqkbr02w0iq" path="res://sounds/OrchestraHit.wav" id="3_3dpk5"]
 [ext_resource type="Texture2D" uid="uid://cu01dlejurrcu" path="res://assets/asset_main_character/1 Biker/Biker_hurt.png" id="3_ngx0f"]
 [ext_resource type="Texture2D" uid="uid://ca20rsftch8kf" path="res://assets/asset_main_character/1 Biker/Biker_run.png" id="4_ehucd"]
 [ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
 [ext_resource type="AudioStream" uid="uid://csf23sbnquey6" path="res://sounds/drum.mp3" id="6_o4713"]
+[ext_resource type="AudioStream" uid="uid://tmfohilo76rf" path="res://sounds/guitare_1.mp3" id="7_loyfh"]
+[ext_resource type="AudioStream" uid="uid://bl4qukn8kieds" path="res://sounds/bass_1.mp3" id="10_esjqp"]
+[ext_resource type="AudioStream" uid="uid://x3h8r2sjnort" path="res://sounds/sax.mp3" id="11_xa05u"]
 [ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
@@ -254,7 +256,7 @@ wait_time = 1.5
 wait_time = 0.075
 
 [node name="BulletSound" type="AudioStreamPlayer2D" parent="Weapons"]
-stream = ExtResource("3_3dpk5")
+stream = ExtResource("7_loyfh")
 volume_db = -8.0
 
 [node name="PianoTimer" type="Timer" parent="Weapons"]
@@ -265,7 +267,7 @@ wait_time = 0.075
 
 [node name="PianoSound" type="AudioStreamPlayer2D" parent="Weapons"]
 stream = ExtResource("5_xn781")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="WaveTimer" type="Timer" parent="Weapons"]
 
@@ -278,12 +280,20 @@ wait_time = 0.075
 
 [node name="DrumSound" type="AudioStreamPlayer2D" parent="Weapons"]
 stream = ExtResource("6_o4713")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="SaxTimer" type="Timer" parent="Weapons"]
 
 [node name="SaxAttackTimer" type="Timer" parent="Weapons/SaxTimer"]
 wait_time = 0.075
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("10_esjqp")
+volume_db = -5.0
+
+[node name="SaxSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("11_xa05u")
+volume_db = -10.0
 
 [node name="RangeDetection" type="Area2D" parent="."]
 light_mask = 5
@@ -351,8 +361,8 @@ offset_right = 188.0
 offset_bottom = 52.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]

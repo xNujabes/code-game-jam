@@ -21,7 +21,7 @@ func _ready() -> void:
 	if Global.is_muted:
 		audio_player.volume_db = -80  # Met le volume à -80 dB pour le désactiver
 	else:
-		audio_player.volume_db = -10  # Volume activé (ajuste selon tes besoins)
+		audio_player.volume_db = -80  # Volume activé (ajuste selon tes besoins)
 	audio_player.play()
 	canvas_layer.visible = true
 	canvas_modulate.time_tick.connect(ui.set_daytime)

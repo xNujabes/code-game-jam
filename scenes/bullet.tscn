@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://biow8np17yqf8"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_pwlvy"]
-[ext_resource type="Texture2D" uid="uid://c7xkntpnx7usi" path="res://assets/weapons/flutte.png" id="2_5pjv8"]
+[ext_resource type="Texture2D" uid="uid://nrp1rwa06yxh" path="res://assets/weapons/guitare.png" id="2_d745f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51cru"]
-radius = 29.4303
-height = 75.4374
+radius = 23.9853
+height = 98.518
 
 [node name="Bullet" type="Area2D" groups=["attack"]]
 top_level = true
@@ -24,9 +24,9 @@ position = Vector2(0.991119, 0)
 scale = Vector2(1.88535, 0.778489)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.19209e-07, 2.01329)
-rotation = 0.660196
-scale = Vector2(0.029664, 0.0245458)
-texture = ExtResource("2_5pjv8")
+position = Vector2(0.99, 0.038)
+rotation = 1.5708
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_d745f")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

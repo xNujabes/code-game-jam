@@ -321,6 +321,7 @@ func use_wave():
 
 func _on_wave_timer_timeout() -> void:
 	use_wave()
+	$Weapons/WaveSound.play()
 
 func invokeDrums():
 	var projectile_instance = weapons["drum"]["scene"].instantiate()
@@ -338,6 +339,7 @@ func invokeDrums():
 
 func _on_drum_timer_timeout() -> void:
 	invokeDrums()
+	$Weapons/DrumSound.play()
 
 func _on_sax_timer_timeout() -> void:
 	var sax_instance = weapons["sax"]["scene"].instantiate()
@@ -354,7 +356,7 @@ func _on_sax_attack_timer_timeout() -> void:
 		sax_instance.loadLevel()
 		add_child(sax_instance)
 		saxAmmo -= 1
-		$Weapons/BulletSound.play()
+		$Weapons/SaxSound.play()
 		if saxAmmo > 0:
 			saxAttackTimer.start()
 		else:

@@ -6,7 +6,7 @@ var attackSize = 1.0
 @export var speed = 400
 @export var damage = 5
 @export var baseAmmo = 1
-@export var attackSpeed = 1.5
+@export var attackSpeed = 1.05
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
@@ -43,7 +43,7 @@ func loadLevel():
 			damage = 5
 			attackSize = 1.0
 			baseAmmo = 1
-			attackSpeed = 1.5
+			attackSpeed = 1.05
 
 		2:  # Niveau 2
 			hp = 1
@@ -51,7 +51,7 @@ func loadLevel():
 			damage = 7
 			attackSize = 1.1
 			baseAmmo = 1
-			attackSpeed = 1.4
+			attackSpeed = 1.05
 
 		3:  # Niveau 3
 			hp = 2
@@ -59,7 +59,7 @@ func loadLevel():
 			damage = 9
 			attackSize = 1.2
 			baseAmmo = 1
-			attackSpeed = 1.3
+			attackSpeed = 1.05
 
 		4:  # Niveau 4
 			hp = 2
@@ -67,7 +67,7 @@ func loadLevel():
 			damage = 11
 			attackSize = 1.3
 			baseAmmo = 1
-			attackSpeed = 1.2
+			attackSpeed = 1.05
 
 		5:  # Niveau 5
 			hp = 3
@@ -75,4 +75,4 @@ func loadLevel():
 			damage = 13
 			attackSize = 1.4
 			baseAmmo = 1
-			attackSpeed = 1.1
+			attackSpeed = 1.05

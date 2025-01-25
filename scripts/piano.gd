@@ -17,6 +17,7 @@ func _ready() -> void:
 	angle = global_position.direction_to(target)
 	rotation = angle.angle()
 	loadLevel()
+	scale = Vector2(attackSize, attackSize)
 
 func _physics_process(delta: float) -> void:
 	# Vérifie si la distance entre position et target est très petite (pour éviter des problèmes de précision)
