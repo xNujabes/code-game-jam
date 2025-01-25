@@ -17,6 +17,20 @@ func applyBonus(bonusName):
 
 func _on_option_1_gui_input(event: InputEvent) -> void:
 	var description = $option1/Description
+
+	if event.is_action_pressed("click") :
+		#weapon.upgrade_item()
+		if isWeapon(description.text):
+			player.levelUpWeapon(description.text)
+		else:
+			applyBonus(description.text)
+			player.levelUpEquipement(description.text)
+		get_parent().close_option()
+
+
+func _on_option_2_gui_input(event: InputEvent) -> void:
+	var description = $option2/Description
+
 	
 	if event.is_action_pressed("click") :
 		#weapon.upgrade_item()
@@ -24,28 +38,20 @@ func _on_option_1_gui_input(event: InputEvent) -> void:
 			player.levelUpWeapon(description.text)
 		else:
 			applyBonus(description.text)
-		get_parent().close_option()
-
-
-func _on_option_2_gui_input(event: InputEvent) -> void:
-	var description = $option2/Description
-	if event.is_action_pressed("click") :
-		#weapon.upgrade_item()
-		if isWeapon(description.text):
-			player.levelUpWeapon(description.text)
-		else:
-			applyBonus(description.text)
+			player.levelUpEquipement(description.text)
 		get_parent().close_option()
 
 
 func _on_option_3_gui_input(event: InputEvent) -> void:
 	var description = $option3/Description
+	
 	if event.is_action_pressed("click") :
 		#weapon.upgrade_item()
 		if isWeapon(description.text):
 			player.levelUpWeapon(description.text)
 		else:
 			applyBonus(description.text)
+			player.levelUpEquipement(description.text)
 		get_parent().close_option()
 		
 func isWeapon(name) :
