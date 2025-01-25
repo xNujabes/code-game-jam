@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cospe0rhgtr6t" path="res://assets/weapons/piano/piano.png" id="2_x7jib"]
 [ext_resource type="Texture2D" uid="uid://k4l45whubf3i" path="res://assets/weapons/piano/pianoBlink2.png" id="3_yppdx"]
 [ext_resource type="Texture2D" uid="uid://dkkfd3gccq1el" path="res://assets/Explosion.png" id="5_joggn"]
-[ext_resource type="AudioStream" uid="uid://dkv664ls1rym6" path="res://sounds/PianoExplode.wav" id="7_y011g"]
+[ext_resource type="AudioStream" uid="uid://mgaxwr0gfalf" path="res://sounds/PianoExplode.mp3" id="7_mjro8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0hn5"]
 radius = 59.0762
@@ -159,7 +159,7 @@ sprite_frames = SubResource("SpriteFrames_yp711")
 animation = &"explode"
 
 [node name="PianoExplosion" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_y011g")
+stream = ExtResource("7_mjro8")
 volume_db = -5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

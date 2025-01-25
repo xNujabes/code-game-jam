@@ -1,5 +1,10 @@
 extends Node2D
 
+
+@onready var canvas_layer = $CanvasLayer
+@onready var canvas_modulate = $CanvasModulate
+@onready var ui = $CanvasLayer/DayNightCycleUI
+#@onready var sound_machine = $SoundMachine
 @onready var camera = get_node("Player/Camera2D")
 @onready var audio_player = get_node("Player/Music")
 @onready var path2d = $Path2D
@@ -7,6 +12,8 @@ extends Node2D
 @onready var spawn_timer = $SpawnMob
 @onready var increase_enemies_timer = $IncreaseEnemies
 @onready var boss_timer = $BossTime
+
+
 
 var type_mob = 1
 
@@ -17,6 +24,8 @@ func _ready() -> void:
 	else:
 		audio_player.volume_db = -10  # Volume activé (ajuste selon tes besoins)
 	audio_player.play()
+	#canvas_layer.visible = true
+	#canvas_modulate.time_tick.connect(ui.set_daytime)
 
 func _process(delta: float) -> void:
 	$Path2D.position = camera.global_position
@@ -98,5 +107,5 @@ func _input(event):
 
 func open_youtube_video():
 	# URL de la vidéo YouTube
-	var youtube_url = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+	var youtube_url = "https://www.youtube.com/watch?v=Qq1oH6AV8ww"
 	OS.shell_open(youtube_url)

@@ -6,6 +6,7 @@ extends Area2D
 @export var attraction_speed = 300
 var is_collected = false
 
+
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 

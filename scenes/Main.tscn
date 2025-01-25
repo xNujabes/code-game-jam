@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://b7focic4ugteh"]
+[gd_scene load_steps=10 format=4 uid="uid://b7focic4ugteh"]
 
 [ext_resource type="PackedScene" uid="uid://v0brf0mjsyfl" path="res://scenes/player.tscn" id="1_dl5k0"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pqk2y"]
-[ext_resource type="PackedScene" uid="uid://cfeeyvadojtxe" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
-[ext_resource type="PackedScene" uid="uid://bbe7ra0tbkmc5" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
+
+[ext_resource type="PackedScene" path="res://scenes/parallax_background.tscn" id="2_qwm6u"]
+[ext_resource type="PackedScene" uid="uid://bcumntt8vcf3n" path="res://scenes/xp.tscn" id="3_fstna"]
+[ext_resource type="PackedScene" uid="uid://dhy4mjh6d4kxr" path="res://scenes/hub_player.tscn" id="5_cy1mq"]
 
 [sub_resource type="GDScript" id="GDScript_ogk1m"]
 script/source = "extends Node
@@ -64,10 +66,13 @@ autostart = true
 
 [node name="BossTime" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 60.0
 autostart = true
 
 [node name="Hub_player" parent="." groups=["HUD"] instance=ExtResource("5_cy1mq")]
+
+[node name="XP" parent="." instance=ExtResource("3_fstna")]
+position = Vector2(561, 337)
 
 [connection signal="timeout" from="SpawnMob" to="." method="_on_spawn_mob_timeout"]
 [connection signal="timeout" from="IncreaseEnemies" to="." method="_on_increase_enemies_timeout"]
