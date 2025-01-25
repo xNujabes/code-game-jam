@@ -21,29 +21,19 @@ anchor_bottom = 0.13
 offset_left = -76.0
 offset_top = 55.0
 offset_right = 79.0
-offset_bottom = 24.33
+offset_bottom = 110.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Settings"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="ColorRect"]
+[node name="Return" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.00258176
-anchor_top = -0.104704
-anchor_right = -0.00258176
-anchor_bottom = -0.104704
-offset_left = 309.0
-offset_top = 318.0
-offset_right = 475.0
-offset_bottom = 373.0
-theme_override_font_sizes/font_size = 40
-text = "Musique"
-metadata/_edit_use_anchors_ = true
-
-[node name="Return" type="Button" parent="ColorRect"]
-layout_mode = 0
+anchor_left = -0.00344234
+anchor_top = 0.016692
+anchor_right = -0.00344234
+anchor_bottom = 0.016692
 offset_left = 358.0
 offset_top = 470.0
 offset_right = 813.0
@@ -54,27 +44,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Viser" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 647.0
-offset_top = 342.0
-offset_right = 929.0
-offset_bottom = 401.0
+offset_left = 658.0
+offset_top = 257.0
+offset_right = 940.0
+offset_bottom = 316.0
 theme_override_font_sizes/font_size = 30
 text = "Auto"
 
-[node name="MuteButton" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 643.0
-offset_top = 245.0
-offset_right = 926.0
-offset_bottom = 308.0
-theme_override_font_sizes/font_size = 30
-text = "Activé "
-
 [node name="Label" type="Label" parent="."]
-offset_left = 362.0
-offset_top = 338.0
-offset_right = 441.0
-offset_bottom = 393.0
+offset_left = 338.0
+offset_top = 257.0
+offset_right = 417.0
+offset_bottom = 312.0
 theme_override_font_sizes/font_size = 40
 text = "Visé"
 
