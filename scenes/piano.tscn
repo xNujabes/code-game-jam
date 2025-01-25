@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://manu8a0k5tkw"]
+[gd_scene load_steps=23 format=3 uid="uid://x8e5826crvv0"]
 
-[ext_resource type="Script" path="res://scenes/piano.gd" id="1_yi2wy"]
+[ext_resource type="Script" path="res://scripts/piano.gd" id="1_h1efk"]
 [ext_resource type="AudioStream" uid="uid://3v6tfa64o6l3" path="res://sounds/PianoBlink.mp3" id="2_2d5yu"]
 [ext_resource type="Texture2D" uid="uid://ddru08nua5f22" path="res://assets/weapons/piano/pianoBlink1.png" id="2_hckgd"]
 [ext_resource type="Texture2D" uid="uid://cospe0rhgtr6t" path="res://assets/weapons/piano/piano.png" id="2_x7jib"]
@@ -129,7 +129,7 @@ animations = [{
 top_level = true
 collision_layer = 6
 collision_mask = 0
-script = ExtResource("1_yi2wy")
+script = ExtResource("1_h1efk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)

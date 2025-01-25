@@ -24,8 +24,8 @@ func _ready() -> void:
 	else:
 		audio_player.volume_db = -10  # Volume activé (ajuste selon tes besoins)
 	audio_player.play()
-	#canvas_layer.visible = true
-	#canvas_modulate.time_tick.connect(ui.set_daytime)
+	canvas_layer.visible = true
+	canvas_modulate.time_tick.connect(ui.set_daytime)
 
 func _process(delta: float) -> void:
 	$Path2D.position = camera.global_position

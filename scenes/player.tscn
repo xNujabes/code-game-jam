@@ -20,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
-[ext_resource type="PackedScene" uid="uid://bbc0cnnmnhcmf" path="res://scenes/option_slot.tscn" id="21_rmary"]
+[ext_resource type="PackedScene" path="res://scenes/option_slot.tscn" id="21_rmary"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_718pj"]
 radius = 6.97913

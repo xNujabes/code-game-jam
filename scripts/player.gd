@@ -243,9 +243,13 @@ func _on_score_timeout() -> void:
 
 func game_over():
 	if hp <= 0:
-		global_data.scoregame = score
-		# Met à jour le meilleur temps global
-		if score > global_data.best_score:
-			global_data.best_score = score
-		# Change de scène vers game_over
+		# Récupère les valeurs actuelles de jour, heure et minute
+		var current_day = Global.day
+		var current_hour = Global.hour
+		var current_minute = Global.minute
+
+		# Met à jour le meilleur score global si nécessaire
+		Global.update_best_score(current_day, current_hour, current_minute)
+
+		# Change de scène vers l'écran de game over
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")

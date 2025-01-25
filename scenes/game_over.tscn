@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkvypuiw3jxcj"]
 
-[ext_resource type="Script" path="res://scenes/game_over2.gd" id="1_7273m"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_heukl"]
 
 [node name="HUDGameOver" type="Node"]
-script = ExtResource("1_7273m")
+script = ExtResource("1_heukl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0

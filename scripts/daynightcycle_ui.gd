@@ -19,7 +19,9 @@ func set_daytime(day: int, hour: int, minute: int) -> void:
 		arrow.rotation_degrees = _remap_rangef(hour, 0, 12, -90, 90)
 	else:
 		arrow.rotation_degrees = _remap_rangef(hour, 13, 23, 90, -90)
-
+	
+	# Enregistre les données dans Global
+	Global.set_daytime(day, hour, minute)
 
 func _amfm_hour(hour:int) -> String:
 	if hour == 0:
