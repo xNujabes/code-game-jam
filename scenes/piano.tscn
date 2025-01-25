@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/piano.gd" id="1_h1efk"]
 [ext_resource type="AudioStream" uid="uid://3v6tfa64o6l3" path="res://sounds/PianoBlink.mp3" id="2_2d5yu"]
 [ext_resource type="Texture2D" uid="uid://ddru08nua5f22" path="res://assets/weapons/piano/pianoBlink1.png" id="2_hckgd"]
-[ext_resource type="Texture2D" uid="uid://cospe0rhgtr6t" path="res://assets/weapons/piano/piano.png" id="2_x7jib"]
 [ext_resource type="Texture2D" uid="uid://k4l45whubf3i" path="res://assets/weapons/piano/pianoBlink2.png" id="3_yppdx"]
+[ext_resource type="Texture2D" uid="uid://bf1duhcy5ecvi" path="res://assets/weapons/piano.png" id="5_0223k"]
 [ext_resource type="Texture2D" uid="uid://dkkfd3gccq1el" path="res://assets/Explosion.png" id="5_joggn"]
 [ext_resource type="AudioStream" uid="uid://mgaxwr0gfalf" path="res://sounds/PianoExplode.mp3" id="7_mjro8"]
 
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_x7jib")
+"texture": ExtResource("5_0223k")
 }],
 "loop": true,
 "name": &"Throw",

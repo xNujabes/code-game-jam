@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhxwwa5y511a4"
-path="res://.godot/imported/thong.png-b65966766aa480434acb72aed9010c6c.ctex"
+uid="uid://dbjkcamxquo2n"
+path="res://.godot/imported/pixil-frame-0 (1).png-7e0b97052280aec2de6f39410bf35bbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Equipement/thong.png"
-dest_files=["res://.godot/imported/thong.png-b65966766aa480434acb72aed9010c6c.ctex"]
+source_file="res://assets/weapons/pixil-frame-0 (1).png"
+dest_files=["res://.godot/imported/pixil-frame-0 (1).png-7e0b97052280aec2de6f39410bf35bbf.ctex"]
 
 [params]
 

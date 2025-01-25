@@ -14,7 +14,7 @@ var updatedInventory = false
 
 # Weapons
 var weapons = {
-	"bullet": {
+	"flute": {
 		"scene": preload("res://scenes/bullet.tscn"),
 		"level":1
 	},
@@ -92,8 +92,8 @@ func _ready() -> void:
 	score_timer.start()
 	%Options.majOptionPool("weapon", "flute", 1)
 
-	if weapons :
-		update_hud_weapons()
+	if weapons && equipements :
+		update_hud_weapons_equipment()
 
 
 func _physics_process(delta: float) -> void:
@@ -120,7 +120,7 @@ func attack():
 		if weapon_data["level"] > 0:  # Vérifie si l'arme est débloquée (niveau > 0)
 			var weapon_instance = weapon_data["scene"].instantiate()
 			match weapon_name:
-				"bullet":
+				"flute":
 					if bulletTimer:
 						bulletTimer.wait_time = weapon_instance.attackSpeed
 						if bulletTimer.is_stopped():
@@ -170,7 +170,7 @@ func add_xp(amount):
 	$XPSound.play()
 	xp += amount
 	if !updatedInventory:
-		update_hud_weapons()
+		update_hud_weapons_equipment()
 		updatedInventory = true
 	
 	#Level up
@@ -190,7 +190,7 @@ func levelUpWeapon(name):
 	#weapons[name].level += 1
 	var weapon = ""
 	if name == "flute":
-		weapon = weapons["bullet"]
+		weapon = weapons["flute"]
 		weapon.level+=1
 	else :
 		weapon = weapons[name]
@@ -200,17 +200,19 @@ func levelUpWeapon(name):
 		#%Options.majOptionPool("weapon", "flute", weapons[name].level)
 	#else :
 	%Options.majOptionPool("weapon", name, weapon.level)
-	update_hud_weapons()
+	update_hud_weapons_equipment()
 	attack()
 	
 func levelUpEquipement(name):
 	var equipement = equipements[name]
 	equipement.level += 1 
 	%Options.majOptionPool("equipement", name, equipement.level)
+	update_hud_weapons_equipment()
 
-func update_hud_weapons():
+func update_hud_weapons_equipment():
 	if hud:
 		hud.update_weapons(weapons)
+		hud.update_equipment(equipements)
 
 func update_hud():
 	if hud:
@@ -218,21 +220,21 @@ func update_hud():
 		hud.update_xp(xp, max_xp, level)
 
 func _on_bullet_timer_timeout() -> void:
-	var bullet_instance = weapons["bullet"]["scene"].instantiate()
+	var bullet_instance = weapons["flute"]["scene"].instantiate()
 	bulletAmmo += bullet_instance.baseAmmo
 	bullet_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 	bulletAttackTimer.start()
 
 func _on_bullet_attack_timer_timeout() -> void:
 	if bulletAmmo > 0:
-		var bullet_instance = weapons["bullet"]["scene"].instantiate()
+		var bullet_instance = weapons["flute"]["scene"].instantiate()
 		bullet_instance.position = position
 		if Global.fire_mode == "Avec la souris":
 			var mouse_position = get_global_mouse_position()
 			bullet_instance.direction = (mouse_position - position).normalized()
 		else:
 			bullet_instance.target = get_closest_target()
-		bullet_instance.level = weapons["bullet"]["level"]
+		bullet_instance.level = weapons["flute"]["level"]
 		bullet_instance.loadLevel()
 		add_child(bullet_instance)
 		bulletAmmo -= 1

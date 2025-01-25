@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://biow8np17yqf8"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_pwlvy"]
-[ext_resource type="Texture2D" uid="uid://nrp1rwa06yxh" path="res://assets/weapons/guitare.png" id="2_d745f"]
+[ext_resource type="Texture2D" uid="uid://nrp1rwa06yxh" path="res://assets/weapons/flute.png" id="2_d745f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51cru"]
 radius = 23.9853

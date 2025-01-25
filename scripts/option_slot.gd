@@ -10,7 +10,8 @@ func applyBonus(bonusName):
 		"claquette":
 			player.speed += 50
 		"casque":
-			player.max_hp += 20
+			player.max_hp += 50
+			player.hp += 50
 		"lunettes":
 			var cam = player.get_node("Camera2D")
 			cam.zoom -= Vector2(0.1,0.1)

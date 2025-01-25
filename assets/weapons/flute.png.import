@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2tjx7ou34482"
-path="res://.godot/imported/casque.png-46feea1b4f36ba6cc78a254224785bc4.ctex"
+uid="uid://nrp1rwa06yxh"
+path="res://.godot/imported/flute.png-87ee13538cb56cf9e4800113e7f62c7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Equipement/casque.png"
-dest_files=["res://.godot/imported/casque.png-46feea1b4f36ba6cc78a254224785bc4.ctex"]
+source_file="res://assets/weapons/flute.png"
+dest_files=["res://.godot/imported/flute.png-87ee13538cb56cf9e4800113e7f62c7d.ctex"]
 
 [params]
 

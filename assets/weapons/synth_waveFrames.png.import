@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2tjx7ou34482"
-path="res://.godot/imported/casque.png-46feea1b4f36ba6cc78a254224785bc4.ctex"
+uid="uid://jngygj6puxfm"
+path="res://.godot/imported/synth_waveFrames.png-1216aa604f5b036f16c9715376cf8c45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Equipement/casque.png"
-dest_files=["res://.godot/imported/casque.png-46feea1b4f36ba6cc78a254224785bc4.ctex"]
+source_file="res://assets/weapons/synth_waveFrames.png"
+dest_files=["res://.godot/imported/synth_waveFrames.png-1216aa604f5b036f16c9715376cf8c45.ctex"]
 
 [params]
 
