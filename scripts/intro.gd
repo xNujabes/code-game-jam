@@ -4,9 +4,9 @@ func _ready():
 	# Préparer l'action "click" définie dans le projet
 	set_process(true)
 	$AnimationPlayer.play("Fade in")
-	await get_tree().create_timer(6).timeout
+	await get_tree().create_timer(4).timeout
 	$AnimationPlayer.play("Fade out")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(20).timeout
 	get_tree().change_scene_to_file("res://scenes/scene_start.tscn")
 
 func _process(delta):
