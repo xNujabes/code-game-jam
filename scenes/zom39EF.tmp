@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=26 format=3 uid="uid://ds2sbjlioq6ls"]
-
+[gd_scene load_steps=25 format=3 uid="uid://ds2sbjlioq6ls"]
 
 [ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
@@ -20,10 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://dvtg544vf06ym" path="res://assets/Zombie/Walk/zombie_Walk_2.png" id="16_ffobq"]
 [ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="17_vbkev"]
 [ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="18_04dr0"]
-
-[ext_resource type="Texture2D" uid="uid://7682j4j65mow" path="res://assets/shield.png" id="19_lytsn"]
-[ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="19_so1u6"]
-
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -115,7 +109,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="EnemyBig" type="CharacterBody2D"]
-scale = Vector2(30, 30.247)
+scale = Vector2(50, 50.412)
 collision_layer = 5
 collision_mask = 5
 motion_mode = 1
@@ -164,7 +158,6 @@ speed_scale = 0.5
 wait_time = 7.0
 autostart = true
 
-
 [node name="VieBigZombie" type="ProgressBar" parent="."]
 offset_left = -2.85649
 offset_top = 1.23804
@@ -176,14 +169,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_utba2")
 value = 50.0
 show_percentage = false
 
-[node name="Shield" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-0.420006, -0.773625)
-texture = ExtResource("19_lytsn")
-
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("19_so1u6")
-volume_db = -5.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

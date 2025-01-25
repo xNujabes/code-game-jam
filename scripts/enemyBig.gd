@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var health_bar = $VieBigZombie
 
 @export var speed = 20.0
 @export var hp = 100
+@export var max_hp = 100
 @export var damage = 200
 
 var isAnimated = false
@@ -19,6 +21,14 @@ signal boss_death
 
 func _ready() -> void:
 	special_attack()
+	if health_bar:
+		health_bar.max_value = 100
+		health_bar.value = 100
+		
+func update_health_boss(current_hp, max_hp):
+	if health_bar:
+		health_bar.value = current_hp
+		health_bar.max_value = max_hp
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -39,7 +49,11 @@ func _process(delta: float) -> void:
 
 func _on_hurtbox_hurt(damage: Variant):
 	if not isCharging:
+
+		# update vie boss
+		update_health_boss(hp, max_hp)
 		$HurtSound.play()
+
 		hp -= damage
 		var timer = $Timer
 		var tmp = animated_sprite.modulate
@@ -47,6 +61,7 @@ func _on_hurtbox_hurt(damage: Variant):
 		timer.start(0.3)
 		await timer.timeout
 		animated_sprite.modulate = tmp
+		
 
 		if hp < 0:
 			die()
@@ -98,15 +113,24 @@ func special_attack():
 	if hp >= 50:
 		chargeSpeAtt()
 		
+	
 func chargeSpeAtt():
 	isCharging = true  # Active l'état de charge
+	# cache le bouclier
+	$Shield.visible = true
+	
+	# Supprime le bouclier après la charge
+	#shield.queue_free()
 	var timer = $Timer
 	timer.start(2.0)
 	_process(false)
+	animated_sprite.stop()
 	await timer.timeout
 	release_attack()
-	print("spawn")
+	
 	isCharging = false  # Desactive l'état de charge
+	$Shield.visible = false
+	
 	var timer2 = $Timer
 	timer2.start(2.0)
 	await timer2.timeout

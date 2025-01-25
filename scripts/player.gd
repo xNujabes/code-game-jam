@@ -62,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")
 	game_over()
+	
 
 func move():
 	var x_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
