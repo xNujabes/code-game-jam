@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=31 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://n2cjlwy4o8in" path="res://assets/Main Character/characterIdle_0.png" id="3_7bv3x"]
 [ext_resource type="Texture2D" uid="uid://duhnwf5udbvnc" path="res://assets/Main Character/characterIdle_1.png" id="4_l4gas"]
 [ext_resource type="Texture2D" uid="uid://b4t8v3bjb7273" path="res://assets/Main Character/characterIdle_2.png" id="5_jy0ec"]
+[ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
 [ext_resource type="Texture2D" uid="uid://c1a85cx74sjsg" path="res://assets/Main Character/characterIdle_3.png" id="6_o0abf"]
+[ext_resource type="AudioStream" uid="uid://csf23sbnquey6" path="res://sounds/drum.mp3" id="6_o4713"]
 [ext_resource type="Texture2D" uid="uid://bb7i4pwbi06j5" path="res://assets/Main Character/characterRunning_0.png" id="7_25sr8"]
 [ext_resource type="Texture2D" uid="uid://cb4rix7ggpfh2" path="res://assets/Main Character/characterRunning_1.png" id="8_jrlrw"]
 [ext_resource type="Texture2D" uid="uid://cf5ck30c0q52r" path="res://assets/Main Character/characterRunning_2.png" id="9_iyrfv"]
@@ -16,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://0x80s6luru2m" path="res://assets/Main Character/characterRunning_5.png" id="12_i3iy2"]
 [ext_resource type="Texture2D" uid="uid://nndk2n363vtc" path="res://assets/Main Character/characterRunning_6.png" id="13_jr6m4"]
 [ext_resource type="Texture2D" uid="uid://c58mf8gfd1sk8" path="res://assets/Main Character/characterRunning_7.png" id="14_5fl07"]
+[ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
+[ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
+[ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
+[ext_resource type="PackedScene" uid="uid://kpnh58ikav6q" path="res://scenes/option_slot.tscn" id="21_rmary"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_718pj"]
 radius = 6.97913
@@ -147,7 +153,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 11
+collision_layer = 3
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_11tdv")
@@ -187,15 +193,43 @@ shape = SubResource("CapsuleShape2D_mfxea")
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="BulletTmer" type="Timer" parent="Weapons"]
+[node name="BulletTimer" type="Timer" parent="Weapons"]
 wait_time = 1.5
 
-[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTmer"]
+[node name="BulletAttackTimer" type="Timer" parent="Weapons/BulletTimer"]
 wait_time = 0.075
 
 [node name="BulletSound" type="AudioStreamPlayer2D" parent="Weapons"]
 stream = ExtResource("3_3dpk5")
+volume_db = -8.0
+
+[node name="PianoTimer" type="Timer" parent="Weapons"]
+wait_time = 2.0
+
+[node name="PianoAttackTimer" type="Timer" parent="Weapons/PianoTimer"]
+wait_time = 0.075
+
+[node name="PianoSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("5_xn781")
 volume_db = -5.0
+
+[node name="WaveTimer" type="Timer" parent="Weapons"]
+
+[node name="WaveAttackTimer" type="Timer" parent="Weapons/WaveTimer"]
+
+[node name="DrumTimer" type="Timer" parent="Weapons"]
+
+[node name="DrumAttackTimer" type="Timer" parent="Weapons/DrumTimer"]
+wait_time = 0.075
+
+[node name="DrumSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("6_o4713")
+volume_db = -5.0
+
+[node name="SaxTimer" type="Timer" parent="Weapons"]
+
+[node name="SaxAttackTimer" type="Timer" parent="Weapons/SaxTimer"]
+wait_time = 0.075
 
 [node name="RangeDetection" type="Area2D" parent="."]
 light_mask = 5
@@ -208,6 +242,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_on24k")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
 modulate = Color(1, 0, 0, 0)
@@ -228,10 +263,34 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cf4ij")
 animation = &"idle"
 
+[node name="XPSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_51cbu")
+volume_db = -25.0
+
+[node name="hitHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_vml70")
+volume_db = -5.0
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_xixn2")
+volume_db = -5.0
+
+[node name="option_slot" parent="." instance=ExtResource("21_rmary")]
+visible = false
+
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTmer" to="." method="_on_bullet_tmer_timeout"]
-[connection signal="timeout" from="Weapons/BulletTmer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
+[connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_timer_timeout"]
+[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_t_imer_timeout"]
+[connection signal="timeout" from="Weapons/SaxTimer" to="." method="_on_sax_timer_timeout"]
+[connection signal="timeout" from="Weapons/SaxTimer/SaxAttackTimer" to="." method="_on_sax_attack_timer_timeout"]
 [connection signal="body_entered" from="RangeDetection" to="." method="_on_range_detection_body_entered"]
 [connection signal="body_exited" from="RangeDetection" to="." method="_on_range_detection_body_exited"]
 
 [editable path="Hurtbox"]
+[editable path="option_slot"]

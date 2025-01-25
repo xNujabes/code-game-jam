@@ -1,0 +1,175 @@
+[gd_scene load_steps=28 format=3 uid="uid://b6cqmel57lmy7"]
+
+[ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_g26sd"]
+[ext_resource type="Texture2D" uid="uid://cqxk6dgpuc8r7" path="res://assets/Zombie/Attack/zombie_Attack_0.png" id="2_os4y5"]
+[ext_resource type="Texture2D" uid="uid://3vh2ryv2koh7" path="res://assets/Zombie/Attack/zombie_Attack_1.png" id="3_egtit"]
+[ext_resource type="Texture2D" uid="uid://b4afba1vwk2mc" path="res://assets/Zombie/Attack/zombie_Attack_2.png" id="4_sb8yr"]
+[ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="5_d7ur3"]
+[ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="6_wcn52"]
+[ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="7_ogoer"]
+[ext_resource type="Texture2D" uid="uid://dgpgaj1l6uxg5" path="res://assets/Zombie/Dead/zombie_Dead_0.png" id="8_ojo8n"]
+[ext_resource type="Texture2D" uid="uid://qdba1l06npx8" path="res://assets/Zombie/Dead/zombie_Dead_1.png" id="9_87uyx"]
+[ext_resource type="Texture2D" uid="uid://b0ou54gx6iwth" path="res://assets/Zombie/Dead/zombie_Dead_2.png" id="10_7s3hc"]
+[ext_resource type="Texture2D" uid="uid://c662laa7jff6k" path="res://assets/Zombie/Dead/zombie_Dead_3.png" id="11_e3o3u"]
+[ext_resource type="Texture2D" uid="uid://c4pqjut32oaax" path="res://assets/Zombie/Dead/zombie_Dead_4.png" id="12_i553r"]
+[ext_resource type="Texture2D" uid="uid://b4ojrp6wg4ghy" path="res://assets/Zombie/Dead/zombie_Dead_5.png" id="13_e2d2l"]
+[ext_resource type="Texture2D" uid="uid://ddeygeqg7rwcx" path="res://assets/Zombie/Dead/zombie_Dead_6.png" id="14_cto4u"]
+[ext_resource type="Texture2D" uid="uid://gp68nxhnoe8l" path="res://assets/Zombie/Dead/zombie_Dead_7.png" id="15_8lrja"]
+[ext_resource type="Texture2D" uid="uid://d0vm883jiubh8" path="res://assets/Zombie/Dead/zombie_Dead_8.png" id="16_f3o8r"]
+[ext_resource type="Texture2D" uid="uid://b17oajy8q0y2n" path="res://assets/Zombie/Idle/zombie_Idle_0.png" id="17_m4jyn"]
+[ext_resource type="Texture2D" uid="uid://cmcjtcigg134x" path="res://assets/Zombie/Idle/zombie_Idle_1.png" id="18_w1j4h"]
+[ext_resource type="Texture2D" uid="uid://mtq1t2hyoaa0" path="res://assets/Zombie/Idle/zombie_Idle_2.png" id="19_u7txr"]
+[ext_resource type="Texture2D" uid="uid://bfprfnc1eowx2" path="res://assets/Zombie/Idle/zombie_Idle_3.png" id="20_7kdq1"]
+[ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="26_vfpvn"]
+[ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="27_ajoe6"]
+[ext_resource type="AudioStream" uid="uid://4ikl4adx1tni" path="res://sounds/hitEnemy.wav" id="28_flolo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_os4y5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_egtit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sb8yr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d7ur3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wcn52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ogoer")
+}],
+"loop": true,
+"name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ojo8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_87uyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7s3hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e3o3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i553r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_e2d2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cto4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8lrja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_f3o8r")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_m4jyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_w1j4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_u7txr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7kdq1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
+radius = 0.197787
+height = 1.6026
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pppx0"]
+radius = 2.35688
+height = 9.33856
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y11bw"]
+radius = 1.83557
+height = 9.69831
+
+[node name="Loup" type="CharacterBody2D"]
+scale = Vector2(8.08, 8.14665)
+collision_layer = 5
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_g26sd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.371251, 0.371251)
+sprite_frames = SubResource("SpriteFrames_qk76n")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.495049, 2.08675)
+scale = Vector2(6.556, 5)
+shape = SubResource("CapsuleShape2D_sxuy2")
+
+[node name="Hurtbox" parent="." instance=ExtResource("26_vfpvn")]
+position = Vector2(2.10396, -4.29624)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-2.47525, 5.33643)
+scale = Vector2(1.2405, 1.24358)
+shape = SubResource("CapsuleShape2D_pppx0")
+
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("27_ajoe6")]
+position = Vector2(0.618812, -0.613749)
+scale = Vector2(1.69831, 1.26034)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.582991, 1.16873)
+shape = SubResource("CapsuleShape2D_y11bw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.495049, -0.613749)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_flolo")
+volume_db = -10.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Hitbox/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds2sbjlioq6ls"]
+[gd_scene load_steps=29 format=3 uid="uid://ds2sbjlioq6ls"]
 
 [ext_resource type="Script" path="res://scripts/enemyBig.gd" id="1_laje0"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_n24io"]
@@ -9,6 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://c6rfqhc3vl4md" path="res://assets/Zombie/Attack/zombie_Attack_3.png" id="7_cegec"]
 [ext_resource type="Texture2D" uid="uid://dgvm5c4fhbci" path="res://assets/Zombie/Attack/zombie_Attack_4.png" id="8_voio3"]
 [ext_resource type="Texture2D" uid="uid://bm21cl3b0bkoc" path="res://assets/Zombie/Attack/zombie_Attack_5.png" id="9_obb2w"]
+[ext_resource type="Texture2D" uid="uid://b17oajy8q0y2n" path="res://assets/Zombie/Idle/zombie_Idle_0.png" id="10_odaq1"]
+[ext_resource type="Texture2D" uid="uid://cmcjtcigg134x" path="res://assets/Zombie/Idle/zombie_Idle_1.png" id="11_6b845"]
+[ext_resource type="Texture2D" uid="uid://mtq1t2hyoaa0" path="res://assets/Zombie/Idle/zombie_Idle_2.png" id="12_61yb5"]
+[ext_resource type="Texture2D" uid="uid://bfprfnc1eowx2" path="res://assets/Zombie/Idle/zombie_Idle_3.png" id="13_o04tp"]
+[ext_resource type="Texture2D" uid="uid://qw27kh06n0s5" path="res://assets/Zombie/Walk/zombie_Walk_0.png" id="14_uqu0v"]
+[ext_resource type="Texture2D" uid="uid://tuy4uim48kdb" path="res://assets/Zombie/Walk/zombie_Walk_1.png" id="15_6abyc"]
+[ext_resource type="Texture2D" uid="uid://dvtg544vf06ym" path="res://assets/Zombie/Walk/zombie_Walk_2.png" id="16_ffobq"]
+[ext_resource type="Texture2D" uid="uid://dsa4v34vxh4jr" path="res://assets/Zombie/Walk/zombie_Walk_3.png" id="17_vbkev"]
+[ext_resource type="Texture2D" uid="uid://cqip8y24rfkhq" path="res://assets/Zombie/Walk/zombie_Walk_4.png" id="18_04dr0"]
+[ext_resource type="Texture2D" uid="uid://7682j4j65mow" path="res://assets/shield.png" id="19_lytsn"]
+[ext_resource type="AudioStream" uid="uid://c7tdcx83gcso6" path="res://sounds/hitEnemy.mp3" id="19_so1u6"]
+[ext_resource type="AudioStream" uid="uid://d0jkwqhhnmdkk" path="res://sounds/Intro Gotaga !.mp3" id="21_8rmxq"]
+[ext_resource type="AudioStream" uid="uid://dxg1gytqi3ymh" path="res://sounds/Doigby - GUERRIER (clip officiel).mp3" id="22_ti15h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxuy2"]
 radius = 0.197787
@@ -19,8 +32,8 @@ radius = 2.35688
 height = 9.33856
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y11bw"]
-radius = 1.83557
-height = 9.69831
+radius = 1.39043
+height = 8.62734
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
 animations = [{
@@ -46,22 +59,74 @@ animations = [{
 "loop": true,
 "name": &"attack1",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_odaq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6b845")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_61yb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o04tp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_uqu0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6abyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ffobq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vbkev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_04dr0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6rr8"]
+bg_color = Color(0.0866293, 0.0866292, 0.0866292, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utba2"]
+bg_color = Color(0.556866, 0.0653722, 0.0656533, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="EnemyBig" type="CharacterBody2D"]
-scale = Vector2(11.8, 11.8973)
-collision_layer = 6
-collision_mask = 6
+scale = Vector2(30, 30.247)
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_laje0")
+speed = 60.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.485, 2)
+position = Vector2(0.074068, -4.14364)
 scale = Vector2(6.556, 5)
 shape = SubResource("CapsuleShape2D_sxuy2")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_n24io")]
-position = Vector2(0, 1.04656)
+position = Vector2(0.559068, -5.09708)
 collision_layer = 4
 collision_mask = 4
 
@@ -70,29 +135,68 @@ position = Vector2(-0.49, 0)
 scale = Vector2(1.2405, 1.24358)
 shape = SubResource("CapsuleShape2D_pppx0")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_lbru2")]
-scale = Vector2(0.981426, 1)
+[node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_lbru2")]
+position = Vector2(0.634068, -6.14364)
+scale = Vector2(1.03754, 1.05718)
 collision_layer = 2
 collision_mask = 2
+damage = 200
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.595, 1.255)
+scale = Vector2(-1.05439, 1.12683)
 shape = SubResource("CapsuleShape2D_y11bw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.687743, 0.180574, 0.823073, 1)
 texture_filter = 1
-position = Vector2(0, -9.53674e-07)
+position = Vector2(1.50076, -5.145)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
 animation = &"attack1"
-frame = 1
-frame_progress = 0.707052
+speed_scale = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="SuperPower" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="VieBigZombie" type="ProgressBar" parent="."]
+offset_left = -2.85649
+offset_top = 1.23804
+offset_right = 201.144
+offset_bottom = 28.238
+scale = Vector2(0.0342984, 0.0342984)
+theme_override_styles/background = SubResource("StyleBoxFlat_o6rr8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_utba2")
+value = 50.0
+show_percentage = false
+
+[node name="Shield" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-0.420006, -0.773625)
+texture = ExtResource("19_lytsn")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_so1u6")
+volume_db = -5.0
+
+[node name="gotaga" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_8rmxq")
+autoplay = true
+
+[node name="doigby" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_ti15h")
+autoplay = true
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Hitbox/Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SuperPower" to="." method="_on_super_power_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

@@ -36,10 +36,10 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_kqux1")
 
 [node name="BarDeXP" type="ProgressBar" parent="."]
-offset_left = 87.0
-offset_top = 77.0
-offset_right = 291.0
-offset_bottom = 104.0
+offset_left = 91.0
+offset_top = 79.55
+offset_right = 295.0
+offset_bottom = 106.55
 theme_override_styles/background = SubResource("StyleBoxFlat_uaivs")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ks2ye")
 value = 50.0
@@ -56,6 +56,7 @@ value = 50.0
 show_percentage = false
 
 [node name="LevelLabel" type="Label" parent="."]
+texture_filter = 1
 offset_left = 304.0
 offset_top = 79.0
 offset_right = 344.0
@@ -70,3 +71,19 @@ texture = ExtResource("1_4q07g")
 position = Vector2(52, 92)
 scale = Vector2(0.0957031, 0.0957031)
 texture = ExtResource("2_odloj")
+
+[node name="Inventory" type="HBoxContainer" parent="."]
+offset_left = 21.0
+offset_top = 129.0
+offset_right = 61.0
+offset_bottom = 169.0
+
+[node name="Weapons" type="VBoxContainer" parent="Inventory"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/Weapons"]
+layout_mode = 2
+text = "Inventory :"
+
+[node name="Equipment" type="VBoxContainer" parent="Inventory"]
+layout_mode = 2
