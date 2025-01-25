@@ -37,7 +37,7 @@ func spawn_mobs():
 	if path_follow:
 		path_follow.progress_ratio = randf()
 		new_mob.global_position = path_follow.global_position
-		new_mob.connect("death", Callable(self, "_on_mob_death"))  # Connexion au signal de mort avec Callable
+		#new_mob.connect("death", Callable(self, "_on_mob_death"))  # Connexion au signal de mort avec Callable
 		add_child(new_mob)
 
 
@@ -86,7 +86,6 @@ func spawn_boss():
 	add_child(boss)
 
 func _on_boss_death():
-
 	%SpawnMob.start()
 	%IncreaseEnemies.start()
 	%BossTime.start()

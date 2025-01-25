@@ -1,21 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnprctlv7qcle"]
+[gd_scene load_steps=6 format=3 uid="uid://cnprctlv7qcle"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_8hfux"]
 [ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="2_3en1v"]
+[ext_resource type="Texture2D" uid="uid://ubfmvtcwqwfj" path="res://assets/flutePA.png" id="3_kvrj3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7442"]
 size = Vector2(16, 8)
-
-[sub_resource type="Gradient" id="Gradient_w17nc"]
-offsets = PackedFloat32Array(0.357143, 0.994048, 1)
-colors = PackedColorArray(0.621191, 0.342722, 0.215342, 1, 0.976176, 0.175066, 0.0238756, 1, 1, 0.172549, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6b3pi"]
-gradient = SubResource("Gradient_w17nc")
-width = 16
-height = 8
-fill_from = Vector2(0, 0.704918)
-fill_to = Vector2(0.431624, 0.688034)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kt6j"]
 radius = 4.0
@@ -28,9 +18,11 @@ script = ExtResource("1_8hfux")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p7442")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.00102, 1.00176)
-texture = SubResource("GradientTexture2D_6b3pi")
+[node name="FlutePa" type="Sprite2D" parent="."]
+position = Vector2(-0.222977, -0.333333)
+rotation = 0.781155
+scale = Vector2(0.027399, 0.0274043)
+texture = ExtResource("3_kvrj3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
