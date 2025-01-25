@@ -23,6 +23,15 @@ var weapons = {
 		"level": 1
 	}
 }
+
+var equipements = {
+	"sac": {"level": 0},
+	"casque": {"level": 0},
+	"micro": {"level": 0},
+	"claquette": {"level": 0},
+	"lunettes": {"level": 0},
+}
+
 var score = 0  # Déclare la variable score
 
 @onready var hud = get_tree().get_first_node_in_group("HUD")
@@ -151,6 +160,12 @@ func levelUpWeapon(name):
 	%Options.majOptionPool("weapon", name, weapon.level)
 	update_hud_weapons()
 	attack()
+	
+func levelUpEquipement(name):
+	var equipement = equipements[name]
+	equipement.level += 1 
+	%Options.majOptionPool("equipement", name, equipement.level)
+	print(equipement.level)
 
 func update_hud_weapons():
 	if hud:
