@@ -18,6 +18,11 @@ var weaponPool = [
 		"type": "weapon",
 		"name": "flute",
 		"level": 0,
+	}, 
+	{
+		"type": "weapon",
+		"name": "piano",
+		"level": 0,
 	}
 ]
 
@@ -49,6 +54,17 @@ var equipementPool = [
 	},
 ]
 
+func majOptionPool(type, name, level):
+	match type:
+		"equipement":
+			for equipement in equipementPool:
+				if equipement.name == name:
+					equipement.level = level 
+		"weapon":
+			for weapon in weaponPool:
+				if weapon.name == name:
+					weapon.level = level 
+
 # Récupère 3 items aléatoirement 
 func getRandomOptions():
 	randomize()  # Initialiser le générateur de nombres aléatoires
@@ -70,7 +86,7 @@ func getRandomOptions():
 		var random_object = pool[randi() % pool.size()]
 		
 		# Ajouter l'objet sélectionné au tableau si il n'est pas déjà présent
-		if (!(random_object in random_array)):
+		if (!(random_object in random_array) && random_object.level < 5):
 			random_array.append(random_object)
 	
 	return random_array
@@ -83,13 +99,13 @@ func show_option():
 		for i in range(types.size()):
 			var option = types[i]
 			var texture_button = option_slot.get_node("option" + str(i+1))
-			var label = texture_button.get_node("Description") as Label
+			var description = texture_button.get_node("Description") as Label
+			var level = texture_button.get_node("Label") as Label
 			if option.type == "equipement":
 				texture_button.texture_normal = YELLOW_CARD
-				label.text = option.name
-			else:
-				label.text = option.name
 				
+			description.text = option.name
+			level.text = "level : " + str(option.level)	
 	
 	add_child(option_slot)
 	show()

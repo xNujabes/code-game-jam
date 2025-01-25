@@ -41,7 +41,12 @@ var pianoAmmo = 0
 
 var enemyClose = []
 
-func _ready() -> void:
+@onready var option_1 = $option_slot/option1
+@onready var option_2 = $option_slot/option2
+@onready var option_3 = $option_slot/option3
+@onready var option_slot = $option_slot
+
+func _ready() -> void:	
 	attack()
 	update_hud()
 	var score_timer = Timer.new()
@@ -49,6 +54,7 @@ func _ready() -> void:
 	score_timer.connect("timeout", Callable(self, "_on_score_timeout"))
 	add_child(score_timer)
 	score_timer.start()
+	%Options.majOptionPool("weapon", "flute", 1)
 
 func _physics_process(delta: float) -> void:
 	move()
@@ -67,6 +73,7 @@ func move():
 	move_and_slide()
 
 func attack():
+	print("attack")
 	for weapon_name in weapons:
 		var weapon_data = weapons[weapon_name]
 		if weapon_data["level"] > 0:  # Vérifie si l'arme est débloquée (niveau > 0)
@@ -80,6 +87,7 @@ func attack():
 					else:
 						print("bulletTimer non trouvé")
 				"piano":
+					print("PIANOOOOO")
 					if pianoTimer:
 						pianoTimer.wait_time = weapon_instance.attackSpeed
 						if pianoTimer.is_stopped():
@@ -111,6 +119,17 @@ func add_xp(amount):
 		%Options.show_option()
 		
 	update_hud()
+	
+func levelUpWeapon(name):
+	#var weapon = weapons[name]
+	weapons[name].level += 1
+	print("Level up " + name + ": ", weapons[name].level)
+	
+	if name == "bullet":
+		%Options.majOptionPool("weapon", "flute", weapons[name].level)
+	else :
+		%Options.majOptionPool("weapon", name, weapons[name].level)
+	attack()
 
 func update_hud():
 	if hud:
