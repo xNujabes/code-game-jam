@@ -2,11 +2,11 @@ extends Area2D
 
 var level = 1
 var attackSize = 1.0
-@export var hp = 3
-@export var speed = 400
-@export var damage = 5
-@export var baseAmmo = 1
-@export var attackSpeed = 1.5
+@export var hp = 1
+@export var speed = 600
+@export var damage = 2
+@export var baseAmmo = 6
+@export var attackSpeed = 4
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
@@ -38,40 +38,44 @@ func loadLevel():
 	match level:
 		1:  # Niveau 1
 			hp = 1
-			speed = 400
-			damage = 5
+			speed = 600
+			damage = 2
 			attackSize = 1.0
-			baseAmmo = 1
-			attackSpeed = 1.5
+			baseAmmo = 6
+			attackSpeed = 4
+
 
 		2:  # Niveau 2
-			hp = 1
-			speed = 450
-			damage = 7
-			attackSize = 1.1
-			baseAmmo = 2
-			attackSpeed = 1.4
+			hp = 2
+			speed = 650
+			damage = 3
+			attackSize = 1.2
+			baseAmmo = 7
+			attackSpeed = 3.5
+
 
 		3:  # Niveau 3
-			hp = 1
-			speed = 500
-			damage = 9
-			attackSize = 1.2
-			baseAmmo = 2
-			attackSpeed = 1.3
+			hp = 3
+			speed = 700
+			damage = 4
+			attackSize = 1.5
+			baseAmmo = 8
+			attackSpeed = 3.0
+
 
 		4:  # Niveau 4
-			hp = 1
-			speed = 550
-			damage = 11
-			attackSize = 1.3
-			baseAmmo = 3
-			attackSpeed = 1.2
+			hp = 4
+			speed = 750
+			damage = 5
+			attackSize = 1.8
+			baseAmmo = 9
+			attackSpeed = 2.5
 
-		5:  # Niveau 5
-			hp = 1
-			speed = 600
-			damage = 13
-			attackSize = 1.4
-			baseAmmo = 3
-			attackSpeed = 1.1
+
+		5:  # Niveau 5 (niveau maximal)
+			hp = 5
+			speed = 800
+			damage = 6
+			attackSize = 2.0
+			baseAmmo = 10
+			attackSpeed = 2.0

@@ -16,10 +16,22 @@ var updatedInventory = false
 var weapons = {
 	"bullet": {
 		"scene": preload("res://scenes/bullet.tscn"),
-		"level": 1
+		"level":0
 	},
 	"piano": {
 		"scene": preload("res://scenes/piano.tscn"),
+		"level": 0
+	},
+	"synth_wave": {
+		"scene": preload("res://scenes/synth_wave.tscn"),
+		"level": 0
+	},
+	"drum": {
+		"scene": preload("res://scenes/drum.tscn"),
+		"level": 0
+	},
+	"sax": {
+		"scene": preload("res://scenes/Sax.tscn"),
 		"level": 1
 	}
 }
@@ -46,6 +58,17 @@ var bulletAmmo = 0
 @onready var pianoAttackTimer = $Weapons/PianoTimer/PianoAttackTimer
 
 var pianoAmmo = 0
+
+@onready var waveTimer = $Weapons/WaveTimer
+@onready var waveAttackTimer = $Weapons/WaveTimer/WaveAttackTimer
+
+@onready var drumTimer = $Weapons/DrumTimer
+@onready var drumAttackTimer = $Weapons/DrumTimer/DrumAttackTimer
+
+var saxAmmo = 0
+
+@onready var saxTimer = $Weapons/SaxTimer
+@onready var saxAttackTimer = $Weapons/SaxTimer/SaxAttackTimer
 
 # Camera animation
 @onready var animation_player = $AnimationPlayer
@@ -100,16 +123,30 @@ func attack():
 						bulletTimer.wait_time = weapon_instance.attackSpeed
 						if bulletTimer.is_stopped():
 							bulletTimer.start()
-					else:
-						print("bulletTimer non trouvé")
+					
 				"piano":
 					print("PIANOOOOO")
 					if pianoTimer:
 						pianoTimer.wait_time = weapon_instance.attackSpeed
 						if pianoTimer.is_stopped():
 							pianoTimer.start()
-					else:
-						print("pianoTimer non trouvé")
+					
+				"synth_wave":
+					if waveTimer:
+						waveTimer.wait_time = 0
+						if waveTimer.is_stopped():
+							waveTimer.start()
+				
+				"drum":
+					if drumTimer:
+						drumTimer.wait_time = 15.0
+						if drumTimer.is_stopped():
+							drumTimer.start()
+				"sax":
+					if saxTimer:
+						saxTimer.wait_time = weapon_instance.attackSpeed
+						if saxTimer.is_stopped():
+							saxTimer.start()
 			weapon_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
@@ -192,6 +229,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 		else:
 			bullet_instance.target = get_random_target()
 		bullet_instance.level = weapons["bullet"]["level"]
+		bullet_instance.loadLevel()
 		add_child(bullet_instance)
 		bulletAmmo -= 1
 		$Weapons/BulletSound.play()
@@ -245,6 +283,7 @@ func _on_piano_attack_timer_timeout() -> void:
 		pianoAttack.position = position
 		pianoAttack.target = get_closest_target()
 		pianoAttack.level = weapons["piano"]["level"]
+		pianoAttack.loadLevel()
 		add_child(pianoAttack)
 		pianoAmmo -= 1
 		$Weapons/PianoSound.play()
@@ -268,3 +307,54 @@ func game_over():
 
 		# Change de scène vers l'écran de game over
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+func use_wave():
+	var wave_instance = weapons["synth_wave"]["scene"].instantiate()
+	wave_instance.position = position
+	wave_instance.level = weapons["synth_wave"]["level"]
+	wave_instance.loadLevel()
+	add_child(wave_instance)
+
+
+func _on_wave_timer_timeout() -> void:
+	use_wave()
+
+func invokeDrums():
+	var projectile_instance = weapons["drum"]["scene"].instantiate()
+	projectile_instance.position = position
+	print(weapons["drum"]["level"])
+	projectile_instance.level = weapons["drum"]["level"]
+	projectile_instance.loadLevel()
+	var number = projectile_instance.number
+	add_child(projectile_instance)
+	for i in range(number):
+		projectile_instance = weapons["drum"]["scene"].instantiate()
+		projectile_instance.position = position
+		projectile_instance.level = weapons["drum"]["level"]
+		add_child(projectile_instance)
+
+
+func _on_drum_timer_timeout() -> void:
+	print("wallah")
+	invokeDrums()
+
+func _on_sax_timer_timeout() -> void:
+	var sax_instance = weapons["sax"]["scene"].instantiate()
+	saxAmmo += sax_instance.baseAmmo
+	sax_instance.queue_free()  # Libérer l'instance après avoir lu les propriétés
+	saxAttackTimer.start()
+
+func _on_sax_attack_timer_timeout() -> void:
+	if saxAmmo > 0:
+		var sax_instance = weapons["sax"]["scene"].instantiate()
+		sax_instance.position = position
+		sax_instance.target = get_random_target()
+		sax_instance.level = weapons["sax"]["level"]
+		sax_instance.loadLevel()
+		add_child(sax_instance)
+		saxAmmo -= 1
+		$Weapons/BulletSound.play()
+		if saxAmmo > 0:
+			saxAttackTimer.start()
+		else:
+			saxAttackTimer.stop()

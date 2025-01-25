@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ni6n8b52fdue"]
+
+[ext_resource type="Script" path="res://scripts/drum.gd" id="1_2swe8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mm2gv"]
+radius = 27.074
+
+[sub_resource type="Gradient" id="Gradient_7equ0"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ikaf7"]
+gradient = SubResource("Gradient_7equ0")
+fill = 1
+fill_from = Vector2(0.50431, 0.521552)
+
+[node name="Drum" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_2swe8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mm2gv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ikaf7")

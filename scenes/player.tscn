@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4t8v3bjb7273" path="res://assets/Main Character/characterIdle_2.png" id="5_jy0ec"]
 [ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
 [ext_resource type="Texture2D" uid="uid://c1a85cx74sjsg" path="res://assets/Main Character/characterIdle_3.png" id="6_o0abf"]
+[ext_resource type="AudioStream" uid="uid://csf23sbnquey6" path="res://sounds/drum.mp3" id="6_o4713"]
 [ext_resource type="Texture2D" uid="uid://bb7i4pwbi06j5" path="res://assets/Main Character/characterRunning_0.png" id="7_25sr8"]
 [ext_resource type="Texture2D" uid="uid://cb4rix7ggpfh2" path="res://assets/Main Character/characterRunning_1.png" id="8_jrlrw"]
 [ext_resource type="Texture2D" uid="uid://cf5ck30c0q52r" path="res://assets/Main Character/characterRunning_2.png" id="9_iyrfv"]
@@ -212,6 +213,24 @@ wait_time = 0.075
 stream = ExtResource("5_xn781")
 volume_db = -5.0
 
+[node name="WaveTimer" type="Timer" parent="Weapons"]
+
+[node name="WaveAttackTimer" type="Timer" parent="Weapons/WaveTimer"]
+
+[node name="DrumTimer" type="Timer" parent="Weapons"]
+
+[node name="DrumAttackTimer" type="Timer" parent="Weapons/DrumTimer"]
+wait_time = 0.075
+
+[node name="DrumSound" type="AudioStreamPlayer2D" parent="Weapons"]
+stream = ExtResource("6_o4713")
+volume_db = -5.0
+
+[node name="SaxTimer" type="Timer" parent="Weapons"]
+
+[node name="SaxAttackTimer" type="Timer" parent="Weapons/SaxTimer"]
+wait_time = 0.075
+
 [node name="RangeDetection" type="Area2D" parent="."]
 light_mask = 5
 visibility_layer = 5
@@ -265,6 +284,11 @@ visible = false
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
+[connection signal="timeout" from="Weapons/WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_timer_timeout"]
+[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_t_imer_timeout"]
+[connection signal="timeout" from="Weapons/SaxTimer" to="." method="_on_sax_timer_timeout"]
+[connection signal="timeout" from="Weapons/SaxTimer/SaxAttackTimer" to="." method="_on_sax_attack_timer_timeout"]
 [connection signal="body_entered" from="RangeDetection" to="." method="_on_range_detection_body_entered"]
 [connection signal="body_exited" from="RangeDetection" to="." method="_on_range_detection_body_exited"]
 
