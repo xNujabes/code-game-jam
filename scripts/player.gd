@@ -80,6 +80,8 @@ var enemyClose = []
 @onready var option_3 = $option_slot/option3
 @onready var option_slot = $option_slot
 
+var isHit = false
+
 func _ready() -> void:	
 	attack()
 	update_hud()
@@ -96,11 +98,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move()
-	if velocity.length() > 0:
-		$AnimatedSprite2D.play("walk")
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	else:
-		$AnimatedSprite2D.play("idle")
+	if !isHit:
+		if velocity.length() > 0:
+			$AnimatedSprite2D.play("walk")
+			$AnimatedSprite2D.flip_h = velocity.x < 0
+		else:
+			$AnimatedSprite2D.play("idle")
 	game_over()
 	
 
@@ -151,6 +154,12 @@ func attack():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	$hitHurt.play()
+	$AnimatedSprite2D.play("hit")
+	isHit = true
+	%DisableAnime.wait_time = 0.33
+	%DisableAnime.start()
+	
+	print("ah jai mal")
 	hp -= damage
 	if hp < 0:
 		hp = 0
@@ -358,3 +367,7 @@ func _on_sax_attack_timer_timeout() -> void:
 			saxAttackTimer.start()
 		else:
 			saxAttackTimer.stop()
+
+
+func _on_disable_anime_timeout() -> void:
+	isHit = false

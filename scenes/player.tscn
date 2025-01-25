@@ -1,27 +1,120 @@
-[gd_scene load_steps=31 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=35 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="2_yw2jy"]
+[ext_resource type="Texture2D" uid="uid://bgud2yuly4q6y" path="res://assets/asset_main_character/1 Biker/Biker_idle.png" id="3_0ai3d"]
 [ext_resource type="AudioStream" uid="uid://b3sqkbr02w0iq" path="res://sounds/OrchestraHit.wav" id="3_3dpk5"]
-[ext_resource type="Texture2D" uid="uid://n2cjlwy4o8in" path="res://assets/Main Character/characterIdle_0.png" id="3_7bv3x"]
-[ext_resource type="Texture2D" uid="uid://duhnwf5udbvnc" path="res://assets/Main Character/characterIdle_1.png" id="4_l4gas"]
-[ext_resource type="Texture2D" uid="uid://b4t8v3bjb7273" path="res://assets/Main Character/characterIdle_2.png" id="5_jy0ec"]
+[ext_resource type="Texture2D" uid="uid://cu01dlejurrcu" path="res://assets/asset_main_character/1 Biker/Biker_hurt.png" id="3_ngx0f"]
+[ext_resource type="Texture2D" uid="uid://ca20rsftch8kf" path="res://assets/asset_main_character/1 Biker/Biker_run.png" id="4_ehucd"]
 [ext_resource type="AudioStream" uid="uid://dxu70s88xv32o" path="res://sounds/PianoThrow.wav" id="5_xn781"]
-[ext_resource type="Texture2D" uid="uid://c1a85cx74sjsg" path="res://assets/Main Character/characterIdle_3.png" id="6_o0abf"]
 [ext_resource type="AudioStream" uid="uid://csf23sbnquey6" path="res://sounds/drum.mp3" id="6_o4713"]
-[ext_resource type="Texture2D" uid="uid://bb7i4pwbi06j5" path="res://assets/Main Character/characterRunning_0.png" id="7_25sr8"]
-[ext_resource type="Texture2D" uid="uid://cb4rix7ggpfh2" path="res://assets/Main Character/characterRunning_1.png" id="8_jrlrw"]
-[ext_resource type="Texture2D" uid="uid://cf5ck30c0q52r" path="res://assets/Main Character/characterRunning_2.png" id="9_iyrfv"]
-[ext_resource type="Texture2D" uid="uid://dybd71pg4omm0" path="res://assets/Main Character/characterRunning_3.png" id="10_neosl"]
-[ext_resource type="Texture2D" uid="uid://0dlil3cw6e8i" path="res://assets/Main Character/characterRunning_4.png" id="11_6nikh"]
-[ext_resource type="Texture2D" uid="uid://0x80s6luru2m" path="res://assets/Main Character/characterRunning_5.png" id="12_i3iy2"]
-[ext_resource type="Texture2D" uid="uid://nndk2n363vtc" path="res://assets/Main Character/characterRunning_6.png" id="13_jr6m4"]
-[ext_resource type="Texture2D" uid="uid://c58mf8gfd1sk8" path="res://assets/Main Character/characterRunning_7.png" id="14_5fl07"]
 [ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
-[ext_resource type="PackedScene" uid="uid://kpnh58ikav6q" path="res://scenes/option_slot.tscn" id="21_rmary"]
+[ext_resource type="PackedScene" path="res://scenes/option_slot.tscn" id="21_rmary"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ur5u"]
+atlas = ExtResource("3_ngx0f")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkdja"]
+atlas = ExtResource("3_ngx0f")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sb7f"]
+atlas = ExtResource("3_0ai3d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x5oj"]
+atlas = ExtResource("3_0ai3d")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oscgt"]
+atlas = ExtResource("3_0ai3d")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v65u"]
+atlas = ExtResource("3_0ai3d")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubact"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6abiw"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oigaj"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxnqu"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x67ie"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srpd7"]
+atlas = ExtResource("4_ehucd")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cf4ij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ur5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkdja")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sb7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x5oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oscgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v65u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubact")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6abiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oigaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxnqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x67ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srpd7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_718pj"]
 radius = 6.97913
@@ -103,55 +196,6 @@ _data = {
 "camera-shake": SubResource("Animation_3t36t")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cf4ij"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_7bv3x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_l4gas")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_jy0ec")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_o0abf")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_25sr8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_jrlrw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_iyrfv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_neosl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_6nikh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_i3iy2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_jr6m4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_5fl07")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 11
@@ -176,6 +220,14 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_yw2jy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12, -3)
+scale = Vector2(1.29167, 1.29167)
+sprite_frames = SubResource("SpriteFrames_cf4ij")
+animation = &"hit"
+frame_progress = 0.233359
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.85)
@@ -257,12 +309,6 @@ libraries = {
 "": SubResource("AnimationLibrary_bx53y")
 }
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_cf4ij")
-animation = &"idle"
-
 [node name="XPSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_51cbu")
 volume_db = -25.0
@@ -279,8 +325,8 @@ volume_db = -5.0
 visible = false
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
