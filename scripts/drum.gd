@@ -49,28 +49,28 @@ func loadLevel():
 
 		2:  # Niveau 2
 			speed = 2.5
-			radius = 120.0
+			radius = 110.0
 			damage = 3
 			lifetime = 6.0
 			number = 4
 
 		3:  # Niveau 3
 			speed = 3.0
-			radius = 140.0
+			radius = 120.0
 			damage = 4
 			lifetime = 7.0
 			number = 5
 
 		4:  # Niveau 4
 			speed = 3.5
-			radius = 160.0
+			radius = 130.0
 			damage = 5
 			lifetime = 8.0
 			number = 6
 
 		5:  # Niveau 5
 			speed = 4.0
-			radius = 180.0
+			radius = 140.0
 			damage = 6
 			lifetime = 9.0
 			number = 7

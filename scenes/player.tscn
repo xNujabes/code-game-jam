@@ -197,6 +197,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+visibility_layer = 3
+rotation = 0.00238708
 collision_layer = 3
 collision_mask = 11
 motion_mode = 1
@@ -323,6 +325,30 @@ volume_db = -5.0
 
 [node name="option_slot" parent="." instance=ExtResource("21_rmary")]
 visible = false
+
+[node name="Label" parent="option_slot/option2" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 43.0
+
+[node name="Description" parent="option_slot/option2" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 188.0
+offset_bottom = 52.0
+
+[node name="Label" parent="option_slot/option3" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 43.0
+
+[node name="Description" parent="option_slot/option3" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 188.0
+offset_bottom = 52.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]

@@ -2,6 +2,7 @@ extends VBoxContainer
 
 var OptionSlot= preload("res://scenes/option_slot.tscn")
 const YELLOW_CARD = preload("res://assets/Card/yellowCard.png")
+const BLUE_CARD = preload("res://assets/Card/blueCard.png")
 var option_slot = OptionSlot.instantiate()
 
 func _ready():
@@ -22,6 +23,21 @@ var weaponPool = [
 	{
 		"type": "weapon",
 		"name": "piano",
+		"level": 0,
+	}, 
+	{
+		"type": "weapon",
+		"name": "drum",
+		"level": 0,
+	}, 
+	{
+		"type": "weapon",
+		"name": "synth_wave",
+		"level": 0,
+	}, 
+	{
+		"type": "weapon",
+		"name": "sax",
 		"level": 0,
 	}
 ]
@@ -103,6 +119,9 @@ func show_option():
 			var level = texture_button.get_node("Label") as Label
 			if option.type == "equipement":
 				texture_button.texture_normal = YELLOW_CARD
+			else:
+				if BLUE_CARD:
+					texture_button.texture_normal = BLUE_CARD
 				
 			description.text = option.name
 			level.text = "level : " + str(option.level)	
