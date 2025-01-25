@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_attack_sprite = $animatedAttack
 
 @export var speed = 40.0
 @export var hp = 10
@@ -20,10 +21,10 @@ func _process(delta: float) -> void:
 		move_and_slide()
 		if velocity.length() > 0 and not isAnimated:
 			animated_sprite.speed_scale = 1.0
-			animated_sprite.play("walk")
-			animated_sprite.flip_h = velocity.x < 0
-		else:
-			animated_sprite.play("idle")
+			if velocity.x > 0:
+				animated_sprite.play("walkL")
+			else:
+				animated_sprite.play("walkR")
 
 func _on_hurtbox_hurt(damage: Variant):
 	$HurtSound.play()
@@ -57,7 +58,9 @@ func _on_timer_timeout() :
 	if not isAnimated and not isDead:
 		isAnimated = true
 		animated_sprite.speed_scale = 2.0
-		animated_sprite.play("attack1")
+		animated_attack_sprite.play("attack1")
+		animated_sprite.flip_h = velocity.x > 0
+
 		isAnimated = false
 
 

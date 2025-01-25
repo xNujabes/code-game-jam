@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6cqmel57lmy7"]
+[gd_scene load_steps=28 format=3 uid="uid://bjoptcd54n2v8"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_g26sd"]
 [ext_resource type="Texture2D" uid="uid://cqxk6dgpuc8r7" path="res://assets/Zombie/Attack/zombie_Attack_0.png" id="2_os4y5"]

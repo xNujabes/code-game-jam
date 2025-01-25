@@ -1,8 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3qyagcb5t7md"]
+[gd_scene load_steps=10 format=3 uid="uid://cnprctlv7qcle"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_8hfux"]
 [ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="2_3en1v"]
-[ext_resource type="Texture2D" uid="uid://ubfmvtcwqwfj" path="res://assets/flutePA.png" id="3_kvrj3"]
+[ext_resource type="Texture2D" uid="uid://dxpfn567lruio" path="res://assets/monstres/1 Main Character/3 Effects/3_1.png" id="2_4iq3c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu1ny"]
+atlas = ExtResource("2_4iq3c")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43yps"]
+atlas = ExtResource("2_4iq3c")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv8yc"]
+atlas = ExtResource("2_4iq3c")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7qmk8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu1ny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43yps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv8yc")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7442"]
 size = Vector2(16, 8)
@@ -15,14 +44,15 @@ height = 16.0
 scale = Vector2(3, 3)
 script = ExtResource("1_8hfux")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.159443, 0.681575)
+sprite_frames = SubResource("SpriteFrames_7qmk8")
+animation = &"attack"
+frame_progress = 0.0131813
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p7442")
-
-[node name="FlutePa" type="Sprite2D" parent="."]
-position = Vector2(-0.222977, -0.333333)
-rotation = 0.781155
-scale = Vector2(0.027399, 0.0274043)
-texture = ExtResource("3_kvrj3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
