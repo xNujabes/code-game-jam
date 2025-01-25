@@ -20,7 +20,6 @@ func _physics_process(delta):
 func collect_xp():
 	is_collected = true
 	player.add_xp(amount)
-	print("XP taken ", player.xp)
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

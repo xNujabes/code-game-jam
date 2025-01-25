@@ -21,6 +21,7 @@ func _ready() -> void:
 		angle = global_position.direction_to(target)
 	rotation = angle.angle()
 	loadLevel()
+	scale = Vector2(attackSize, attackSize)
 
 func _physics_process(delta: float) -> void:
 	position += angle * speed * delta
@@ -49,29 +50,29 @@ func loadLevel():
 			speed = 450
 			damage = 7
 			attackSize = 1.1
-			baseAmmo = 2
+			baseAmmo = 1
 			attackSpeed = 1.4
 
 		3:  # Niveau 3
-			hp = 1
+			hp = 2
 			speed = 500
 			damage = 9
 			attackSize = 1.2
-			baseAmmo = 2
+			baseAmmo = 1
 			attackSpeed = 1.3
 
 		4:  # Niveau 4
-			hp = 1
+			hp = 2
 			speed = 550
 			damage = 11
 			attackSize = 1.3
-			baseAmmo = 3
+			baseAmmo = 1
 			attackSpeed = 1.2
 
 		5:  # Niveau 5
-			hp = 1
+			hp = 3
 			speed = 600
 			damage = 13
 			attackSize = 1.4
-			baseAmmo = 3
+			baseAmmo = 1
 			attackSpeed = 1.1

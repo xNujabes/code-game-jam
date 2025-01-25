@@ -46,10 +46,38 @@ func _on_explosion_timer_timeout() -> void:
 
 func loadLevel():
 	match level:
-		1:
+		1:  # Niveau 1
 			hp = 1
 			speed = 100
 			damage = 10
 			attackSize = 1.0
 			baseAmmo = 1
 			attackSpeed = 7.5
+		2:  # Niveau 2
+			hp = 1
+			speed = 120
+			damage = 15
+			attackSize = 1.4
+			baseAmmo = 1
+			attackSpeed = 7.0
+		3:  # Niveau 3
+			hp = 1
+			speed = 140
+			damage = 20
+			attackSize = 1.8
+			baseAmmo = 1
+			attackSpeed = 6.5
+		4:  # Niveau 4
+			hp = 1
+			speed = 160
+			damage = 25
+			attackSize = 2.2
+			baseAmmo = 1
+			attackSpeed = 6.0
+		5:  # Niveau 5
+			hp = 1
+			speed = 180
+			damage = 30
+			attackSize = 2.6
+			baseAmmo = 1
+			attackSpeed = 5.5

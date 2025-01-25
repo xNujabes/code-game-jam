@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://v0brf0mjsyfl"]
+[gd_scene load_steps=32 format=3 uid="uid://v0brf0mjsyfl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_11tdv"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="2_5fgw7"]
@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://p0cpsmb6p6ci" path="res://sounds/xp.wav" id="18_51cbu"]
 [ext_resource type="AudioStream" uid="uid://b1leirrh2p476" path="res://sounds/hitHurt.wav" id="19_vml70"]
 [ext_resource type="AudioStream" uid="uid://4fe7qkl5m8u4" path="res://sounds/levelUp.wav" id="20_xixn2"]
-[ext_resource type="PackedScene" uid="uid://kpnh58ikav6q" path="res://scenes/option_slot.tscn" id="21_rmary"]
+[ext_resource type="PackedScene" path="res://scenes/option_slot.tscn" id="21_rmary"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_718pj"]
 radius = 6.97913
@@ -153,6 +153,8 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+visibility_layer = 3
+rotation = 0.00238708
 collision_layer = 3
 collision_mask = 11
 motion_mode = 1
@@ -277,6 +279,30 @@ volume_db = -5.0
 
 [node name="option_slot" parent="." instance=ExtResource("21_rmary")]
 visible = false
+
+[node name="Label" parent="option_slot/option2" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 43.0
+
+[node name="Description" parent="option_slot/option2" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 188.0
+offset_bottom = 52.0
+
+[node name="Label" parent="option_slot/option3" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 158.0
+offset_bottom = 43.0
+
+[node name="Description" parent="option_slot/option3" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 188.0
+offset_bottom = 52.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]

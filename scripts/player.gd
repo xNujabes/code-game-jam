@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var max_hp = 80
 
 @export var xp = 0
-@export var xp_to_level_up = 100
-@export var max_xp = 100
+@export var xp_to_level_up = 10
+@export var max_xp = 10
 
 @export var level = 1
 
@@ -16,7 +16,7 @@ var updatedInventory = false
 var weapons = {
 	"bullet": {
 		"scene": preload("res://scenes/bullet.tscn"),
-		"level":0
+		"level":1
 	},
 	"piano": {
 		"scene": preload("res://scenes/piano.tscn"),
@@ -32,7 +32,7 @@ var weapons = {
 	},
 	"sax": {
 		"scene": preload("res://scenes/Sax.tscn"),
-		"level": 1
+		"level": 0
 	}
 }
 
@@ -112,7 +112,6 @@ func move():
 	move_and_slide()
 
 func attack():
-	print("attack")
 	for weapon_name in weapons:
 		var weapon_data = weapons[weapon_name]
 		if weapon_data["level"] > 0:  # Vérifie si l'arme est débloquée (niveau > 0)
@@ -125,7 +124,7 @@ func attack():
 							bulletTimer.start()
 					
 				"piano":
-					print("PIANOOOOO")
+
 					if pianoTimer:
 						pianoTimer.wait_time = weapon_instance.attackSpeed
 						if pianoTimer.is_stopped():
@@ -170,7 +169,7 @@ func add_xp(amount):
 		$LevelUpSound.play()
 		xp -= xp_to_level_up
 		level += 1
-		xp_to_level_up *= level
+		xp_to_level_up += level
 		max_xp = xp_to_level_up
 		%Options.show_option()
 		
@@ -184,12 +183,9 @@ func levelUpWeapon(name):
 	if name == "flute":
 		weapon = weapons["bullet"]
 		weapon.level+=1
-		print("flute")
 	else :
 		weapon = weapons[name]
-		print("pas flute")
 		weapon.level += 1
-	print("Level up " + name + ": ", weapon.level)
 	
 	#if name == "bullet":
 		#%Options.majOptionPool("weapon", "flute", weapons[name].level)
@@ -202,7 +198,6 @@ func levelUpEquipement(name):
 	var equipement = equipements[name]
 	equipement.level += 1 
 	%Options.majOptionPool("equipement", name, equipement.level)
-	print(equipement.level)
 
 func update_hud_weapons():
 	if hud:
@@ -227,7 +222,7 @@ func _on_bullet_attack_timer_timeout() -> void:
 			var mouse_position = get_global_mouse_position()
 			bullet_instance.direction = (mouse_position - position).normalized()
 		else:
-			bullet_instance.target = get_random_target()
+			bullet_instance.target = get_closest_target()
 		bullet_instance.level = weapons["bullet"]["level"]
 		bullet_instance.loadLevel()
 		add_child(bullet_instance)
@@ -240,7 +235,6 @@ func _on_bullet_attack_timer_timeout() -> void:
 
 func get_random_target():
 	if enemyClose.size() > 0:
-		print(enemyClose.pick_random().global_position)
 		return enemyClose.pick_random().global_position
 	else:
 		return Vector2.UP
@@ -322,7 +316,6 @@ func _on_wave_timer_timeout() -> void:
 func invokeDrums():
 	var projectile_instance = weapons["drum"]["scene"].instantiate()
 	projectile_instance.position = position
-	print(weapons["drum"]["level"])
 	projectile_instance.level = weapons["drum"]["level"]
 	projectile_instance.loadLevel()
 	var number = projectile_instance.number
@@ -335,7 +328,6 @@ func invokeDrums():
 
 
 func _on_drum_timer_timeout() -> void:
-	print("wallah")
 	invokeDrums()
 
 func _on_sax_timer_timeout() -> void:
