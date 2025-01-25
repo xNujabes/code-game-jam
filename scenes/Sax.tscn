@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://rt0072te8dxg"]
+
+[ext_resource type="Script" path="res://scripts/sax.gd" id="1_wt8um"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51cru"]
+radius = 13.3365
+height = 74.1292
+
+[sub_resource type="Gradient" id="Gradient_sdo6h"]
+offsets = PackedFloat32Array(0.0297619, 1)
+colors = PackedColorArray(0.176419, 0.176419, 0.176419, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t5idm"]
+gradient = SubResource("Gradient_sdo6h")
+width = 16
+height = 8
+fill_from = Vector2(0, 0.704918)
+fill_to = Vector2(0.431624, 0.688034)
+
+[node name="Sax" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(1.00896, 0.993398)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_wt8um")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.606184, -0.106753)
+shape = SubResource("CapsuleShape2D_51cru")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.00102, 1.00176)
+texture = SubResource("GradientTexture2D_t5idm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
