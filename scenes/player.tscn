@@ -176,7 +176,7 @@ radius = 11.0457
 height = 32.4454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_on24k"]
-radius = 662.091
+radius = 301.599
 
 [sub_resource type="Gradient" id="Gradient_b1q2b"]
 offsets = PackedFloat32Array(0, 0.405844, 0.733766, 1)
@@ -281,7 +281,6 @@ position = Vector2(-0.0063653, -2.66666)
 scale = Vector2(1.29167, 1.29167)
 sprite_frames = SubResource("SpriteFrames_cf4ij")
 animation = &"died"
-frame_progress = 0.803101
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.85)
@@ -348,6 +347,7 @@ volume_db = -10.0
 [node name="RangeDetection" type="Area2D" parent="."]
 light_mask = 5
 visibility_layer = 5
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 collision_mask = 4
 monitorable = false
@@ -444,14 +444,14 @@ stream = ExtResource("16_4tlus")
 volume_db = -5.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_tmer_timeout"]
+[connection signal="timeout" from="Weapons/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="Weapons/BulletTimer/BulletAttackTimer" to="." method="_on_bullet_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer" to="." method="_on_piano_timer_timeout"]
 [connection signal="timeout" from="Weapons/PianoTimer/PianoAttackTimer" to="." method="_on_piano_attack_timer_timeout"]
 [connection signal="timeout" from="Weapons/WaveTimer" to="." method="_on_wave_timer_timeout"]
-[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_timer_timeout"]
 [connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_t_imer_timeout"]
+[connection signal="timeout" from="Weapons/DrumTimer" to="." method="_on_drum_timer_timeout"]
 [connection signal="timeout" from="Weapons/SaxTimer" to="." method="_on_sax_timer_timeout"]
 [connection signal="timeout" from="Weapons/SaxTimer/SaxAttackTimer" to="." method="_on_sax_attack_timer_timeout"]
 [connection signal="body_entered" from="RangeDetection" to="." method="_on_range_detection_body_entered"]

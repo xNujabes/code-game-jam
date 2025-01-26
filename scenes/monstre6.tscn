@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c6ipfnjcd32u3"]
+[gd_scene load_steps=36 format=3 uid="uid://ter1dsh5f7w7"]
 
 [ext_resource type="Script" path="res://scripts/monstre1.gd" id="1_vv7ld"]
 [ext_resource type="Texture2D" uid="uid://is3gr5sm28fc" path="res://assets/monstres/3 Enemies/6/DeathSU.png" id="2_dm7ed"]
@@ -207,6 +207,7 @@ collision_layer = 5
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_vv7ld")
+base_speed = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -214,7 +215,6 @@ position = Vector2(-4.76837e-07, 0)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
 animation = &"dead"
-frame_progress = 0.451609
 speed_scale = 2.0
 
 [node name="animatedAttack" type="AnimatedSprite2D" parent="."]
@@ -240,6 +240,9 @@ position = Vector2(-2.22772, 4.05074)
 scale = Vector2(-1.07994, 0.974092)
 shape = SubResource("CapsuleShape2D_pppx0")
 
+[node name="Timer" parent="Hurtbox" index="1"]
+wait_time = 0.2
+
 [node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("7_nekvs")]
 position = Vector2(0.618812, -0.613749)
 scale = Vector2(1.69831, 1.26034)
@@ -257,7 +260,7 @@ position = Vector2(-0.495049, -0.613749)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_68ujg")
-volume_db = -10.0
+volume_db = -15.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

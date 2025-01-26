@@ -15,6 +15,8 @@ func applyBonus(bonusName):
 		"lunettes":
 			var cam = player.get_node("Camera2D")
 			cam.zoom -= Vector2(0.1,0.1)
+			var range = player.get_node("RangeDetection")
+			range.scale += Vector2(0.05,0.05)
 
 func _on_option_1_gui_input(event: InputEvent) -> void:
 	var description = $option1/Description

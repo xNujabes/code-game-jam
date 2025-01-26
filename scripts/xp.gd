@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @export var amount = 10
-@export var attraction_radius = 200
+@export var attraction_radius = 150
 @export var attraction_speed = 300
 var is_collected = false
 

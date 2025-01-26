@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bx75raul6148r"]
 
-[ext_resource type="Script" path="res://sprites/synth_wave.gd" id="1_yb5k2"]
+[ext_resource type="Script" path="res://scripts/synth_wave.gd" id="1_yb5k2"]
 [ext_resource type="Texture2D" uid="uid://jngygj6puxfm" path="res://assets/weapons/synth_waveFrames.png" id="2_4tmvx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upvgr"]

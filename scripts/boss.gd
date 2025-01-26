@@ -5,7 +5,7 @@ extends CharacterBody2D
 var niveauBoss = Global.niveauBoss
 
 @export var base_speed = 20.0  # Vitesse de base pour le niveau 1
-@export var base_hp = 200  # Points de vie de base pour le niveau 1
+@export var base_hp = 300  # Points de vie de base pour le niveau 1
 @export var base_damage = 50  # Dégâts de base pour le niveau 1
 @export var growth_factor = 1.5  # Facteur de croissance exponentielle
 
@@ -33,12 +33,13 @@ func _ready() -> void:
 	max_hp = hp
 	damage = base_damage * pow(growth_factor, niveauBoss - 1)
 	
-	update_health_boss(hp, max_hp)
 
 func update_health_boss(current_hp, max_hp):
 	if health_bar:
 		health_bar.value = current_hp
 		health_bar.max_value = max_hp
+	if health_bar.visible == false:
+		health_bar.visible = true
 
 func _process(delta: float) -> void:
 	if not isTouched and not isCharging:
@@ -52,23 +53,25 @@ func _process(delta: float) -> void:
 			animated_sprite.flip_h = velocity.x < 0
 		else:
 			animated_sprite.play("idle")
+	
+	if isCharging && hp <= 0:
+		queue_free()
 
 func _on_hurtbox_hurt(damage: Variant):
-	if not isCharging:
-		$HurtSound.play()
-		hp -= damage
-		update_health_boss(hp, max_hp)
-		var timer = $Timer
-		if animated_sprite.modulate != Color(150,0,0,100):
-			var tmp = animated_sprite.modulate
-			animated_sprite.modulate = Color(150,0,0,100)
-			timer.start(0.1)
-			await timer.timeout
-			animated_sprite.modulate = tmp
-		if hp < 0:
-			die()
-			drop_xp()
-			boss_death.emit()
+	$HurtSound.play()
+	hp -= damage
+	var timer = $Timer
+	if animated_sprite.modulate != Color(150,0,0,100):
+		var tmp = animated_sprite.modulate
+		animated_sprite.modulate = Color(150,0,0,100)
+		timer.start(0.1)
+		await timer.timeout
+		animated_sprite.modulate = tmp
+	update_health_boss(hp, max_hp)
+	if hp <= 0:
+		die()
+		drop_xp()
+		boss_death.emit()
 
 func drop_xp() -> void:
 	var num_orbs = randi() % 4 + 2  # Génère un nombre aléatoire entre 2 et 5
@@ -96,13 +99,13 @@ func _on_hitbox_body_exited(body: Node2D):
 
 func die():
 	isDead = true
+	$Hitbox/CollisionShape2D.call_deferred("set","disabled",true)
+	
+	$CollisionShape2D.call_deferred("set","disabled",true)
 	animated_sprite.animation = "dead"
 	velocity = Vector2.ZERO
 	set_process(false)
 
-func _on_animated_sprite_2d_animation_looped() -> void:
-	if animated_sprite.animation == "dead":
-		queue_free()
 
 func special_attack():
 	if hp >= 50:
@@ -111,6 +114,8 @@ func special_attack():
 func chargeSpeAtt():
 	isCharging = true
 	$Shield.visible = true
+	$Hurtbox/CollisionShape2D.disabled = true
+	$Hurtbox/Timer.stop()
 	var timer = $Timer
 	timer.start(2.0)
 	_process(false)
@@ -122,10 +127,14 @@ func chargeSpeAtt():
 	$SuperPower.start()
 
 func release_attack():
-	var num_rays = 20 * (niveauBoss + 1 * 0.5)
+	var num_rays = 10 * (niveauBoss + 1 * 0.5)
 	var angle_step = 360.0 / num_rays
-	var safe_zones = 4
 	var safe_angles = []
+	
+	if num_rays > 40:
+		num_rays = 40
+		
+	var safe_zones = num_rays/5
 	
 	for i in range(safe_zones):
 		safe_angles.append(randf() * 360.0)
@@ -134,6 +143,9 @@ func release_attack():
 		var angle = i * angle_step
 		if not is_safe_angle(angle, safe_angles):
 			spawn_ray(angle)
+	
+	$Hurtbox/Timer.start()
+	$Hurtbox/CollisionShape2D.disabled = false
 
 func is_safe_angle(angle: float, safe_angles: Array) -> bool:
 	for safe_angle in safe_angles:
@@ -148,5 +160,13 @@ func spawn_ray(angle: float):
 	get_parent().add_child(ray)
 
 func _on_super_power_timeout() -> void:
-	for i in range(niveauBoss * 2):
+	if niveauBoss == 1:
 		chargeSpeAtt()
+	else:
+		for i in range(niveauBoss-1 * 2):
+			chargeSpeAtt()
+
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if animated_sprite.animation == "dead":
+		queue_free()

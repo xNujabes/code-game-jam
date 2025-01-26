@@ -6,13 +6,12 @@ extends Node2D
 @onready var ui = $CanvasLayer/DayNightCycleUI
 #@onready var sound_machine = $SoundMachine
 @onready var camera = get_node("Player/Camera2D")
-@onready var audio_player = get_node("Player/Music")
 @onready var path2d = $Path2D
 @onready var path_follow = $Path2D/PathFollow2D  # Ajout de l'initialisation du nœud PathFollow2D
 @onready var spawn_timer = $SpawnMob
 @onready var increase_enemies_timer = $IncreaseEnemies
 @onready var boss_timer = $BossTime
-
+var boss
 
 # Variables globales
 var type_mob = 1
@@ -27,12 +26,6 @@ var mob_paths = [  # Chemins vers les monstres
 ]
 
 func _ready() -> void:
-	# Assurer que le son de la musique est défini au démarrage
-	if Global.is_muted:
-		audio_player.volume_db = -80  # Met le volume à -80 dB pour le désactiver
-	else:
-		audio_player.volume_db = -80  # Volume activé (ajuste selon tes besoins)
-	audio_player.play()
 	canvas_layer.visible = true
 	canvas_modulate.time_tick.connect(ui.set_daytime)
 	$Corki.play()
@@ -40,6 +33,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$Path2D.position = camera.global_position
 	$Path2D.position -= Vector2(600, 300)
+	if boss:
+		var pos_bos = boss.global_position.distance_to(camera.global_position)
+		if pos_bos > 1000:
+			boss.global_position = camera.global_position + Vector2(0, -200)
 
 func spawn_mobs():
 	# Choisir un type de mob en fonction du niveau du monde
@@ -104,17 +101,18 @@ func delete_all_enemies():
 			child.queue_free()  
 
 func spawn_boss():
-	var boss = preload("res://scenes/boss.tscn").instantiate()
+	world_level += 1  # Augmenter le niveau du monde
+	%SpawnMob.start(2.5)
+	boss = preload("res://scenes/boss.tscn").instantiate()
 
 	boss.global_position = camera.global_position + Vector2(0, -200)
 	
-	boss.connect("boss_death", Callable(self, "_on_boss_death"))  # Connexion au signal de mort du boss avec Callable
+	boss.connect("boss_death", Callable(self, "_on_boss_death"))  # Connexion cameraau signal de mort du boss avec Callable
 	
 	add_child(boss)
 
 func _on_boss_death():
-	world_level += 1  # Augmenter le niveau du monde
-	%SpawnMob.start(2.0)
+	boss = null
 	%IncreaseEnemies.wait_time = %IncreaseEnemies.wait_time -0.5
 	%IncreaseEnemies.start()
 	%BossTime.start()

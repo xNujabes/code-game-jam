@@ -1,9 +1,9 @@
 extends Node2D
 
-signal start_game
 
 @onready var global_data = get_tree().root.get_node("Global")
 @onready var best_score_label = $ColorRect/Score
+var game
 
 func _ready() -> void:
 	update_best_score_display()
@@ -26,8 +26,23 @@ func show_message(text: String) -> void:
 
 func _on_settings_pressed_Settings() -> void:
 	$ClickSound.play()
-	get_tree().change_scene_to_file("res://scenes/scene_settings.tscn")
+
+	# Supprimer tous les enfants actuels de la scène
+
+	# Charger et instancier la scène des paramètres
+	var settings_scene = load("res://scenes/scene_settings.tscn").instantiate()
+	settings_scene.game = game
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(settings_scene)  # Ajouter la nouvelle scène
+	get_tree().current_scene = settings_scene  # Définir la nouvelle scène comme scène actuelle
 
 func _on_start_pressed() -> void:
 	$ClickSound.play()
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
+	if game:
+		# Instancier la scène Main.tscn
+		var main_scene = game.instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(main_scene)  # Ajouter la nouvelle scène
+		get_tree().current_scene = main_scene  # Définir la nouvelle scène comme scène actuelle
+	else:
+		print("pas de jeu")

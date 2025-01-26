@@ -148,6 +148,7 @@ collision_layer = 5
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_adgi4")
+base_hp = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.687743, 0.180574, 0.823073, 1)
@@ -173,6 +174,9 @@ position = Vector2(1.24093, -0.159552)
 scale = Vector2(1.22975, 1.30705)
 shape = SubResource("CapsuleShape2D_pppx0")
 
+[node name="Timer" parent="Hurtbox" index="1"]
+wait_time = 0.2
+
 [node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("3_acqxr")]
 position = Vector2(-0.956668, -0.965384)
 scale = Vector2(1.03754, 1.05718)
@@ -188,10 +192,11 @@ shape = SubResource("CapsuleShape2D_y11bw")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SuperPower" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 3.5
 autostart = true
 
 [node name="VieBigZombie" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(0.525, 0)
 offset_left = -4.44723
 offset_top = 6.4163
@@ -211,7 +216,7 @@ texture = ExtResource("19_f6doo")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_kxq7a")
-volume_db = -5.0
+volume_db = -25.0
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

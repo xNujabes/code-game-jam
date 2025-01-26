@@ -98,8 +98,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	move()
 	if !isHit and hp > 0:
+		move()
 		if velocity.length() > 0:
 			$AnimatedSprite2D.play("walk")
 			$AnimatedSprite2D.flip_h = velocity.x < 0
@@ -303,6 +303,7 @@ func _on_score_timeout() -> void:
 
 func game_over():
 	if hp <= 0:
+		Global.niveauBoss = 0
 		# Récupère les valeurs actuelles de jour, heure et minute
 		var current_day = Global.day
 		var current_hour = Global.hour

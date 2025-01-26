@@ -1,10 +1,15 @@
 extends Node2D
 
 @onready var viser_button = $ColorRect/Viser
-@onready var mute_button = $ColorRect/MuteButton  
+@onready var mute_button = $ColorRect/MuteButton
+var game
 
 func _on_return_pressed_return_settings():
-	get_tree().change_scene_to_file("res://scenes/scene_start.tscn")
+	var menu = load("res://scenes/scene_start.tscn").instantiate()
+	menu.game = game
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(menu)  # Ajouter la nouvelle scène
+	get_tree().current_scene = menu  # Définir la nouvelle scène comme scène actuelle
 
 func _ready():
 	if mute_button:

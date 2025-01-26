@@ -180,6 +180,9 @@ position = Vector2(-2.22772, 4.05074)
 scale = Vector2(-1.07994, 0.974092)
 shape = SubResource("CapsuleShape2D_pppx0")
 
+[node name="Timer" parent="Hurtbox" index="1"]
+wait_time = 0.2
+
 [node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("27_qgfmu")]
 position = Vector2(0.618812, -0.613749)
 scale = Vector2(1.69831, 1.26034)
@@ -197,7 +200,7 @@ position = Vector2(-0.495049, -0.613749)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("28_577oe")
-volume_db = -10.0
+volume_db = -25.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

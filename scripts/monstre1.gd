@@ -75,6 +75,9 @@ func _on_hitbox_body_exited(body: Node2D):
 
 func die():
 	isDead = true
+	$Hitbox/CollisionShape2D.call_deferred("set","disabled",true)
+	$Hurtbox/CollisionShape2D.call_deferred("set","disabled",true)
+	$CollisionShape2D.call_deferred("set","disabled",true)
 	animated_sprite.animation = "dead"
 	velocity = Vector2.ZERO
 	set_process(false)

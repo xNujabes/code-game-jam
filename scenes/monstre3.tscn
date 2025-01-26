@@ -207,13 +207,15 @@ collision_layer = 5
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_0ld14")
+base_speed = 25.0
+base_hp = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-4.76837e-07, 0)
 scale = Vector2(0.371251, 0.371251)
 sprite_frames = SubResource("SpriteFrames_qk76n")
-animation = &"dead"
+animation = &"walkL"
 speed_scale = 2.0
 
 [node name="animatedAttack" type="AnimatedSprite2D" parent="."]
@@ -249,6 +251,9 @@ collision_mask = 2
 position = Vector2(-0.437243, 0.292183)
 shape = SubResource("CapsuleShape2D_y11bw")
 
+[node name="Timer" parent="Hitbox" index="1"]
+wait_time = 0.2
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -256,7 +261,7 @@ position = Vector2(-0.495049, -0.613749)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_5dre5")
-volume_db = -10.0
+volume_db = -15.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

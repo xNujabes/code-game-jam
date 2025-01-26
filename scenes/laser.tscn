@@ -54,8 +54,6 @@ frame_progress = 0.0131813
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p7442")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
 [node name="Hitbox" parent="." groups=["attack"] instance=ExtResource("2_3en1v")]
 collision_layer = 2
 collision_mask = 2
@@ -65,8 +63,12 @@ damage = 20
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4kt6j")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Hitbox"]
