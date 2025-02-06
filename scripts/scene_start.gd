@@ -46,3 +46,11 @@ func _on_start_pressed() -> void:
 		get_tree().current_scene = main_scene  # Définir la nouvelle scène comme scène actuelle
 	else:
 		print("pas de jeu")
+
+
+func _on_quitter_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_classement_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/Leadboard.tscn")

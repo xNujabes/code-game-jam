@@ -1,66 +1,46 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0jxtlktiua5y"]
+[gd_scene load_steps=27 format=3 uid="uid://c0jxtlktiua5y"]
 
 [ext_resource type="Script" path="res://scripts/enemyBasic.gd" id="1_g26sd"]
 [ext_resource type="PackedScene" uid="uid://b8q8qbbycch3v" path="res://scenes/hurtbox.tscn" id="26_vfpvn"]
 [ext_resource type="PackedScene" uid="uid://d6ama5rsu75c" path="res://scenes/hitbox.tscn" id="27_ajoe6"]
-[ext_resource type="AudioStream" uid="uid://4ikl4adx1tni" path="res://sounds/hitEnemy.wav" id="28_flolo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n2fay"]
-load_path = "res://.godot/imported/zombie_Attack_0.png-a73745064baebe6319deec00c909484b.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2hb7m"]
-load_path = "res://.godot/imported/zombie_Attack_1.png-7e01ccac8e42650b66db0a50ce2270f8.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7tv3"]
-load_path = "res://.godot/imported/zombie_Attack_2.png-65e1dd574748dfecf4ea05fe3c599960.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_48406"]
-load_path = "res://.godot/imported/zombie_Attack_3.png-6cfb01114e22bd6236aee80f7368f171.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nxfqm"]
-load_path = "res://.godot/imported/zombie_Attack_4.png-022456a275eee90d4b96f9c92cd7642a.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_84oiq"]
-load_path = "res://.godot/imported/zombie_Attack_5.png-2a06eaf7a08343f384601f60c3570add.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3243l"]
-load_path = "res://.godot/imported/zombie_Dead_0.png-bd908cb92555e8b4983d60e4e2dd4d66.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mlhjp"]
-load_path = "res://.godot/imported/zombie_Dead_1.png-891b2383ff200f7b77a0ea28b5c24482.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u5to0"]
-load_path = "res://.godot/imported/zombie_Dead_2.png-2a910f414551c14279777509adb80b42.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u3oog"]
-load_path = "res://.godot/imported/zombie_Dead_3.png-682d5d227bbd1a722f4da932e97e3f54.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6gggg"]
-load_path = "res://.godot/imported/zombie_Dead_4.png-dc5c4fd7d635989a8b8cf6930e0cfb48.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vld3g"]
-load_path = "res://.godot/imported/zombie_Dead_5.png-d606c088c9c458c1e56c4ca99725a48c.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pyjoq"]
-load_path = "res://.godot/imported/zombie_Dead_6.png-fb3845ff744509b7cda6ad4c6311d873.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tkyus"]
-load_path = "res://.godot/imported/zombie_Dead_7.png-a801cfa4dd544c0b794ee01d7b7f20f8.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pld4b"]
-load_path = "res://.godot/imported/zombie_Dead_8.png-9ae2614c3bbc8fd368a48086d3a08b9e.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l6d7e"]
-load_path = "res://.godot/imported/zombie_Idle_0.png-45fe0e7127e05c8483893c209d24039f.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_87ai7"]
-load_path = "res://.godot/imported/zombie_Idle_1.png-f05b38931fb8e7932e781b812bba3e94.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ix0mu"]
-load_path = "res://.godot/imported/zombie_Idle_2.png-186b238e47b30d70637249c01ab877d8.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ubdfp"]
-load_path = "res://.godot/imported/zombie_Idle_3.png-305c93b0ddd942c104458b768379a19e.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qk76n"]
 animations = [{
@@ -199,7 +179,6 @@ shape = SubResource("CapsuleShape2D_y11bw")
 position = Vector2(-0.495049, -0.613749)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("28_flolo")
 volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

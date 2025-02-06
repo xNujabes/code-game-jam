@@ -31,8 +31,9 @@ texture_filter = 1
 layout_mode = 2
 offset_left = 33.0
 offset_top = 209.0
-offset_right = 221.0
-offset_bottom = 261.0
+offset_right = 226.0
+offset_bottom = 235.0
+theme_override_font_sizes/font_size = 30
 
 [node name="TextureRect" type="TextureRect" parent="option1"]
 layout_mode = 0
@@ -40,6 +41,13 @@ offset_left = 47.0
 offset_top = 61.0
 offset_right = 205.0
 offset_bottom = 209.0
+
+[node name="ItemDescription" type="Label" parent="option1"]
+texture_filter = 1
+offset_left = 34.0
+offset_top = 251.0
+offset_right = 227.0
+offset_bottom = 277.0
 
 [node name="option2" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(300, 0)
@@ -61,10 +69,11 @@ text = "LVL"
 [node name="Description" type="Label" parent="option2"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 33.0
-offset_top = 209.0
-offset_right = 221.0
-offset_bottom = 261.0
+offset_left = 35.0
+offset_top = 203.0
+offset_right = 224.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 30
 
 [node name="TextureRect" type="TextureRect" parent="option2"]
 layout_mode = 0
@@ -72,6 +81,13 @@ offset_left = 47.0
 offset_top = 61.0
 offset_right = 205.0
 offset_bottom = 209.0
+
+[node name="ItemDescription" type="Label" parent="option2"]
+texture_filter = 1
+offset_left = 35.0
+offset_top = 250.0
+offset_right = 224.0
+offset_bottom = 276.0
 
 [node name="option3" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(300, 0)
@@ -93,10 +109,11 @@ text = "LVL"
 [node name="Description" type="Label" parent="option3"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 33.0
+offset_left = 35.0
 offset_top = 209.0
-offset_right = 221.0
-offset_bottom = 261.0
+offset_right = 224.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 30
 
 [node name="TextureRect" type="TextureRect" parent="option3"]
 layout_mode = 0
@@ -105,6 +122,13 @@ offset_top = 61.0
 offset_right = 205.0
 offset_bottom = 209.0
 
+[node name="ItemDescription" type="Label" parent="option3"]
+texture_filter = 1
+offset_left = 35.0
+offset_top = 250.0
+offset_right = 224.0
+offset_bottom = 276.0
+
 [connection signal="gui_input" from="option1" to="." method="_on_option_1_gui_input"]
 [connection signal="gui_input" from="option2" to="." method="_on_option_2_gui_input"]
-[connection signal="gui_input" from="option3" to="." method="_on_option_3_gui_input"]
+[connection signal="gui_input" from="option3" to="." method="_on_option_2_gui_input"]

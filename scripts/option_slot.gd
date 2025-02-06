@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@export var weapon = null  # Déclare une variable pour stocker l'arme associée
+@export var weapon = null  
 
 @onready var player = get_tree().get_first_node_in_group("player")
 

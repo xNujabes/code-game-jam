@@ -6,7 +6,7 @@ const BLUE_CARD = preload("res://assets/Card/blueCard.png")
 var option_slot = OptionSlot.instantiate()
 const TEXTURES = {
 	"flute": preload("res://assets/Weapons/flute.png"),
-	"piano": preload("res://assets/weapons/piano/piano.png"),
+	"piano": preload("res://assets/weapons/piano.png"),
 	"drum": preload("res://assets/Weapons/drum.png"),
 	"synth_wave": preload("res://assets/weapons/synth_wave.png"),
 	"sax": preload("res://assets/weapons/sax.png"),
@@ -28,26 +28,31 @@ var weaponPool = [
 	{
 		"type": "weapon",
 		"name": "flute",
+		"description" : "Envoie des guitare",
 		"level": 0,
 	}, 
 	{
 		"type": "weapon",
 		"name": "piano",
+		"description" : "Sorte de grenade",
 		"level": 0,
 	}, 
 	{
 		"type": "weapon",
 		"name": "drum",
+		"description" : "Bouclier de tamboure",
 		"level": 0,
 	}, 
 	{
 		"type": "weapon",
 		"name": "synth_wave",
+		"description" : "ceinture de protection",
 		"level": 0,
 	}, 
 	{
 		"type": "weapon",
 		"name": "sax",
+		"description" : "mitrayelle de trompettte",
 		"level": 0,
 	}
 ]
@@ -56,16 +61,19 @@ var equipementPool = [
 	{
 		"type": "equipement",
 		"name": "casque",
+		"description" : "regains de pv",
 		"level": 0,
 	},
 	{
 		"type": "equipement",
 		"name": "claquette",
+		"description" : "augmente la vitesse",
 		"level": 0,
 	},
 	{
 		"type": "equipement",
 		"name": "lunettes",
+		"description" : "augmente la vision",
 		"level": 0,
 	},
 ]
@@ -117,6 +125,11 @@ func show_option():
 			var description = texture_button.get_node("Description") as Label
 			var level = texture_button.get_node("Label") as Label
 			var texture = texture_button.get_node("TextureRect") as TextureRect
+			var item_description = texture_button.get_node("ItemDescription") as Label
+			
+			# Check if the node exists before assigning the text property
+			if item_description:
+				item_description.text = option.description  # Définir la description de l'objet
 			
 			# Définir la texture en fonction du nom de l'objet
 			if option.name in TEXTURES:
@@ -132,7 +145,7 @@ func show_option():
 					texture_button.texture_normal = BLUE_CARD
 				
 			description.text = option.name
-			level.text = "level : " + str(option.level)	
+			level.text = "level : " + str(option.level) 
 	
 	add_child(option_slot)
 	show()
