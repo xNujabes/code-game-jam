@@ -6,6 +6,7 @@ var is_muted = false
 var day = 0
 var hour = 0
 var minute = 0
+var game: Node
 
 # Le meilleur score est stocké sous forme de jour, heure, et minute
 var best_score = {"day": 0, "hour": 0, "minute": 0}
